@@ -1,65 +1,28 @@
-import React, { useState } from "react";
-import "./AdminHome.css";
-import { Link } from "react-router-dom";
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function Home() {
-//   Handle onSubmit for Admin Login and give all MediaKeySystemAccess, rest is the same as Login
-    const [sidebar, setSidebar]=useState(false)
-    const showSidebar=()=>setSidebar(!sidebar)
-    const SidebarData =[
-        {
-            title: 'Home',
-            path: './adminhome',
-            cName: 'nav-text'
-        },
-        {
-            title: 'Students',
-            path: './admin/student',
-            cName: 'nav-text'
-        },
-        {
-            title: 'Instructors',
-            path: './admin/instructor',
-            cName: 'nav-text'
-        },
-    ]
-  return (
-      <>
-    <div className="AdminHome">
-        <Link to="#" className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar}/>
-        </Link>
-        <h2 style={{paddingLeft: 15, paddingTop: 7}}>
-            Admin Home Page
-        </h2>
-    </div>
-    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        <ul className ='nav-menu-items'>
-            <li className="nav-bar-toggle">
-                <Link to="#" className='menu-bars' onClick={showSidebar} style={{color: '#1d1b1b'}}> 
-                    <AiIcons.AiOutlineClose/>
-                </Link>
-            </li>
-        {SidebarData.map((item,index)=>{
-            return (
-                <li key={index} className ={item.cName}>
-                <Link to ={item.path}>
-                <span>{item.title} </span>
-                </Link>
-                </li>
-            );
-        })}
-        </ul>
-    </nav>
-    <br>
-    </br>
-    <p style={{textAlign: 'center'}}>
-        This is the admin head page. The admin can change student and instructor profiles. The admin would ususlly be the head of the Institution
-        and would have the power to change/assign courses to students and instructors.
-    </p>
-    </>
+  return(
+    <>
+    <Dropdown>
+    <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+      Student
+    </Dropdown.Toggle>
+    <Dropdown.Menu>
+      <Dropdown.Item href="adminhome/student/view" id="dropdown-menu-align-responsive-1">View Student List</Dropdown.Item>
+      <Dropdown.Item href="adminhome/student/edit" id ="dropdown-menu-align-responsive-1">Edit Student List</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
+  <br></br>
+  <Dropdown>
+    <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+      Teacher
+    </Dropdown.Toggle>
+    <Dropdown.Menu>
+      <Dropdown.Item href="#/teacher/view" id="dropdown-menu-align-responsive-1">View Teacher List</Dropdown.Item>
+      <Dropdown.Item href="#/teacher/edit" id="dropdown-menu-align-responsive-1">Edit Teacher List</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
+  </>
   );
-}   
+}

@@ -6,8 +6,9 @@ import Login from "./containers/Login";
 import GuestLogin from "./containers/GuestLogin";
 import AdminLogin from "./containers/AdminLogin";
 import AdminHome from "./containers/AdminHome";
-import Student from "./containers/AdminPages/Students"
+import Student from './containers/AdminPages/Students';
 import Instructor from "./containers/AdminPages/Instructor";
+import StudentEdit from './containers/AdminPages/EditableStudent'
 
 
 export default function Routes() {
@@ -28,11 +29,14 @@ export default function Routes() {
         <Route exact path ="/adminhome">
           <AdminHome/>
         </Route>
-        <Route exact path = "/admin/student">
+        <Route exact path = "/adminhome/student/view">
           <Student/>
         </Route>
-        <Route exact path ="/admin/instructor">
-          <Instructor></Instructor>
+        <Route exact path="/adminhome/student/edit">
+          <StudentEdit></StudentEdit>
+        </Route>
+        <Route exact path ="/adminhome/teacher/view">
+          <Instructor/>
          </Route>
       <Route>
           <NotFound/>
