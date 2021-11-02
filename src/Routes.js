@@ -9,6 +9,7 @@ import AdminHome from "./containers/AdminHome";
 import Student from './containers/AdminPages/Students';
 import Instructor from "./containers/AdminPages/Instructor";
 import StudentEdit from './containers/AdminPages/editableStudent'
+import InstructorEdit from './containers/AdminPages/editableInstructor'
 
 
 export default function Routes() {
@@ -38,6 +39,9 @@ export default function Routes() {
         <Route exact path ="/adminhome/teacher/view">
           <Instructor/>
          </Route>
+         <Route exact path="/adminhome/teacher/edit">
+           <InstructorEdit></InstructorEdit>
+           </Route>
       <Route>
           <NotFound/>
       </Route>
