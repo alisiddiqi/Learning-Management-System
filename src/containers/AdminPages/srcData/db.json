@@ -2,9 +2,9 @@
   "students": [
     {
       "id": 1,
-      "first_name": "Wasi",
-      "last_name": "Walter",
-      "age": 21,
+      "first_name": "Wai",
+      "last_name": "Waltergt",
+      "age": "28",
       "email": "wasif@email.com"
     },
     {
@@ -16,9 +16,9 @@
     },
     {
       "id": 3,
-      "first_name": "Saad",
+      "first_name": "Saadbg",
       "last_name": "Green",
-      "age": 16,
+      "age": "78",
       "email": "saad@email.com"
     },
     {
@@ -27,12 +27,6 @@
       "last_name": "Red",
       "age": 25,
       "email": "asad@email.com"
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
     }
   ]
 }

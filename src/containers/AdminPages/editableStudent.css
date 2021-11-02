@@ -10,6 +10,16 @@ table {
   width: 100%;
 }
 
+.edit{
+  border-collapse: collapse;
+  width:fit-content;
+}
+
+.age{
+  border-collapse: collapse;
+  width: fit-content;
+}
+
 th,
 td {
   border: 1px solid #ffffff;
