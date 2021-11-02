@@ -1,64 +1,53 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import "./editableStudent.css"
+import {nanoid} from 'nanoid'
 const API_HOST = "http://localhost:4000";
 const STUDENT_API_URL = `${API_HOST}/students`;
 
-function App(){
-    const [data, setData]=useState([]);
+const App = () => {
+    const [Students,setStudents]=useState([]);
+    const[addFormData,setAddFormData]=useState({
+        firstName: '',
+        lastName: '',
+        age:'',
+        email: ''        
+    })
+    const handleAddFormChange=(event)=>{
+        const userEnteredFirstName=event.target.getAttribute('name');
+        const userEnteredNameValue=event.target.value;
+        const newFormData={...addFormData};
+        newFormData[userEnteredFirstName]=userEnteredNameValue;
+
+        setAddFormData(newFormData);
+    };
+
+    const handleAddFormSubmit =(event)=>{
+        const newStudent={
+            id: nanoid(),
+            firstName: addFormData.firstName,
+            lastName: addFormData.lastName,
+            age: addFormData.age,
+            email: addFormData.email
+        }
+        const newStudents=[...Students,newStudent];
+        fetch(`${STUDENT_API_URL}`,{
+            method: "POST",
+        }
+        ).then(res=>res.json())
+        .then(json=>setStudents(json));
+        }
     const fetchStudents = ()=>{
         fetch(`${STUDENT_API_URL}`)
         .then(res=>res.json())
-        .then(json=>setData(json));
+        .then(json=>setStudents(json));
     }
     useEffect(()=>{
         fetchStudents();
     },[]);
-    const[inEditMode, setInEditMode]=useState({
-        status: false,
-        rowKey: null
-    });
 
-    const [firstName, setfirstName]=useState(null);
-
-    const onEdit=({id,currentFirstName})=>{
-        setInEditMode({
-            status: true,
-            rowKey: id
-        })
-        setfirstName(currentFirstName);
-    }
-
-    const updateStudentList=({id,newFirstName})=>{
-        fetch(`${STUDENT_API_URL}/${id}`,{
-            method: "PATCH",
-            body: JSON.stringify({
-                first_name: newFirstName,
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8" 
-            }
-        })
-        .then(response=>response.json())
-        .then(json=> {
-            onCancel();
-            fetchStudents();
-        })
-    }
-
-    const onSave=(id,newFirstName)=>{
-            updateStudentList({id,newFirstName});
-    }
-    const onCancel=()=>{
-        setInEditMode({
-            status: false,
-            rowKey: null
-        })
-        setfirstName(null);
-    }
-
-    return (
+    return(
         <div className="container">
-            <h1> Student List </h1>
             <table>
                 <thead>
                     <tr>
@@ -66,64 +55,44 @@ function App(){
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th> Age </th>
-                        <th>Email address</th>
+                        <th> Email Address</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        data.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.id} </td>
-                                <td>
-                                    {
-                                        inEditMode.status && inEditMode.rowKey ===item.id ? (
-                                            <input value={firstName}
-                                                onChange={(event)=> setfirstName(event.target.value)}
-                                                />
-                                        ) : (
-                                            item.first_name
-                                        )
-                                    }
-                                </td>
-                                <td> 
-                                    {
-                                        inEditMode.status && inEditMode.rowKey === item.id ? (
-                                            <React.Fragment>
-                                                <button
-                                                    className={"btn-sucess"}
-                                                    onClick={()=> onSave({id: item.id, newFirstName: firstName})}
-                                                >
-                                                    Save
-                                                </button>
-
-                                                <button
-                                                    className={"btn-secondary"}
-                                                    style={{marginLeft: 8}}
-                                                    onClick={()=>onCancel()}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </React.Fragment>
-                                        ) : (
-                                            <button 
-                                                className={"btn-primary"}
-                                                onClick={() => onEdit({id: item.id, currentFirstName: item.first_name})}
-                                            >
-                                                Edit
-                                            </button>
-                                        )
-                                    }
-                                </td>
-                                <td>{item.last_name}</td>
-                                <td>{item.age}</td>
-                                <td>{item.email} </td>
-                            </tr>
-                        ))
-                    }
+                    {Students.map((Student)=>(
+                        <tr key={Student.id}>
+                            <td>{Student.id}</td>
+                            <td> { Student.first_name}</td>
+                            <td> {Student.last_name}</td>
+                            <td> {Student.age}</td>
+                            <td>{Student.email}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
+            <h2>Add Student</h2>
+            <form className="container" onSubmit={handleAddFormSubmit}>
+                <input type="text"
+                name="firstName"
+                required="required"
+                placeholder="Enter a new first name"onChange={handleAddFormChange}
+                />
+                <input type="text"
+                name="lastName"
+                required="required"
+                placeholder="Enter a new last name"onChange={handleAddFormChange}/>
+                <input type="text"
+                name="age"
+                required="required"
+                placeholder="Enter a new age"onChange={handleAddFormChange}/>
+                <input type="email"
+                name="email"
+                required="required"
+                placeholder="Enter a new email"onChange={handleAddFormChange}/>
+                <button type="submit" >Add</button>
+            </form>
         </div>
-    );
+    )
 }
 
-export default App;
+export default App
