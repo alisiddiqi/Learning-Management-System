@@ -69,7 +69,7 @@ function App(){
     }
 
     return (
-        <div className="container">
+        <div className="app-container">
             <h1> Student List </h1>
             <table>
                 <thead>
