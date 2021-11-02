@@ -10,7 +10,7 @@ export default function Home() {
     </Dropdown.Toggle>
     <Dropdown.Menu>
       <Dropdown.Item href="adminhome/student/view" id="dropdown-menu-align-responsive-1">View Student List</Dropdown.Item>
-      <Dropdown.Item href="adminhome/student/edit" id ="dropdown-menu-align-responsive-1">Edit Student List</Dropdown.Item>
+      <Dropdown.Item href="adminehome/student/edit" id ="dropdown-menu-align-responsive-1">Edit Student List</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
   <br></br>
@@ -19,8 +19,8 @@ export default function Home() {
       Teacher
     </Dropdown.Toggle>
     <Dropdown.Menu>
-      <Dropdown.Item href="#/teacher/view" id="dropdown-menu-align-responsive-1">View Teacher List</Dropdown.Item>
-      <Dropdown.Item href="#/teacher/edit" id="dropdown-menu-align-responsive-1">Edit Teacher List</Dropdown.Item>
+      <Dropdown.Item href="adminhome/teacher/view" id="dropdown-menu-align-responsive-1">View Teacher List</Dropdown.Item>
+      <Dropdown.Item href="adminhome/teacher/edit" id="dropdown-menu-align-responsive-1">Edit Teacher List</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
   </>

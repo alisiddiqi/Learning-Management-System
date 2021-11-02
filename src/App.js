@@ -19,7 +19,7 @@ function App() {
     try{
       userHasAuthenticated(true);
     }catch(e){
-      if(e=='No current user')
+      if(e==='No current user')
         alert(e);
     }
     setIsAuthenticating(false);

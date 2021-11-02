@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import LoaderButton from "./components/LoaderButton";
 import "./Login.css";
 import { useAppContext } from "../lib/contextLib";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import {onError} from "../lib/errorLib";
 
 
@@ -14,19 +14,20 @@ export default function Login() {
   const {userHasAuthenticated}=useAppContext();
   const [isLoading,setIsLoading]=useState(false);
 
+
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
 
-//Handle onSubmit for Admin Login and give all MediaKeySystemAccess, rest is the same as Login
+//Handle onSubmit for Admin Login and, rest is the same as Login
 
   function handleSubmit(event) {
     event.preventDefault();
     try{
       userHasAuthenticated(true);
-      history.push("/adminhome");
+      history.push('/adminhome');
   }catch (e){
-    onError(e);
+      alert(e.message);
     }
   }
 

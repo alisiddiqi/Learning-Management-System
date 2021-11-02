@@ -1,0 +1,36 @@
+{
+  "instructor": [
+    {
+      "id": 1,
+      "first_name": "Wee",
+      "last_name": "Kai",
+      "age": "28",
+      "email": "wasif@email.com",
+      "courses": "ENGG 200, ENSF 280"
+    },
+    {
+      "id": 2,
+      "first_name": "Tony",
+      "last_name": "Lee",
+      "age": 19,
+      "email": "ali@email.com",
+      "courses": "ENGG 275, ENSF 290"
+    },
+    {
+      "id": 3,
+      "first_name": "Mario",
+      "last_name": "Thomas",
+      "age": "78",
+      "email": "saad@email.com",
+      "courses": "ENGG 300, ENSF 300"
+    },
+    {
+      "id": 4,
+      "first_name": "Asad",
+      "last_name": "Red",
+      "age": 25,
+      "email": "asad@email.com",
+      "courses": "ENGG 310, ENSF 352"
+    }
+  ]
+}
