@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useHistory } from "react-router-dom";
 import "./Login.css";
 import { useAppContext } from "../lib/contextLib";
 
 export default function Login() {
+  const history=useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {userHasAuthenticated}=useAppContext();
@@ -19,6 +21,7 @@ export default function Login() {
     event.preventDefault();
     try{
       userHasAuthenticated(true);
+      history.push("/guesthome")
   }catch (e){
     alert(e.message);
   }

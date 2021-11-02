@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import LoaderButton from "./components/LoaderButton";
 import "./Login.css";
 import { useAppContext } from "../lib/contextLib";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import {onError} from "../lib/errorLib";
 
 
@@ -23,7 +23,7 @@ export default function Login() {
     setIsLoading(true);
     try{
       userHasAuthenticated(true);
-      history.push("/");
+      history.push("/studenthome");
     }catch (e){
       onError(e);
     }

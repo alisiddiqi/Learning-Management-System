@@ -27,7 +27,7 @@ function App(){
     const [Insemail, setInsemail]=useState(null);
     const [Courses, setCourses]=useState(null);
 
-    const onEdit=({id,currentFirstName,currentLastName,currentAge,currentEmail})=>{
+    const onEdit=({id,currentFirstName,currentLastName,currentAge,currentEmail,currentCourses})=>{
         setInEditMode({
             status: true,
             rowKey: id
@@ -36,16 +36,18 @@ function App(){
         setlastName(currentLastName);
         setInsage(currentAge);
         setInsemail(currentEmail);
+        setCourses(currentCourses  )
     }
 
-    const updateStudentList=({id,newfirstname,newlanme,newage,newemail})=>{
+    const updateStudentList=({id,newfirstname,newlanme,newage,newemail,newCourses})=>{
         fetch(`${INSTRUCTOR_API_URL}/${id}`,{
             method: "PATCH",
             body: JSON.stringify({
                 first_name: newfirstname,
                 last_name: newlanme,
                 age: newage,
-                email: newemail
+                email: newemail,
+                courses: newCourses
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8" 
@@ -58,8 +60,8 @@ function App(){
         })
     }
 
-    const onSave=({id,newFirstName,newLastName,newAge,newEmail})=>{
-            updateStudentList({id: id,newfirstname: newFirstName,newlanme: newLastName,newage: newAge,newemail: newEmail});
+    const onSave=({id,newFirstName,newLastName,newAge,newEmail,newCourses})=>{
+            updateStudentList({id: id,newfirstname: newFirstName,newlanme: newLastName,newage: newAge,newemail: newEmail,newCourses: newCourses});
     }
     const onCancel=()=>{
         setInEditMode({
@@ -150,7 +152,7 @@ function App(){
                                             <React.Fragment>
                                                 <button
                                                     className={"btn-sucess"}
-                                                    onClick={()=> {onSave({id: item.id, newFirstName:firstName,newLastName: lastName, newAge: Insage,newEmail: Insemail})}}
+                                                    onClick={()=> {onSave({id: item.id, newFirstName:firstName,newLastName: lastName, newAge: Insage,newEmail: Insemail, newCourses: Courses})}}
                                                 >
                                                     Save
                                                 </button>
@@ -170,7 +172,8 @@ function App(){
                                                     currentFirstName: item.first_name,
                                                     currentLastName: item.last_name,
                                                     currentAge: item.age,
-                                                    currentEmail: item.email})}
+                                                    currentEmail: item.email,
+                                                    currentCourses: item.courses })}
                                             >
                                                 Edit
                                             </button>
