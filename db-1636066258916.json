@@ -24,7 +24,7 @@
       "id": 3,
       "first_name": "Saadbg",
       "last_name": "Green",
-      "age": "87",
+      "age": "78",
       "email": "saad@email.com",
       "address": "766 Bottom Park SW",
       "phone": "789-547-8588",
@@ -39,13 +39,6 @@
       "address": "866 Low Park SW",
       "phone": "789-547-8785",
       "gender": "Male"
-    },
-    {
-      "id": "6",
-      "first_name": "Ali",
-      "last_name": "Doe",
-      "age": "88",
-      "email": "jaymgurjar@gmail.com"
     }
   ]
 }

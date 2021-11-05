@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import "./editableStudent.css"
+import {nanoid} from 'namor'
 const API_HOST = "http://localhost:4000";
 const STUDENT_API_URL = `${API_HOST}/students`;
 
@@ -20,7 +21,11 @@ function App(){
         rowKey: null
     });
 
-    
+    const [newEnteredID, setNewEnteredID]=useState(null);
+    const [newEnteredFirstName, setNewEnteredFirstName]=useState(null);
+    const [newEnteredAge, setNewEnteredAge]=useState(null);
+    const [newEnteredLastName, setNewEnteredLastName]=useState(null);
+    const [newEnteredEmail, setNewEnteredEmail]=useState(null);
     const [firstName, setfirstName]=useState(null);
     const [lastName, setlastName]=useState(null);
     const [Stuage, setStuage]=useState(null);
@@ -57,6 +62,30 @@ function App(){
         })
     }
 
+    const handleFormSubmit = (event)=>{
+        event.preventDefault();
+        
+        fetch(`${STUDENT_API_URL}`,{
+            method: "POST",
+            body: JSON.stringify({
+                id: newEnteredID,
+                first_name: newEnteredFirstName,
+                last_name: newEnteredLastName,
+                age: newEnteredAge,
+                email: newEnteredEmail
+            }
+            ),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8" 
+            }
+        }).then(response=>response.json())
+        .then(json=> {
+            onCancel();
+            fetchStudents();
+        })
+    }
+   
+
     const onSave=({id,newFirstName,newLastName,newAge,newEmail})=>{
             updateStudentList({id: id,newfirstname: newFirstName,newlanme: newLastName,newage: newAge,newemail: newEmail});
     }
@@ -70,7 +99,7 @@ function App(){
 
     return (
         <div className="app-container">
-            <h1> Student List </h1>
+            <h1 className="header"> Student List </h1>
             <table>
                 <thead>
                     <tr>
@@ -161,6 +190,7 @@ function App(){
                                             >
                                                 Edit
                                             </button>
+                                            
                                         )
                                     }
                                 </td>
@@ -169,6 +199,51 @@ function App(){
                     }
                 </tbody>
             </table>
+            <br/>
+            <form className="inputForm" onSubmit={handleFormSubmit}>
+            <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredID"
+                    required="required"
+                    placeholder="Enter ID"
+                    onChange={(event)=> setNewEnteredID(event.target.value)}             
+                    />
+            <input
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredFname"
+                    required="required"
+                    placeholder="Enter first Name"
+                    onChange={(event)=> setNewEnteredFirstName(event.target.value)}              
+                    />
+             <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredLname"
+                    required="required"
+                    placeholder="Enter last Name" 
+                    onChange={(event)=> setNewEnteredLastName(event.target.value)}                    
+                    />
+             <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredAge"
+                    required="required"
+                    placeholder="Age"   
+                    onChange={(event)=> setNewEnteredAge(event.target.value)}                  
+                    />
+             <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredEmail"
+                    required="required"
+                    placeholder="Enter email address"   
+                    onChange={(event)=> setNewEnteredEmail(event.target.value)}                  
+                    />
+            <button>Add</button>
+            </form>
+            
         </div>
     );
 }
