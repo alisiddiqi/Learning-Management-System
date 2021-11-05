@@ -5,6 +5,16 @@
   padding: 1rem;
 }
 
+.header{
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.takeUserInput{
+  width: 13%;
+  margin-inline: 3%;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
