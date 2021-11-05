@@ -31,6 +31,14 @@
       "age": 25,
       "email": "asad@email.com",
       "courses": "ENGG 310, ENSF 352"
+    },
+    {
+      "id": "55",
+      "first_name": "Jay",
+      "last_name": "Gurjar",
+      "age": "64",
+      "email": "jaymgurjar@gmail.com",
+      "courses": "ENGG 478"
     }
   ]
 }

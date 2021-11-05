@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import "./editableStudent.css"
-import {nanoid} from 'namor'
 const API_HOST = "http://localhost:4000";
 const STUDENT_API_URL = `${API_HOST}/students`;
 

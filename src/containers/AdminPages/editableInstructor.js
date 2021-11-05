@@ -20,7 +20,12 @@ function App(){
         rowKey: null
     });
 
-    
+    const [newEnteredID, setNewEnteredID]=useState(null);
+    const [newEnteredFirstName, setNewEnteredFirstName]=useState(null);
+    const [newEnteredAge, setNewEnteredAge]=useState(null);
+    const [newEnteredLastName, setNewEnteredLastName]=useState(null);
+    const [newEnteredEmail, setNewEnteredEmail]=useState(null);
+    const [newEnteredCourses, setNewEnteredCourses]=useState(null);
     const [firstName, setfirstName]=useState(null);
     const [lastName, setlastName]=useState(null);
     const [Insage, setInsage]=useState(null);
@@ -54,6 +59,30 @@ function App(){
             }
         })
         .then(response=>response.json())
+        .then(json=> {
+            onCancel();
+            fetchInstructor();
+        })
+    }
+
+    const handleFormSubmit = (event)=>{
+        event.preventDefault();
+        
+        fetch(`${INSTRUCTOR_API_URL}`,{
+            method: "POST",
+            body: JSON.stringify({
+                id: newEnteredID,
+                first_name: newEnteredFirstName,    
+                last_name: newEnteredLastName,
+                age: newEnteredAge,
+                email: newEnteredEmail,
+                courses: newEnteredCourses
+            }
+            ),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8" 
+            }
+        }).then(response=>response.json())
         .then(json=> {
             onCancel();
             fetchInstructor();
@@ -185,6 +214,57 @@ function App(){
                     }
                 </tbody>
             </table>
+            <form className="inputForm" onSubmit={handleFormSubmit}>
+            <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredID"
+                    required="required"
+                    placeholder="Enter ID"
+                    onChange={(event)=> setNewEnteredID(event.target.value)}             
+                    />
+            <input
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredFname"
+                    required="required"
+                    placeholder="Enter First Name"
+                    onChange={(event)=> setNewEnteredFirstName(event.target.value)}              
+                    />
+             <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredLname"
+                    required="required"
+                    placeholder="Enter Last Name" 
+                    onChange={(event)=> setNewEnteredLastName(event.target.value)}                    
+                    />
+             <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredAge"
+                    required="required"
+                    placeholder="Age"   
+                    onChange={(event)=> setNewEnteredAge(event.target.value)}                  
+                    />
+             <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredEmail"
+                    required="required"
+                    placeholder="Enter email address"   
+                    onChange={(event)=> setNewEnteredEmail(event.target.value)}                  
+                    />
+            <input 
+                    type="text"
+                    className="takeUserInput"
+                    name="enteredCourses"
+                    required="required"
+                    placeholder="Enter Courses"
+                    onChange={(event)=> setNewEnteredCourses(event.target.value)}             
+                    />
+            <button>Add</button>
+            </form>
         </div>
     );
 }
