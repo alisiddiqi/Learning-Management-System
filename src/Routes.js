@@ -8,7 +8,7 @@ import AdminLogin from "./containers/AdminLogin";
 import AdminHome from "./containers/AdminHome";
 import Student from './containers/AdminPages/Students';
 import Instructor from "./containers/AdminPages/Instructor";
-import StudentEdit from './containers/AdminPages/editableStudent'
+import StudentEdit from './containers/AdminPages/EditableStudent'
 import InstructorEdit from './containers/AdminPages/editableInstructor'
 
 

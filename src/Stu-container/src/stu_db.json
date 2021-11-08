@@ -1,0 +1,79 @@
+{
+    "Banner": {
+        "platform": "Stu",
+        "profile": "KD",
+        "schoolName": "University of Calgary"
+    },
+    "homeNav": {
+        "dest1": "TOOLS",
+        "dest1path": "/Tools",
+        "dest2": "EMAIL",
+        "dest2path": "#",
+        "dest3": "SCHOOL",
+        "dest3path": "/StuHome",
+        "dest4": "HELP",
+        "dest4path": "#"
+    },
+    "courseData": [
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        },
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        },
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        },
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        }
+    ],
+    "lectures-data": [
+        {
+            "name": "Tuple Relational Calculus",
+            "instructor": "Yuekai Wang (Prof.)",
+            "date": "MWF - 1:00pm (50min)"
+        }
+    ],
+    "Discussion-data": [
+        {
+            "postTitle": "Meta Databases",
+            "postContent": "A bunch of words about a paragraph or sentences which make up the content section of the discussion post. All goes here.",
+            "authorName": "Jay Gujar",
+            "authorRole": "Student"
+        }
+    ],
+    "EmailList": [
+        {
+            "role": "Teacher",
+            "email": "example@email.com"
+        }
+    ],
+    "Grades-data": [
+        {
+            "type": "Quiz",
+            "title": "Midterm Practice Quiz 1",
+            "weight": "18/20",
+            "grade": "90%",
+            "feedback": "Teacher feedback and test results and further information here."
+        }
+    ],
+    "Dropbox-data": [
+        {
+            "Type": "Assignment",
+            "title": "HW3 and HW4",
+            "status": "1 Submission",
+            "grade": "15/20 - 75%",
+            "eval": "N/A",
+            "fileDrop": "0 files added."
+        }
+    ]
+}
