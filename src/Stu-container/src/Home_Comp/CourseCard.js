@@ -6,11 +6,11 @@ import tack from "../Images/tack.png";
 function CourseCard(props) {
     return (
         <Card className="course-card" style={{width: '16rem'}}>
-            <Card.Img className="card-img" variatn="top" src={myimg}></Card.Img>
+            <Card.Img className="card-img" variatn="top" src={myimg} alt="Course Img"></Card.Img>
             <Card.Body>
-                <Card.Title>{props.info.courseData.name}<Button variant="outline"><img className="pin-btn" src={tack}/></Button></Card.Title>
-                <Card.Text><p>{props.info.courseData.time}</p></Card.Text>
-                <Button href={props.info.courseData.path} variant="outline-primary">SELECT</Button>
+                <Card.Title>{props.info.name}<Button variant="outline"><img className="pin-btn" src={tack} alt="Pin"/></Button></Card.Title>
+                <Card.Text><p>{props.info.time}</p></Card.Text>
+                <Button href={props.info.path} variant="outline-primary">SELECT</Button>
             </Card.Body>
         </Card>
     );

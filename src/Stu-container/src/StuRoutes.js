@@ -11,13 +11,13 @@ import Schedule from "./Course_Comp/Schedule";
 export default function StuRoutes() {
   return (
     <Switch>
-        <Route exact path="/StuHome" component={StuHome} />
-        <Route exact path="/Course_main" component={CoursePage} />
-        <Route exact path="/Course_main/ContentSec" component={ContentSec} />
-        <Route exact path="/Course_main/CommunicationSec" component={CommunicationSec} />
-        <Route exact path="/Course_main/GradesSec" component={GradesSec} />
-        <Route exact path= "/Course_main/DropboxSec" component={DropboxSec} />
-        <Route exact path= "/Tools" element={Schedule} />
+        <Route exact path="/"> <StuHome /> </Route>
+        <Route exact path="/Course_main"> <CoursePage /> </Route>
+        <Route exact path="/Course_main/ContentSec"> <ContentSec /> </Route>
+        <Route exact path="/Course_main/CommunicationSec"> <CommunicationSec /> </Route>
+        <Route exact path="/Course_main/GradesSec"> <GradesSec /> </Route>
+        <Route exact path= "/Course_main/DropboxSec"> <DropboxSec /> </Route>
+        <Route exact path= "/Tools"> <Schedule /> </Route>
     </Switch>
   );
 }

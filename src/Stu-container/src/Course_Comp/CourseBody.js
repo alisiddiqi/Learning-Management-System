@@ -11,7 +11,7 @@ function CourseBody(props) {
             <div>
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
-                <Lecture />
+                {props.lectureInfo.map((data) => <Lecture info={data} />)}
             </div>
         );
     }
@@ -20,7 +20,7 @@ function CourseBody(props) {
             <div>
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
-                <Grade />
+                {props.gradeInfo.map((data) => <Grade info={data} />)}
             </div>
         );
     }
@@ -29,7 +29,7 @@ function CourseBody(props) {
             <div>
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
-                <Dropbox />
+                {props.dropboxInfo.map((data) => <Dropbox info={data} />)}
             </div>
         );
     }
@@ -38,7 +38,7 @@ function CourseBody(props) {
             <div>
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
-                <EmailList />
+                {props.commInfo.map((data) => <Discussion info={data} />)}
             </div>
         );
     }
@@ -47,7 +47,7 @@ function CourseBody(props) {
             <div>
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
-                <Discussion />
+                {props.commInfo.map((data) => <EmailList info={data} />)}
             </div>
         );
     }

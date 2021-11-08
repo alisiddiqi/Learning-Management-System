@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col, Nav} from 'react-bootstrap';
+import { Container, Col, Nav } from 'react-bootstrap';
 
 function GenNav(props) {
     return (

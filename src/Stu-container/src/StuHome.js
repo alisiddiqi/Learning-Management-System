@@ -7,10 +7,10 @@ import Courses from "./Home_Comp/Courses";
 import StuData from "./stu_db.json"
 
 function StuHome() {
+    console.log(StuData.courseData);
     return (
         <div className="home-page">
-            <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}
-            />
+            <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}/>
             <GenNav studentNav={StuData.homeNav}/>
             <Courses courseInfo={StuData.courseData}/>
         </div>

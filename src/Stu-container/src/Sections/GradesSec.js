@@ -5,34 +5,16 @@ import Banner from "../Home_Comp/Banner";
 import GenNav from "../Home_Comp/GenNav";
 import CourseBody from "../Course_Comp/CourseBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import StuData from "../stu_db.json";
 
 class GradesSec extends Component{
-    // State
-    constructor() {
-        super()
-        this.state = {
-            navigation: {
-                place1: "CONTENT",
-                place2: "COMMUNICATION",
-                place3: "GRADES",
-                place4: "DROPBOX"
-            },
-            platform: "Stu",
-            profile: "KD",
-            schoolName: "University of Calgary"
-        }
-    }
-
-    // Functions 
-
     render() {
         return (
             <div className="course-main">
-                <Banner type={this.state.platform} profile={this.state.profile} school={this.state.schoolName}
-                />
-                <GenNav studentNav={this.state.navigation}/>
+                <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}/>
+                <GenNav studentNav={StuData.stuNav}/>
                 <div className="contentBody">
-                    <CourseBody title="Grades"/>
+                    <CourseBody gradeInfo={StuData.GradesData} title="Grades"/>
                 </div>
             </div>
         );
