@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
+import FileUp from '../Handling/FileUpload';
 
 function Dropbox() {
     return (
@@ -12,20 +13,19 @@ function Dropbox() {
                 </Col>
                 <Col>
                     <h4>Completion Status</h4>
-                    <p>1 Submission</p>
+                    <p>0 Submission</p>
                 </Col>
                 <Col>
                     <h4>Grade</h4>
                     <p>90 %</p>
                 </Col>
                 <Col>
-                    <h4>Evaluation</h4>
+                    <h4>Evaluation:</h4>
                     <p>N/A</p>
                 </Col>
                 <Col>
                     <h4>Submission</h4>
-                    <input type="file" name="file" />
-                    <p>Files pending: 0</p>
+                    <FileUp />
                 </Col>
             </Row>
         </Container>

@@ -1,26 +1,26 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 
-function Grade() {
+function Grade(props) {
     return (
         <Container fluid>
             <Row>
                 <Col style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}}>
                     <h4>Grade Item</h4>
-                    <p>Assignment</p>
-                    <p>HW3 and HW4</p>
+                    <p>{props.info.type}</p>
+                    <p>{props.info.title}</p>
                 </Col>
                 <Col>
                     <h4>Weight</h4>
-                    <p>18/20</p>
+                    <p>{props.info.weight}</p>
                 </Col>
                 <Col>
                     <h4>Grade</h4>
-                    <p>90 %</p>
+                    <p>{props.info.grade}</p>
                 </Col>
                 <Col>
                     <h4>Feedback</h4>
-                    <p>Teacher feedback and test results and further information here.</p>
+                    <p>{props.info.feedback}</p>
                 </Col>
             </Row>
         </Container>

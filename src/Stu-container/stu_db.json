@@ -18,7 +18,7 @@
         "dest1": "CONTENT",
         "dest1path": "/Course_main/ContentSec",
         "dest2": "COMMUNICATION",
-        "dest2path": "Course_main/CommunicationSec",
+        "dest2path": "/Course_main/CommunicationSec",
         "dest3": "GRADES",
         "dest3path": "/Course_main/GradesSec",
         "dest4": "DROPBOX",
