@@ -23,7 +23,7 @@ export default function Login() {
     setIsLoading(true);
     try{
       userHasAuthenticated(true);
-      history.push("/studenthome");
+      history.push("/StuHome");
     }catch (e){
       onError(e);
     }
