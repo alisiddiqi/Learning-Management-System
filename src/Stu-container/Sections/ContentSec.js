@@ -6,6 +6,7 @@ import GenNav from "../Home_Comp/GenNav";
 import CourseBody from "../Course_Comp/CourseBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "../stu_db.json";
+import content from '../work_db.json';
 
 class ContentSec extends Component{
     render() {
@@ -14,7 +15,7 @@ class ContentSec extends Component{
                 <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}/>
                 <GenNav studentNav={StuData.stuNav}/>
                 <div className="contentBody">
-                    <CourseBody lectureInfo={StuData.LecturesData} title="Lectures"/>
+                    <CourseBody contentInfo={content.courseWork.content} title="Course Work"/>
                 </div>
             </div>
         );

@@ -1,17 +1,17 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 
-function Discussion() {
+function Discussion(props) {
     return (
         <Container fluid>
             <Row>
                 <Col>
-                    <h4>Title</h4>
-                    <p>A bunch of words about a paragraph or sentences which make up the content section of the discussion post. All goes here.</p>
+                    <h4>{props.info.postTitle}</h4>
+                    <p>{props.info.postContent}</p>
                 </Col>
                 <Col style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}}>
-                    <h4>Kundai Dziwa</h4>
-                    <p>Role: Student</p>
+                    <h4>{props.info.authorName}</h4>
+                    <p>Role: {props.info.authorRole}</p>
                 </Col>
             </Row>
         </Container>

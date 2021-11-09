@@ -4,6 +4,7 @@ import Grade from './Grade';
 import Dropbox from './Dropbox';
 import EmailList from './EmailList';
 import Discussion from './Discussion';
+import Assignment from './Assignment';
 
 function CourseBody(props) {
     if (props.title === "Lectures") {
@@ -12,6 +13,15 @@ function CourseBody(props) {
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
                 {props.lectureInfo.map((data) => <Lecture info={data} />)}
+            </div>
+        );
+    }
+    if (props.title === "Course Work") {
+        return (
+            <div>
+                <h1>{props.title}</h1>
+                <input placeholder="Search" type="text" className="todo-input"/>
+                {props.contentInfo.map((data) => <Assignment info={data} />)}
             </div>
         );
     }

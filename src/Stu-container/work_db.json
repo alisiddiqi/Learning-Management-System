@@ -1,11 +1,18 @@
 {
-    "ENSF433": {
+    "courseWork": {
         "AQTsubmitted": [
             {
                 "file": "",
                 "fileName": "",
                 "grade": "",
                 "feedback": ""
+            }
+        ],
+        "content": [
+            {
+                "type": "Assignment",
+                "name": "Proxy Server",
+                "dueDate": "11/22/2021 - 12pm"
             }
         ]
     }

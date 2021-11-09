@@ -10,8 +10,8 @@ function Lecture(props) {
                     <Button variant="outline-primary">View</Button>
                 </Col>
                 <Col>
-                    <h3>Instructor(s)</h3>
-                    <p>Date and Time of lecture</p>
+                    <h3>{props.info.instructor}</h3>
+                    <p>{props.info.date}</p>
                 </Col>
             </Row>
         </Container>
