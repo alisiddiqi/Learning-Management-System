@@ -24,7 +24,7 @@ function Dropbox() {
                 </Col>
                 <Col>
                     <h4>Submission</h4>
-                    {/* Upload files here button */}
+                    <input type="file" name="file" />
                     <p>Files pending: 0</p>
                 </Col>
             </Row>

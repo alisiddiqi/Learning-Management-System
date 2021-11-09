@@ -9,11 +9,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "../stu_db.json";
 
 class CommunicationSec extends Component{
-    render() {
+    constructor() {
+        super();
         this.state = {
             service: "Discussions",
             commData: StuData.DiscussionData
-        };
+        }
+    }
+
+    render() {
         return (
             <div className="course-main">
                 <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}/>

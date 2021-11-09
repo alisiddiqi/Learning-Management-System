@@ -5,7 +5,7 @@ import CoursePage from './Course_main';
 import ContentSec from './Sections/ContentSec';
 import CommunicationSec from './Sections/CommunicationSec';
 import GradesSec from './Sections/GradesSec';
-import DropboxSec from './Sections/GradesSec';
+import DropboxSec from './Sections/DropboxSec';
 import Schedule from "./Course_Comp/Schedule";
 
 export default function StuRoutes() {
