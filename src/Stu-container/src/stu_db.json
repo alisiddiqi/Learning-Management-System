@@ -1,0 +1,89 @@
+{
+    "Banner": {
+        "platform": "Stu",
+        "profile": "KD",
+        "schoolName": "University of Calgary"
+    },
+    "homeNav": {
+        "dest1": "TOOLS",
+        "dest1path": "/Tools",
+        "dest2": "EMAIL",
+        "dest2path": "#",
+        "dest3": "SCHOOL",
+        "dest3path": "/StuHome",
+        "dest4": "HELP",
+        "dest4path": "#"
+    },
+    "stuNav": {
+        "dest1": "CONTENT",
+        "dest1path": "/Course_main/ContentSec",
+        "dest2": "COMMUNICATION",
+        "dest2path": "Course_main/CommunicationSec",
+        "dest3": "GRADES",
+        "dest3path": "/Course_main/GradesSec",
+        "dest4": "DROPBOX",
+        "dest4path": "/Course_main/DropboxSec"
+    },
+    "courseData": [
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        },
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        },
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        },
+        {
+            "name": "CPSC 471 - Database Management Systems",
+            "time": "September 06 2021 - December 24 2021",
+            "path": "/Course_main"
+        }
+    ],
+    "LecturesData": [
+        {
+            "name": "Tuple Relational Calculus",
+            "instructor": "Yuekai Wang (Prof.)",
+            "date": "MWF - 1:00pm (50min)"
+        }
+    ],
+    "DiscussionData": [
+        {
+            "postTitle": "Meta Databases",
+            "postContent": "A bunch of words about a paragraph or sentences which make up the content section of the discussion post. All goes here.",
+            "authorName": "Jay Gujar",
+            "authorRole": "Student"
+        }
+    ],
+    "EmailList": [
+        {
+            "role": "Teacher",
+            "email": "example@email.com"
+        }
+    ],
+    "GradesData": [
+        {
+            "type": "Quiz",
+            "title": "Midterm Practice Quiz 1",
+            "weight": "18/20",
+            "grade": "90%",
+            "feedback": "Teacher feedback and test results and further information here."
+        }
+    ],
+    "DropboxData": [
+        {
+            "Type": "Assignment",
+            "title": "HW3 and HW4",
+            "status": "1 Submission",
+            "grade": "15/20 - 75%",
+            "eval": "N/A",
+            "fileDrop": "0 files added."
+        }
+    ]
+}

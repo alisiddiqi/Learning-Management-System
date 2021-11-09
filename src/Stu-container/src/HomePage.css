@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: whitesmoke;
+    color: #222;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+}
+
+/* ----- Home Page Banner ----- */
+.banner{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: .75rem 0 .75rem 0;
+}
+.banner h1{
+    color: #333;
+}
+.banner .row{
+    align-items: center;
+}
+.banner button {
+    margin: 0 1rem 0 1rem;
+}
+.not-btn{
+    width: 1.5rem;
+}
+.not-btn:hover {
+    width: 1.75rem;
+    transition: 0.25s ease-in-out;
+}
+
+/* ----- Navigation bar ----- */
+.options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top: 0.075rem solid #ccc;
+    border-bottom: 0.075rem solid #ccc;
+    background: whitesmoke;
+}
+.options .nav-link{
+    list-style: none;
+    color: #777;
+    text-decoration: none;
+    font-size: 13px;
+}
+.options .nav-link::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #93caed;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.options .nav-link:hover::after{
+    width: 50%;
+}
+@media only screen and (max-width:700px) {
+}
+
+/* ----- Courses options ----- */
+.pin-btn{
+    width: 1.5rem;
+}
+.courses{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.courses h2{
+    margin: 30px 10px 20px 10px;
+}
+.courses .cont{
+    box-shadow: 5px 5px 20px;
+    border-radius: 5px;
+    background: whitesmoke;
+    padding: 2rem;
+}
+
+/* ----- Each Course Card ----- */
+.course-card:hover{
+    box-shadow: 10px 1px 20px;
+    transition: 0.25s ease-in-out;
+}
