@@ -8,8 +8,7 @@ const STUDENT_API_URL = `${API_HOST}/students`;
 function App(){
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
-        fetch(`${STUDENT_API_URL}`)
-        .then(res=>res.json())
+        fetch("http://localhost:5000/students")
         .then(json=>setData(json));
     }
     useEffect(()=>{
