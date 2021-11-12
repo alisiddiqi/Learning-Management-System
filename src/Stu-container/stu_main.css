@@ -3,7 +3,7 @@
     padding: 0;
 }
 body {
-    background-color: whitesmoke;
+    background: whitesmoke;
     color: #222;
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
@@ -32,13 +32,12 @@ body {
     width: 1.75rem;
     transition: 0.25s ease-in-out;
 }
+.home-page{
+    text-align: center;
+}
 
 /* ----- Navigation bar ----- */
 .options{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     border-top: 0.075rem solid #ccc;
     border-bottom: 0.075rem solid #ccc;
     background: whitesmoke;
@@ -59,19 +58,21 @@ body {
     transition: 0.5s;
 }
 .options .nav-link:hover::after{
-    width: 50%;
-}
-@media only screen and (max-width:700px) {
+    width: 100%;
 }
 
 /* ----- Courses options ----- */
 .pin-btn{
     width: 1.5rem;
 }
+.course-main{
+    text-align: center;
+}
 .courses{
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin: 5px;
 }
 .courses h2{
     margin: 30px 10px 20px 10px;
@@ -87,4 +88,22 @@ body {
 .course-card:hover{
     box-shadow: 10px 1px 20px;
     transition: 0.25s ease-in-out;
+}
+
+/* ----- Each Course Card ----- */
+.course-card:hover{
+    box-shadow: 10px 1px 20px;
+    transition: 0.25s ease-in-out;
+}
+  
+/* ----- Lectures Section ----- */
+.lectures-sec {
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding: 1rem;
+}
+.lecture {
+    box-shadow: 2px 2px 5px;
+    margin: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
 }

@@ -1,10 +1,12 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 
 function FileDownload(props) {
+    const url = sessionStorage.getItem("url");
+
     return (
         <div>
-            <Button >Download</Button>
+            <a href={url} download="maintest.pdf">Download</a>
+            {/* <Button>Download</Button> */}
         </div>
     );
 }

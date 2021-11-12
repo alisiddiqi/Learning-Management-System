@@ -4,10 +4,10 @@ import Grade from './Grade';
 import Dropbox from './Dropbox';
 import EmailList from './EmailList';
 import Discussion from './Discussion';
-import Assignment from './Assignment';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function CourseBody(props) {
-    if (props.title === "Lectures") {
+    if ((props.title === "Lectures") || (props.title === "Content")) {
         return (
             <div>
                 <h1>{props.title}</h1>
@@ -16,20 +16,27 @@ function CourseBody(props) {
             </div>
         );
     }
-    if (props.title === "Course Work") {
-        return (
-            <div>
-                <h1>{props.title}</h1>
-                <input placeholder="Search" type="text" className="todo-input"/>
-                {props.contentInfo.map((data) => <Assignment info={data} />)}
-            </div>
-        );
-    }
     if (props.title === "Grades") {
         return (
             <div>
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
+                <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
+                    <Row>
+                        <Col>
+                            <h4>Grade Item</h4>
+                        </Col>
+                        <Col>
+                            <h4>Weight</h4>
+                        </Col>
+                        <Col>
+                            <h4>Grade</h4>
+                        </Col>
+                        <Col>
+                            <h4>Feedback</h4>
+                        </Col>
+                    </Row>
+                </Container>
                 {props.gradeInfo.map((data) => <Grade info={data} />)}
             </div>
         );
@@ -39,6 +46,25 @@ function CourseBody(props) {
             <div>
                 <h1>{props.title}</h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
+                <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
+                    <Row>
+                        <Col>
+                            <h4>File Item</h4>
+                        </Col>
+                        <Col>
+                            <h4>Completion Status</h4>
+                        </Col>
+                        <Col>
+                            <h4>Grade</h4>
+                        </Col>
+                        <Col>
+                            <h4>Evaluation</h4>
+                        </Col>
+                        <Col>
+                            <h4>Submission</h4>
+                        </Col>
+                    </Row>
+                </Container>
                 {props.dropboxInfo.map((data) => <Dropbox info={data} />)}
             </div>
         );
