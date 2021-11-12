@@ -1,22 +1,22 @@
 import React from 'react';
-import { Container, Col, Nav } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 function GenNav(props) {
     return (
-        <Container className="options" bg="light" variant="light" fluid>
-            <Col>
-                <Nav.Link href={props.studentNav.dest1path}>{props.studentNav.dest1}</Nav.Link>
-            </Col>
-            <Col>
-                <Nav.Link href={props.studentNav.dest2path}>{props.studentNav.dest2}</Nav.Link>
-            </Col>
-            <Col>
-                <Nav.Link href={props.studentNav.dest3path}>{props.studentNav.dest3}</Nav.Link>
-            </Col>
-            <Col>
-                <Nav.Link href={props.studentNav.dest4path}>{props.studentNav.dest4}</Nav.Link>
-            </Col>
-        </Container>
+        <Navbar className="options" collapseOnSelect expand="sm">
+            <Container bg="light" variant="light" fluid>
+                <Navbar.Brand href={props.navData.platformPath}>{props.navData.platform}</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav>
+                        <Nav.Link href={props.navData.dest1path}>{props.navData.dest1}</Nav.Link>
+                        <Nav.Link href={props.navData.dest2path}>{props.navData.dest2}</Nav.Link>
+                        <Nav.Link href={props.navData.dest3path}>{props.navData.dest3}</Nav.Link>
+                        <Nav.Link href={props.navData.dest4path}>{props.navData.dest4}</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 

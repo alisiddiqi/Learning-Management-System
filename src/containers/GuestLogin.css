@@ -7,4 +7,13 @@
       margin: 0 auto;
       max-width: 320px;
     }
+
+    .GuestLogin .username,
+    .GuestLogin .password
+    {
+      width: 500px;
+    }
+    .Login-btn {
+      width: 100px;
+    }
   }
