@@ -1,6 +1,4 @@
-import './c_main.css';
-import './HomePage.css';
-import './Todolist.css';
+import './stu_main.css';
 import React, {Component} from 'react';
 import Banner from "./Home_Comp/Banner";
 import GenNav from "./Home_Comp/GenNav";
@@ -14,12 +12,12 @@ class Course_main extends Component{
     render() {
         return (
             <div className="course-main">
-                <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}/>
-                <GenNav studentNav={StuData.stuNav}/>
+                <Banner bannerData={StuData.Banner} />
+                <GenNav navData={StuData.stuNav}/>
                 <Container>
                     <Row>
                         <Col>
-                            <CourseBody lectureInfo={StuData.LecturesData} title={"Lectures"}/>
+                            <CourseBody lectureInfo={StuData.LecturesData} title="Lectures"/>
                         </Col>
                         <Col>
                             <Schedule />

@@ -7,12 +7,11 @@ function Banner(props) {
         <Container className="banner" fluid>
             <Row>
                 <Col>
-                    <Button className="home-btn">{props.type}</Button>
+                    <Button className="profile-btn">{props.bannerData.profile}</Button>
                 </Col>
-                <Col md={6}><h1>{props.school}</h1></Col>
+                <Col md={6}><h1>{props.bannerData.schoolName}</h1></Col>
                 <Col>
                     <Button className="notification-btn" variant="outline"><img className="not-btn" src={notification}/></Button>
-                    <Button className="profile-btn">{props.profile}</Button>
                 </Col>
             </Row>
         </Container>

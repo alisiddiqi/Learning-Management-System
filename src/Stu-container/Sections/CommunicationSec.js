@@ -1,5 +1,4 @@
-import '../c_main.css';
-import '../HomePage.css';
+import '../stu_main.css';
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 import Banner from "../Home_Comp/Banner";
@@ -19,9 +18,9 @@ class CommunicationSec extends Component{
 
     render() {
         return (
-            <div className="course-main">
-                <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}/>
-                <GenNav studentNav={StuData.stuNav}/>
+            <div style={{textAlign:'center'}} className="course-main">
+                <Banner bannerData={StuData.Banner} />
+                <GenNav navData={StuData.stuNav}/>
                 <div className="contentBody">
                     <Button 
                     onClick={() => {

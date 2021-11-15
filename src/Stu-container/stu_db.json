@@ -1,10 +1,11 @@
 {
     "Banner": {
-        "platform": "Stu",
         "profile": "KD",
         "schoolName": "University of Calgary"
     },
     "homeNav": {
+        "platform": "Student",
+        "platformPath": "/StuHome",
         "dest1": "TOOLS",
         "dest1path": "/Tools",
         "dest2": "EMAIL",
@@ -15,6 +16,8 @@
         "dest4path": "#"
     },
     "stuNav": {
+        "platform": "Student",
+        "platformPath": "/StuHome",
         "dest1": "CONTENT",
         "dest1path": "/Course_main/ContentSec",
         "dest2": "COMMUNICATION",
@@ -26,21 +29,25 @@
     },
     "courseData": [
         {
+            "course": "",
             "name": "CPSC 471 - Database Management Systems",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
         },
         {
+            "course": "",
             "name": "CPSC 471 - Database Management Systems",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
         },
         {
+            "course": "",
             "name": "CPSC 471 - Database Management Systems",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
         },
         {
+            "course": "",
             "name": "CPSC 471 - Database Management Systems",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
@@ -50,11 +57,13 @@
         {
             "name": "Tuple Relational Calculus",
             "instructor": "Yuekai Wang (Prof.)",
-            "date": "MWF - 1:00pm (50min)"
+            "date": "MWF - 1:00pm (50min)",
+            "filename": "filename"
         }
     ],
     "DiscussionData": [
         {
+            "course": "",
             "postTitle": "Meta Databases",
             "postContent": "A bunch of words about a paragraph or sentences which make up the content section of the discussion post. All goes here.",
             "authorName": "Jay Gujar",
@@ -63,12 +72,14 @@
     ],
     "EmailList": [
         {
+            "course": "",
             "role": "Teacher",
             "email": "example@email.com"
         }
     ],
     "GradesData": [
         {
+            "course": "",
             "type": "Quiz",
             "title": "Midterm Practice Quiz 1",
             "weight": "18/20",
@@ -78,12 +89,14 @@
     ],
     "DropboxData": [
         {
-            "Type": "Assignment",
-            "title": "HW3 and HW4",
+            "course": "",
+            "type": "Assignment",
+            "name": "HW3 and HW4",
             "status": "1 Submission",
             "grade": "15/20 - 75%",
             "eval": "N/A",
-            "fileDrop": "0 files added."
+            "downloadURL": "N/A",
+            "fileContents": "N/A"
         }
     ]
 }

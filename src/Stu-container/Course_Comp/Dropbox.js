@@ -1,31 +1,27 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
+import FileDown from '../Handling/FileDownload';
 import FileUp from '../Handling/FileUpload';
 
-function Dropbox() {
+function Dropbox(props) {
     return (
         <Container fluid>
             <Row>
-                <Col style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}}>
-                    <h4>File Item</h4>
-                    <p>Assignment</p>
-                    <p>HW3 and HW4</p>
+                <Col style={{textAlign:'center'}}>
+                    <p>{props.info.type}</p>
+                    <FileDown fileData={props.info} />
                 </Col>
                 <Col>
-                    <h4>Completion Status</h4>
-                    <p>0 Submission</p>
+                    <p>{props.info.status}</p>
                 </Col>
                 <Col>
-                    <h4>Grade</h4>
-                    <p>90 %</p>
+                    <p>{props.info.grade}</p>
                 </Col>
                 <Col>
-                    <h4>Evaluation:</h4>
-                    <p>N/A</p>
+                    <p>{props.info.grade}</p>
                 </Col>
                 <Col>
-                    <h4>Submission</h4>
-                    <FileUp />
+                    <FileUp fileData={props.info} />
                 </Col>
             </Row>
         </Container>

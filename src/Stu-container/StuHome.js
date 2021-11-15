@@ -1,4 +1,4 @@
-import './HomePage.css';
+import './stu_main.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Banner from "./Home_Comp/Banner";
@@ -10,8 +10,8 @@ function StuHome() {
     console.log(StuData.courseData);
     return (
         <div className="home-page">
-            <Banner type={StuData.Banner.platform} profile={StuData.Banner.profile} school={StuData.Banner.schoolName}/>
-            <GenNav studentNav={StuData.homeNav}/>
+            <Banner bannerData={StuData.Banner} />
+            <GenNav navData={StuData.homeNav}/>
             <Courses courseInfo={StuData.courseData}/>
         </div>
     );
