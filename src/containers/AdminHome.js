@@ -23,6 +23,15 @@ export default function Home() {
       <Dropdown.Item href="adminhome/teacher/edit" id="dropdown-menu-align-responsive-1">Edit Teacher List</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
+  <Dropdown>
+    <Dropdown.Toggle variant="success" id="dropdown-basic" size="lg">
+      Courses
+    </Dropdown.Toggle>
+    <Dropdown.Menu>
+      <Dropdown.Item href="adminhome/course/view" id="dropdown-menu-align-responsive-1">View Course List</Dropdown.Item>
+      <Dropdown.Item href="adminhome/course/edit" id="dropdown-menu-align-responsive-1">Edit Course List</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
   </>
   );
 }

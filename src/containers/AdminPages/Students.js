@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
+import { LinkContainer } from 'react-router-bootstrap';
 import { useState } from 'react';
+import { Route } from 'react-router';
 import "./Students.css"
+import { BrowserRouter, Link } from 'react-router-dom';
+import Routes from '../../Routes';
 
 function App (){
    const [data, setData]=useState([]);
@@ -9,36 +13,37 @@ function App (){
       .then(res=>res.json())
       .then(json=>setData(json));
   }
-    console.log(data.length)
   useEffect(()=>{
       fetchStudents();
   },[]);
 
   return (
    <div className="container">
-       <h1> Student List </h1>
+       <h1 style={{alignContent: 'center'}}> Student List </h1>
+       <BrowserRouter>
        <table>
            <thead>
                <tr>
                    <th>First Name</th>
-                   <th>Last Name</th>
-                   <th className="age"> Address</th>
-                   <th>Role</th>
+                   <th>Username</th>
+                   <th>Profile </th>
                </tr>
            </thead>
            <tbody>
               {
                  data.map((item)=>(
+                     console.log(item.length),
                     <tr key={item[0]}>
-                     <td>{item[0]}</td>
-                     <td> {item[2]}</td>
-                     <td>{item[3]}</td>
-                     <td> {item[4]}</td>
+                     <td>{item[1]}</td>
+                     <td> {item[0]}</td>
+                     <td><div><a href={item[0]}>Profile</a></div>
+                      </td>
                      </tr>
                  ))
               }
            </tbody>
          </table>
+         </BrowserRouter>
       </div>
   );
 }
