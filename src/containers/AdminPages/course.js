@@ -7,24 +7,24 @@ import { NavLink } from 'react-router-dom';
 
 function App (){
    const [data, setData]=useState([]);
-   const fetchTeacher = ()=>{
-      fetch('/teacher')
+   const fetchCourse = ()=>{
+      fetch('/course')
       .then(res=>res.json())
       .then(json=>setData(json));
   }
   useEffect(()=>{
-      fetchTeacher();
+      fetchCourse();
   },[]);
 
   return (
    <div className="container">
-       <h1> Teacher List </h1>
+       <h1> Course List </h1>
        <table>
            <thead>
                <tr>
-                   <th>First Name</th>
-                   <th>Username</th>
-                   <th>Profile </th>
+                   <th>Course Name</th>
+                   <th>Instructor </th>
+                   <th>Students Enrolled </th>
                </tr>
            </thead>
            <tbody>
@@ -32,9 +32,10 @@ function App (){
                  data.map((item)=>(
                     <tr key={item[0]}>
                      <td>{item[1]}</td>
-                     <td> {item[0]}</td>
-                     <td><LinkContainer to="/students/profile">
-                     <NavLink> Profile </NavLink>
+                     <td> {//Will prolly have to fetch using Flask
+                     }</td>
+                     <td><LinkContainer to="/students/enrolled">
+                     <NavLink> Students Enrolled </NavLink>
                      </LinkContainer> </td>
                      </tr>
                  ))

@@ -15,11 +15,10 @@ function App (){
       fetchStudents();
   },[]);
 
-  return (
+  return (  
    <div className="container">
        <h1> Student List </h1>
     <Container>
-       <StudentForm style={{outerWidth: 10}}/>
        <table>
            <thead>
                <tr>
