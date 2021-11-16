@@ -11,7 +11,6 @@
 # production
 /build
 
-/Backend
 
 # misc
 .DS_Store
@@ -25,7 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /f
-
-/backend/Lib
 
 /env
