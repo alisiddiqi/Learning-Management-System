@@ -32,7 +32,7 @@ def get_names():
 def students():
     if request.method == 'GET':
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM user")
+        cur.execute("SELECT * FROM student")
         students = cur.fetchall()
         respone = jsonify(students)
         respone.status_code = 200
@@ -42,11 +42,16 @@ def students():
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         json = request.json
-        
+        query_parameters = request.args
+        # studentID = query_parameters.get('studentID')
+        # year = query_parameters.get('year')
+
         username = json['username']
-        lastname=json['lastname']
-        
-        cur.execute("INSERT INTO user(username,firstname,lastname,role) VALUES(%s,%s,%s,%s)", (username,"a", lastname, "a"))
+        major = json['major']
+        studentID = json['studentID']
+        year = json['year']
+        # print(type(studentID))
+        cur.execute("INSERT INTO student(username,studentID,major,year) VALUES(%s,%s,%s,%s)", (111,455, "CPSC", 3))
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess insert")
