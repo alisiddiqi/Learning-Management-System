@@ -79,6 +79,10 @@ def courses():
         cur.close()
         return jsonify("sucess insert")
 
+"""
+/
+"""
+
 
 @app.route('/teacher',methods=['GET','POST'])
 def teacher():
