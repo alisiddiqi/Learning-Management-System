@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
+import { LinkContainer } from 'react-router-bootstrap';
 import { useState } from 'react';
+import { Route } from 'react-router';
 import "./Students.css"
-const API_HOST = "http://localhost:4000";
-const STUDENT_API_URL = `${API_HOST}/students`;
+import { BrowserRouter, Link } from 'react-router-dom';
+import Routes from '../../Routes';
 
 function App (){
    const [data, setData]=useState([]);
    const fetchStudents = ()=>{
-      fetch(`${STUDENT_API_URL}`)
+      fetch('/students')
       .then(res=>res.json())
       .then(json=>setData(json));
   }
@@ -17,31 +19,31 @@ function App (){
 
   return (
    <div className="container">
-       <h1> Student List </h1>
+       <h1 style={{alignContent: 'center'}}> Student List </h1>
+       <BrowserRouter>
        <table>
            <thead>
                <tr>
-                   <th>ID</th>
                    <th>First Name</th>
-                   <th>Last Name</th>
-                   <th className="age"> Age </th>
-                   <th>Email address</th>
+                   <th>Username</th>
+                   <th>Profile </th>
                </tr>
            </thead>
            <tbody>
               {
                  data.map((item)=>(
-                    <tr key={item.id}>
-                     <td>{item.id}</td>
-                     <td>{item.first_name}</td>
-                     <td> {item.last_name}</td>
-                     <td>{item.age}</td>
-                     <td> {item.email}</td>
+                     console.log(item.length),
+                    <tr key={item[0]}>
+                     <td>{item[1]}</td>
+                     <td> {item[0]}</td>
+                     <td><div><a href={item[0]}>Profile</a></div>
+                      </td>
                      </tr>
                  ))
               }
            </tbody>
          </table>
+         </BrowserRouter>
       </div>
   );
 }
