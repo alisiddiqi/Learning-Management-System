@@ -4,9 +4,7 @@ import { Button, Form, Input } from "semantic-ui-react";
 
 export const StudentForm=()=>{
     const [username,setUsername]=useState('');
-    const [major,setmajor]=useState('');
-    const [year, setyear]=useState('');
-    const [studentID, setStudentID]=useState(0);
+    const [lastname,setLastName]=useState('');
     return(
         <Form>
             <Form.Field>
@@ -16,27 +14,14 @@ export const StudentForm=()=>{
                 onChange={e=>setUsername(e.target.value)}/>
             </Form.Field>
             <Form.Field> 
-            <Input value={major}
-                id="major"
-                placeholder={"Enter major"}
-                onChange={e=>setmajor(e.target.value)}/>
+            <Input value={lastname}
+                id="lastname"
+                placeholder={"Enter lastname"}
+                onChange={e=>setLastName(e.target.value)}/>
             </Form.Field>
-            <Form.Field>
-            <Input value={year}
-                id="year"
-                placeholder={"Enter year"}
-                onChange={e=>setyear(e.target.value)}/>
-            </Form.Field>
-            <Form.Field>
-            <Input value={studentID}
-                type="number"
-                id="studentID"
-                placeholder={"Enter studentID"}
-                onChange={e=>setStudentID(e.target.value)}/>
-            </Form.Field>
-            <Form.Field type="submit"> 
-                <Button  onClick={async()=>{
-                    const newStuToAdd={username,major};
+            <Form.Field> 
+                <Button onClick={async()=>{
+                    const newStuToAdd={username,lastname};
                     const response=await fetch('/students',{
                         method: "POST",
                         headers:{

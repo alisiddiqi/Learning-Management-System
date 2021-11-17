@@ -17,7 +17,7 @@ import CommunicationSec from './Stu-container/Sections/CommunicationSec';
 import GradesSec from './Stu-container/Sections/GradesSec';
 import DropboxSec from './Stu-container/Sections/DropboxSec';
 import Schedule from "./Stu-container/Course_Comp/Schedule";
-
+import ProfilePage from "./containers/AdminPages/ProfilePage";
 
 export default function Routes() {
   return (
@@ -54,8 +54,9 @@ export default function Routes() {
         <Route exact path="/Course_main/ContentSec"> <ContentSec /> </Route>
         <Route exact path="/Course_main/CommunicationSec"> <CommunicationSec /> </Route>
         <Route exact path="/Course_main/GradesSec"> <GradesSec /> </Route>
-        <Route exact path= "/Course_main/DropboxSec"> <DropboxSec /> </Route>
+        <Route exact path= "/Course_main/DropboxSec "> <DropboxSec /> </Route>
         <Route exact path= "/Tools"> <Schedule /> </Route>
+        <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>
       <Route>
           <NotFound/>
       </Route>
