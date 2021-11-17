@@ -5,11 +5,11 @@ import FileUp from '../Handling/FileUpload';
 
 function Dropbox(props) {
     return (
-        <Container fluid>
+        <Container className="m-2" fluid>
             <Row>
                 <Col style={{textAlign:'center'}}>
                     <p>{props.info.type}</p>
-                    <FileDown fileData={props.info} />
+                    <FileDown name={props.info.name} />
                 </Col>
                 <Col>
                     <p>{props.info.status}</p>
@@ -21,7 +21,7 @@ function Dropbox(props) {
                     <p>{props.info.grade}</p>
                 </Col>
                 <Col>
-                    <FileUp fileData={props.info} />
+                    <FileUp />
                 </Col>
             </Row>
         </Container>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import App from './Stu-container/Course_main';
+import App from './Stu-container/Sections/DropboxSec';
 // import App from './App'
 import {Amplify} from 'aws-amplify';
 import config from './config';

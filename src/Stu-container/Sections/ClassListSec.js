@@ -6,19 +6,18 @@ import CourseBody from "../Course_Comp/CourseBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "../stu_db.json";
 
-class CommunicationSec extends Component{
-
+class ClassListSec extends Component{
     render() {
         return (
             <div style={{textAlign:'center'}} className="course-main">
                 <Banner bannerData={StuData.Banner} />
                 <GenNav navData={StuData.stuNav}/>
                 <div className="contentBody">
-                    <CourseBody commInfo={StuData.DiscussionData} title="Discussion"/>
+                    <CourseBody emailInfo={StuData.EmailList} title="Emails"/>
                 </div>
             </div>
         );
     }
 }
 
-export default CommunicationSec;
+export default ClassListSec;

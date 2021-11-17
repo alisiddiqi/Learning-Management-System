@@ -10,7 +10,7 @@ function CourseBody(props) {
     if ((props.title === "Lectures") || (props.title === "Content")) {
         return (
             <div>
-                <h1>{props.title}</h1>
+                <h1><b>{props.title}</b></h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
                 {props.lectureInfo.map((data) => <Lecture info={data} />)}
             </div>
@@ -19,8 +19,7 @@ function CourseBody(props) {
     if (props.title === "Grades") {
         return (
             <div>
-                <h1>{props.title}</h1>
-                <input placeholder="Search" type="text" className="todo-input"/>
+                <h1><b>{props.title}</b></h1>
                 <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
                     <Row>
                         <Col>
@@ -44,8 +43,7 @@ function CourseBody(props) {
     if (props.title === "Dropboxes") {
         return (
             <div>
-                <h1>{props.title}</h1>
-                <input placeholder="Search" type="text" className="todo-input"/>
+                <h1><b>{props.title}</b></h1>
                 <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
                     <Row>
                         <Col>
@@ -72,7 +70,7 @@ function CourseBody(props) {
     if (props.title === "Discussions") {
         return (
             <div>
-                <h1>{props.title}</h1>
+                <h1><b>{props.title}</b></h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
                 {props.commInfo.map((data) => <Discussion info={data} />)}
             </div>
@@ -81,9 +79,9 @@ function CourseBody(props) {
     if (props.title === "Emails") {
         return (
             <div>
-                <h1>{props.title}</h1>
+                <h1><b>{props.title}</b></h1>
                 <input placeholder="Search" type="text" className="todo-input"/>
-                {props.commInfo.map((data) => <EmailList info={data} />)}
+                {props.emailInfo.map((data) => <EmailList info={data} />)}
             </div>
         );
     }
