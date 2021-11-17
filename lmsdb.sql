@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`user` (
   `address` VARCHAR(45) NOT NULL,
   `role` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`username`))
 ENGINE = InnoDB;
 
@@ -116,14 +117,7 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`notification` (
   `date` DATE NOT NULL,
   `time` TIME NOT NULL,
   `status` VARCHAR(45) NOT NULL,
-  `courseid` INT NOT NULL,
-  PRIMARY KEY (`notificationId`),
-  INDEX `fk_notification_course1_idx` (`courseid` ASC) VISIBLE,
-  CONSTRAINT `notification_courseFK`
-    FOREIGN KEY (`courseid`)
-    REFERENCES `lmsdb`.`course` (`courseid`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  PRIMARY KEY (`notificationId`))
 ENGINE = InnoDB;
 
 
@@ -132,18 +126,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`receives` (
   `notificationId` INT NOT NULL,
-  `studentID` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`notificationId`, `studentID`),
-  INDEX `fk_notification_has_student_student1_idx` (`studentID` ASC) VISIBLE,
+  PRIMARY KEY (`notificationId`),
   INDEX `fk_notification_has_student_notification1_idx` (`notificationId` ASC) VISIBLE,
   CONSTRAINT `fk_notification_has_student_notification1`
     FOREIGN KEY (`notificationId`)
     REFERENCES `lmsdb`.`notification` (`notificationId`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_notification_has_student_student1`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `lmsdb`.`student` (`studentID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -197,18 +184,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`writes` (
   `communication_id` INT NOT NULL,
-  `studentID` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`communication_id`, `studentID`),
-  INDEX `fk_communication_has_student_student1_idx` (`studentID` ASC) VISIBLE,
+  PRIMARY KEY (`communication_id`),
   INDEX `fk_communication_has_student_communication1_idx` (`communication_id` ASC) VISIBLE,
   CONSTRAINT `writes_communicationFK`
     FOREIGN KEY (`communication_id`)
     REFERENCES `lmsdb`.`communication` (`communication_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `writes_studentFK`
-    FOREIGN KEY (`studentID`)
-    REFERENCES `lmsdb`.`student` (`studentID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -251,6 +231,31 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`courseteacher` (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_course_has_teacher_teacher1`
+    FOREIGN KEY (`teacherid`)
+    REFERENCES `lmsdb`.`teacher` (`teacherid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `lmsdb`.`teacher_evaluation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmsdb`.`teacher_evaluation` (
+  `teacherid` INT NOT NULL,
+  `Q1` VARCHAR(4) NOT NULL,
+  `Q2` VARCHAR(4) NOT NULL,
+  `Q3` VARCHAR(4) NOT NULL,
+  `Q4` VARCHAR(4) NOT NULL,
+  `Q5` VARCHAR(4) NOT NULL,
+  `Q6` VARCHAR(4) NOT NULL,
+  `Q7` VARCHAR(4) NOT NULL,
+  `Q8` VARCHAR(4) NOT NULL,
+  `Q9` VARCHAR(4) NOT NULL,
+  `Q10` VARCHAR(4) NOT NULL,
+  PRIMARY KEY (`teacherid`),
+  INDEX `fk_teacher_evaluation_teacher1_idx` (`teacherid` ASC) VISIBLE,
+  CONSTRAINT `teacher_evalFK`
     FOREIGN KEY (`teacherid`)
     REFERENCES `lmsdb`.`teacher` (`teacherid`)
     ON DELETE CASCADE
