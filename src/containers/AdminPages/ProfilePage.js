@@ -143,16 +143,3 @@ const onEdit2=({currentMajor,currentYear})=>{
 }
 
 export default withRouter(ProfilePage)
-
-{/* <Button  onClick={async()=>{
-    const newStuToAdd={firstName};
-    const response=await fetch('/students/'+props.match.params.username,{
-        method: "POST",
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newStuToAdd)
-    })
-}}>
-    Edit
-</Button> */}

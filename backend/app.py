@@ -55,6 +55,13 @@ def stuProfile(stuUser):
     
     if request.method=='POST':
         cur=mysql.connection.cursor()
+        json = request.json
+        firstName=json['firstName']
+        lastName=json['lastName']
+        cur.execute("update user set firstname=(%s),lastname=(%s) where username=(%s)",(firstName,lastName,stuUser))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess insert")
             
 @app.route('/students/<string:stuUser>/stu',methods=["GET","POST"])
 def profile(stuUser):
