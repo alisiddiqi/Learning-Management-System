@@ -11,7 +11,7 @@ class ContentSec extends Component{
         return (
             <div style={{textAlign:'center'}} className="course-main">
                 <Banner bannerData={StuData.Banner} />
-                <GenNav navData={StuData.stuNav}/>
+                <GenNav navData={StuData.stuNav} />
                 <div className="contentBody">
                     <CourseBody lectureInfo={StuData.LecturesData} title="Content"/>
                 </div>

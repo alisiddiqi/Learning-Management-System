@@ -1,59 +1,92 @@
 {
     "Banner": {
+        "stuID": "1005",
         "profile": "KD",
         "schoolName": "University of Calgary"
     },
     "homeNav": {
         "platform": "Student",
-        "platformPath": "/StuHome",
-        "dest1": "TOOLS",
-        "dest1path": "/Tools",
-        "dest2": "EMAIL",
-        "dest2path": "#",
-        "dest3": "SCHOOL",
-        "dest3path": "/StuHome",
-        "dest4": "HELP",
-        "dest4path": "#"
+        "platformPath": "/",
+        "destination": [
+            {
+                "title": "TOOLS",
+                "path": "/Tools"
+            },
+            {
+                "title": "EMAIL",
+                "path": "/Email"
+            },
+            {
+                "title": "SCHOOL",
+                "path": "/StuHome"
+            }
+        ]
     },
     "stuNav": {
         "platform": "Student",
         "platformPath": "/StuHome",
-        "dest1": "CONTENT",
-        "dest1path": "/Course_main/ContentSec",
-        "dest2": "COMMUNICATION",
-        "dest2path": "/Course_main/CommunicationSec",
-        "dest3": "GRADES",
-        "dest3path": "/Course_main/GradesSec",
-        "dest4": "DROPBOX",
-        "dest4path": "/Course_main/DropboxSec"
+        "destination": [
+            {
+                "title": "CONTENT",
+                "path": "/StuHome/Course_main/Content"
+            },
+            {
+                "title": "COMMUNICATION",
+                "path": "/StuHome/Course_main/Communication"
+            },
+            {
+                "title": "CLASS LIST",
+                "path": "/StuHome/Course_main/ClassList"
+            },
+            {
+                "title": "GRADES",
+                "path": "/StuHome/Course_main/Grades"
+            },
+            {
+                "title": "DROPBOX",
+                "path": "/StuHome/Course_main/Dropbox"
+            }
+        ]
     },
     "courseData": [
         {
-            "course": "",
+            "courseID": "471",
             "name": "CPSC 471 - Database Management Systems",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
         },
         {
-            "course": "",
-            "name": "CPSC 471 - Database Management Systems",
+            "courseID": "480",
+            "name": "CPSC 480 - Principles of Software Design",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
         },
         {
-            "course": "",
-            "name": "CPSC 471 - Database Management Systems",
+            "courseID": "457",
+            "name": "CPSC 457 - Operating Systems",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
         },
         {
-            "course": "",
-            "name": "CPSC 471 - Database Management Systems",
+            "courseID": "511",
+            "name": "CPSC 511 - Embedded Systems",
             "time": "September 06 2021 - December 24 2021",
             "path": "/Course_main"
         }
     ],
     "LecturesData": [
+        {
+            "name": "Tuple Relational Calculus",
+            "instructor": "Yuekai Wang (Prof.)",
+            "date": "MWF - 1:00pm (50min)",
+            "filename": "filename"
+        },
+        {
+            "name": "Tuple Relational Calculus",
+            "instructor": "Yuekai Wang (Prof.)",
+            "date": "MWF - 1:00pm (50min)",
+            "filename": "filename"
+        },
         {
             "name": "Tuple Relational Calculus",
             "instructor": "Yuekai Wang (Prof.)",
