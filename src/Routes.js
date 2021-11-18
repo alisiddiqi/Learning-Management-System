@@ -18,6 +18,8 @@ import GradesSec from './Stu-container/Sections/GradesSec';
 import DropboxSec from './Stu-container/Sections/DropboxSec';
 import Schedule from "./Stu-container/Course_Comp/Schedule";
 import ProfilePage from "./containers/AdminPages/ProfilePage";
+import InstructorLogin from "./containers/InstructorLogin";
+import InsHome from "./Ins-container/InsHome";
 
 export default function Routes() {
   return (
@@ -33,6 +35,9 @@ export default function Routes() {
         </Route>
         <Route exact path="/adminlogin">
             <AdminLogin />
+        </Route>
+        <Route exact path="/instructorlogin">
+            <InstructorLogin />
         </Route>
         <Route exact path ="/adminhome">
           <AdminHome/>
@@ -50,6 +55,8 @@ export default function Routes() {
            <InstructorEdit></InstructorEdit>
            </Route>
         <Route exact path="/StuHome"> <StuHome /> </Route>
+        <Route exact path="/InsHome"> <InsHome /> </Route>
+
         <Route exact path="/Course_main"> <CoursePage /> </Route>
         <Route exact path="/Course_main/ContentSec"> <ContentSec /> </Route>
         <Route exact path="/Course_main/CommunicationSec"> <CommunicationSec /> </Route>
