@@ -19,6 +19,8 @@ import DropboxSec from './Stu-container/Sections/DropboxSec';
 import ClassListSec from './Stu-container/Sections/ClassListSec';
 import Schedule from "./Stu-container/Course_Comp/Schedule";
 import ProfilePage from "./containers/AdminPages/ProfilePage";
+import InstructorLogin from "./containers/InstructorLogin";
+import InsHome from "./Ins-container/InsHome";
 
 export default function Routes() {
   return (
@@ -34,6 +36,9 @@ export default function Routes() {
         </Route>
         <Route exact path="/adminlogin">
             <AdminLogin />
+        </Route>
+        <Route exact path="/instructorlogin">
+            <InstructorLogin />
         </Route>
         <Route exact path ="/adminhome">
           <AdminHome/>
@@ -51,6 +56,15 @@ export default function Routes() {
            <InstructorEdit></InstructorEdit>
           </Route>
         <Route exact path="/StuHome"> <StuHome /> </Route>
+ ATeacher
+        <Route exact path="/InsHome"> <InsHome /> </Route>
+
+        <Route exact path="/Course_main"> <CoursePage /> </Route>
+        <Route exact path="/Course_main/ContentSec"> <ContentSec /> </Route>
+        <Route exact path="/Course_main/CommunicationSec"> <CommunicationSec /> </Route>
+        <Route exact path="/Course_main/GradesSec"> <GradesSec /> </Route>
+        <Route exact path= "/Course_main/DropboxSec "> <DropboxSec /> </Route>
+        <Route exact path= "/Tools"> <Schedule /> </Route>
         <Route exact path="/StuHome/Course_main"> <CoursePage /> </Route>
         <Route exact path="/StuHome/Course_main/Content"> <ContentSec /> </Route>
         <Route exact path="/StuHome/Course_main/Communication"> <CommunicationSec /> </Route>
