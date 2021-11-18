@@ -27,17 +27,10 @@ export const StudentForm=()=>{
                 placeholder={"Enter year"}
                 onChange={e=>setyear(e.target.value)}/>
             </Form.Field>
-            <Form.Field>
-            <Input value={studentID}
-                type="number"
-                id="studentID"
-                placeholder={"Enter studentID"}
-                onChange={e=>setStudentID(e.target.value)}/>
-            </Form.Field>
             <Form.Field type="submit"> 
                 <Button  onClick={async()=>{
                     const newStuToAdd={username,major};
-                    const response=await fetch('/students',{
+                    const response=await fetch('/students/',{
                         method: "POST",
                         headers:{
                             'Content-Type': 'application/json'
