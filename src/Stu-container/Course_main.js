@@ -13,8 +13,8 @@ class Course_main extends Component{
         return (
             <div className="course-main">
                 <Banner bannerData={StuData.Banner} />
-                <GenNav navData={StuData.stuNav}/>
-                <Container>
+                <GenNav navData={StuData.stuNav} />
+                <Container className="course-cont">
                     <Row>
                         <Col>
                             <CourseBody lectureInfo={StuData.LecturesData} title="Lectures"/>

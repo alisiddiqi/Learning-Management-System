@@ -16,6 +16,7 @@ import ContentSec from './Stu-container/Sections/ContentSec';
 import CommunicationSec from './Stu-container/Sections/CommunicationSec';
 import GradesSec from './Stu-container/Sections/GradesSec';
 import DropboxSec from './Stu-container/Sections/DropboxSec';
+import ClassListSec from './Stu-container/Sections/ClassListSec';
 import Schedule from "./Stu-container/Course_Comp/Schedule";
 import ProfilePage from "./containers/AdminPages/ProfilePage";
 import InstructorLogin from "./containers/InstructorLogin";
@@ -53,8 +54,9 @@ export default function Routes() {
          </Route>
          <Route exact path="/adminhome/teacher/edit">
            <InstructorEdit></InstructorEdit>
-           </Route>
+          </Route>
         <Route exact path="/StuHome"> <StuHome /> </Route>
+ ATeacher
         <Route exact path="/InsHome"> <InsHome /> </Route>
 
         <Route exact path="/Course_main"> <CoursePage /> </Route>
@@ -63,6 +65,14 @@ export default function Routes() {
         <Route exact path="/Course_main/GradesSec"> <GradesSec /> </Route>
         <Route exact path= "/Course_main/DropboxSec "> <DropboxSec /> </Route>
         <Route exact path= "/Tools"> <Schedule /> </Route>
+        <Route exact path="/StuHome/Course_main"> <CoursePage /> </Route>
+        <Route exact path="/StuHome/Course_main/Content"> <ContentSec /> </Route>
+        <Route exact path="/StuHome/Course_main/Communication"> <CommunicationSec /> </Route>
+        <Route exact path="/StuHome/Course_main/Grades"> <GradesSec /> </Route>
+        <Route exact path="/StuHome/Course_main/Dropbox"> <DropboxSec /> </Route>
+        <Route exact path="/StuHome/Course_main/ClassList"> <ClassListSec /> </Route>
+        <Route exact path="/Tools"> <Schedule /> </Route>
+        <Route exact path="/Emails"> <ClassListSec /> </Route>
         <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>
       <Route>
           <NotFound/>

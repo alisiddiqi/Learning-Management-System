@@ -1,13 +1,15 @@
-from flask import Flask, json,jsonify , request, render_template    
+from flask import Flask, json,jsonify , request, render_template
+import flask    
 from flask_mysqldb import MySQL
+import itertools
 
 app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3307
+app.config['MYSQL_PORT'] = 3306
 
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = ""
 app.config['MYSQL_DB'] = "lmsdb"
 
 mysql = MySQL(app)
@@ -29,7 +31,7 @@ def get_names():
     return render_template('testing.html')
 
 """ Get first name, username  """
-@app.route('/students',methods=['GET','POST'])
+@app.route('/students',methods=['GET'])
 def students():
     if request.method == 'GET':
         cur = mysql.connection.cursor()
@@ -40,28 +42,25 @@ def students():
         cur.close()
         return respone
     
-    if request.method == 'POST':
-        cur = mysql.connection.cursor()
-        json = request.json
-        query_parameters = request.args
-        # studentID = query_parameters.get('studentID')
-        # year = query_parameters.get('year')
-        # username = json['username']
-        major = json['major']
-        studentID = json['studentID']
-        year = json['year']
-        # print(type(studentID))
-        cur.execute("INSERT INTO student(username,studentID,major,year) VALUES(%s,%s,%s,%s)", (111,455, "CPSC", 3))
-        mysql.connection.commit()
-        cur.close()
-        return jsonify("sucess insert")
-    
 """ DELETE, PATCH, """
-@app.route('/students/<string:stuUser>/profile',methods=["GET","POST"])
+@app.route('/students/<string:stuUser>',methods=["GET","POST"])
 def stuProfile(stuUser):
     if request.method=='GET':
         cur=mysql.connection.cursor()
         cur.execute("select * from user where username=(%s)",(stuUser,))
+        profile=cur.fetchall()
+        response=jsonify(profile)
+        response.status_code=200
+        return response
+    
+    if request.method=='POST':
+        cur=mysql.connection.cursor()
+            
+@app.route('/students/<string:stuUser>/stu',methods=["GET","POST"])
+def profile(stuUser):
+    if request.method=='GET':
+        cur=mysql.connection.cursor()
+        cur.execute("select * from student where username=(%s)",(stuUser,))
         profile=cur.fetchall()
         response=jsonify(profile)
         response.status_code=200
@@ -70,6 +69,13 @@ def stuProfile(stuUser):
     
     if request.method=='POST':
         cur=mysql.connection.cursor()
+        json = request.json
+        major=json['major']
+        year=json['year']
+        cur.execute("update student set major=(%s),year=(%s) where username=(%s)",(major,year,stuUser))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess insert")
         
 """ /instructor/<string:stuUser>/ 
 alsoHave a role of isTa

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Card, Button} from 'react-bootstrap';
 import myimg from '../Images/crossroads.jpg';
 import tack from "../Images/tack.png";
+
+
 
 function CourseCard(props) {
     return (
@@ -10,7 +12,7 @@ function CourseCard(props) {
             <Card.Body>
                 <Card.Title>{props.info.name}<Button variant="outline"><img className="pin-btn" src={tack} alt="Pin"/></Button></Card.Title>
                 <Card.Text><p>{props.info.time}</p></Card.Text>
-                <Button href={props.info.path} variant="outline-primary">SELECT</Button>
+                <Button href="/Course_main" variant="outline-primary">SELECT</Button>
             </Card.Body>
         </Card>
     );
