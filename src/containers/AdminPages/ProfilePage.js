@@ -1,24 +1,20 @@
 import { withRouter } from "react-router";
 import {useState,useEffect} from 'react'
-import {Container} from 'semantic-ui-react'
-import { StudentForm } from "./studentForm";
 import { Button, Form, Input } from "semantic-ui-react";
-import {button} from 'semantic-ui-react'
 
 
 function ProfilePage(props)
 {
-    const [username,setUsername]=useState(null);
+    const [courseID,setCourseID]=useState();
+    var [studentid,setStudentID]=useState(null);
     const [firstName,setfirstName]=useState('');
     const [lastName, setLastName]=useState('');
     const [year,setYear]=useState('');
     const [major, setMajor]=useState('');
     var [data, setData]=useState([]);
     const [stuData,setStuData]=useState([]);
-    const[inEditMode, setInEditMode]=useState({
-        status: false,
-        rowKey: null
-    });
+    const[stuCourses,setStuCourses]=useState([]);
+    var [dupli,setDupli]=useState([]);
    const fetchStudents = ()=>{
       fetch('/students/'+props.match.params.username)
       .then(res=>res.json())
@@ -29,15 +25,19 @@ function ProfilePage(props)
       .then(res=>res.json())
       .then(json=>setStuData(json));
   }
+  const fetchStuCourses=()=>{
+    fetch('/students/'+props.match.params.username+'/courses')
+    .then(res=>res.json())
+    .then(json=>setStuCourses(json));
+}
   useEffect(()=>{
       fetchStudents();
       fetchStuData();
+      fetchStuCourses();
   },[]);
-  const onEdit=({username,currentFirstName,currentLastName,currentMajor})=>{
-    setInEditMode({
-        status: true,
-        rowKey: username
-    })
+  dupli=[].concat(...stuData);
+  studentid=dupli[3];
+  const onEdit=({currentFirstName,currentLastName})=>{
     setfirstName(currentFirstName);
     setLastName(currentLastName);
 }
@@ -80,10 +80,18 @@ const onEdit2=({currentMajor,currentYear})=>{
         </div>
     ))
   }
-  
+  <br></br>
+  {
+      stuCourses.map((item)=>
+      <div>
+          <h1>Courses are : {item[1]} {item[2]}</h1>
+      </div>
+        )
+  }
   <Form>
             <Form.Field> 
             <Input value={firstName}
+            size="small"
                 id="firstName"
                 placeholder={"Enter firstName"}
                 onChange={e=>setfirstName(e.target.value)}/>
@@ -108,7 +116,6 @@ const onEdit2=({currentMajor,currentYear})=>{
         Edit user information
     </Button>
      </Form.Field>
-
         </Form>
     <Form>
     <Form.Field>
@@ -137,6 +144,29 @@ const onEdit2=({currentMajor,currentYear})=>{
         Edit student fields
     </Button>
      </Form.Field>
+    </Form>
+    <Form>
+        <Form.Field>
+        <Input 
+                id="major"
+                placeholder={"Enter courseID"}
+                onChange={e=>setCourseID(e.target.value)}/>
+            </Form.Field>
+            <Form.Field type="submit">
+            <Button  onClick={async()=>{
+                        
+        const newStuToAdd={courseID,studentid};
+        const response=await fetch('/students/'+props.match.params.username+'/courses',{
+            method: "POST",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newStuToAdd)
+        })
+    }}>
+        Add course
+    </Button>
+        </Form.Field>
     </Form>
     </div>
   );
