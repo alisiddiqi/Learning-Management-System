@@ -83,6 +83,30 @@ def profile(stuUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess insert")
+
+@app.route('/students/<string:stuUser>/courses',methods=["GET","POST"])
+def func(stuUser):
+    if request.method=="GET":
+        cur=mysql.connection.cursor()
+        cur.execute("select student.studentid,course.courseid, course.name from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)",(stuUser,))
+        profile=cur.fetchall()
+        response=jsonify(profile)
+        response.status_code=200
+        cur.close()
+        return response
+
+    if request.method=='POST':
+        cur=mysql.connection.cursor()
+        json = request.json
+        courseid=json['courseID']
+        studentID=json['studentid']
+       # print(courseID)
+        cur.execute("INSERT INTO takes(courseid,studentID) values (%s,%s)",(courseid,1003))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess insert")
+
+    
         
 """ /instructor/<string:stuUser>/ 
 alsoHave a role of isTa
