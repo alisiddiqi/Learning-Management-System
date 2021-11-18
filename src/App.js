@@ -49,6 +49,9 @@ function App() {
                                     <LinkContainer to="/login">
                                     <Nav.Link>Login</Nav.Link>
                                     </LinkContainer>
+                                    <LinkContainer to="/instructorlogin">
+                                    <Nav.Link>Instructor Login</Nav.Link>
+                                    </LinkContainer>
                                     <LinkContainer to="/guestlogin">
                                     <Nav.Link>Guest Login</Nav.Link>
                                     </LinkContainer>
