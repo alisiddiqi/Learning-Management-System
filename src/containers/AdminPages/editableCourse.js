@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Container } from 'semantic-ui-react';
-import { StudentForm } from './studentForm';
 import "./Students.css"
 
 function App (){

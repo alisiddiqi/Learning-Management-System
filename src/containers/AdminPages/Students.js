@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap';
 import { useState } from 'react';
-import { Route } from 'react-router';
 import "./Students.css"
 import { BrowserRouter, Link } from 'react-router-dom';
-import Routes from '../../Routes';
 
 function App (){
    const [data, setData]=useState([]);
