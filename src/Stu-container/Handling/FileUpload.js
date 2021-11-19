@@ -6,9 +6,11 @@ function FileUpload(props) {
   
     const handleChange = (e) => {
       const file = e.target.files[0];
-      sessionStorage.setItem("file", file);
+      sessionStorage.setItem("file_content", file);
+      sessionStorage.setItem("file", file.name);
       const url = URL.createObjectURL(file);
       sessionStorage.setItem("url", url);
+      document.getElementById("flag").style.display = "inline-block";
     };
   
     return (
@@ -23,6 +25,7 @@ function FileUpload(props) {
           type="file"
           hidden
         />
+        <p id="flag" style={{margin: "5px", display: "none"}}>Submitted</p>
       </div>
     );
 }

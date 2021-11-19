@@ -4,7 +4,7 @@ import Banner from "./Home_Comp/Banner";
 import GenNav from "./Home_Comp/GenNav";
 import CourseBody from "./Course_Comp/CourseBody";
 import Schedule from './Course_Comp/Schedule';
-import {Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "./stu_db.json";
 
@@ -13,8 +13,8 @@ class Course_main extends Component{
         return (
             <div className="course-main">
                 <Banner bannerData={StuData.Banner} />
-                <GenNav navData={StuData.stuNav}/>
-                <Container>
+                <GenNav navData={StuData.stuNav} />
+                <Container className="course-cont">
                     <Row>
                         <Col>
                             <CourseBody lectureInfo={StuData.LecturesData} title="Lectures"/>

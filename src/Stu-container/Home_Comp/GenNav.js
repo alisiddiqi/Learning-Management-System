@@ -9,10 +9,7 @@ function GenNav(props) {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
-                        <Nav.Link href={props.navData.dest1path}>{props.navData.dest1}</Nav.Link>
-                        <Nav.Link href={props.navData.dest2path}>{props.navData.dest2}</Nav.Link>
-                        <Nav.Link href={props.navData.dest3path}>{props.navData.dest3}</Nav.Link>
-                        <Nav.Link href={props.navData.dest4path}>{props.navData.dest4}</Nav.Link>
+                        {props.navData.destination.map((data) => <Nav.Link href={data.path}>{data.title}</Nav.Link>)}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

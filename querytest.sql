@@ -6,17 +6,17 @@ use lmsdb; ## initiate the database
 
 //Testing out INSERT user
 
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("JayStudent","Jay","Gurjar","Chinook street","student","Jay123");
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("AliStudent","Ali","Siddiqi","Skyview 123","student","Ali234");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("JayStudent","Jay","Gurjar","Chinook street","student","Jay123","JayGurjar@gmail.com");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("AliStudent","Ali","Siddiqi","Skyview 123","student","Ali234","AliSiddiqi@gmail.com");
 
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("MoussaviTeacher","Mahmood","Moussavi","Bel air","teacher","Moussavi123");
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("MourshirPourTeacher","Mohammed","Mourshirpour","Hollywood street","teacher","Moshi123");
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("Pafederl","Pavol","Federl","Downtown street","teacher","pavol123");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("MoussaviTeacher","Mahmood","Moussavi","Bel air","teacher","Moussavi123","Moussavi@Gmail.com");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("MourshirPourTeacher","Mohammed","Mourshirpour","Hollywood street","teacher","Moshi123","Mourshirpour@gmail.com");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("Pafederl","Pavol","Federl","Downtown street","teacher","pavol123","Pavol@gmail.com");
 
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("RedaProfessor","Reda","Alhajj","Center street","teacher","Reda123");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("RedaProfessor","Reda","Alhajj","Center street","teacher","Reda123","Reda@gmail.com");
 
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("KashfiaTA","Kashfia","Sulinaz","Southcenter street","teacher","Kashfia123");
-INSERT INTO user(username,firstname,lastname,address,role,password) VALUES ("ChrisMossmanTA","Christopher","Mossman","Downtown street","teacher","Chris123");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("KashfiaTA","Kashfia","Sulinaz","Southcenter street","teacher","Kashfia123","Kashfia@gmail.com");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("ChrisMossmanTA","Christopher","Mossman","Downtown street","teacher","Chris123","ChrisMossman@gmail.com");
 
 SELECT * FROM user;
 
@@ -123,6 +123,87 @@ SELECT DISTINCT course.courseid,course.name, student.studentID, firstname, lastn
 		AND student.username = user.username
 		AND user.firstname = "Jay";
 		
+//Inserting Evaluation
+INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10001, "Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10002, "Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10003, "Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10004, "Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
+
+//Select all teachers evaluation: outputs, firstname, lastname, teacherid and Questions
+SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
+	FROM teacher, user, teacher_evaluation
+		WHERE teacher.username = user.username AND 
+			  teacher.teacherid = teacher_evaluation.teacherid;
+
+
+//Select the teacher evaluation using teacherid, output firstname and lastname included
+SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
+	FROM teacher, user, teacher_evaluation
+		WHERE teacher.username = user.username AND 
+			  teacher.teacherid = teacher_evaluation.teacherid AND 
+			  teacher.teacherid = 10001;
+			  
+//Select the evaluations for TAs only, outputs firstname, lastname and questions
+SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
+	FROM teacher, user, teacher_evaluation
+		WHERE teacher.username = user.username AND 
+			  teacher.teacherid = teacher_evaluation.teacherid AND 
+			  teacher.isTA = "Y";
+
+  
+			  
+	
+//Delete statements, will cascade into other tables.
+DELETE FROM student WHERE student.username = "JayStudent"; 
+DELECT FROM user WHERE username = "Ali";
+
+//Delete a teacher. The teacher will be deleted from teacher_evaluation, teacher, courseteacher. course will not be affected
+DELETE FROM user WHERE user.username = "Pafederl";
+
+
+
+//////////////////////////******************Evaluation portion ********************//////////////////////////
+
+Q1 The TA starts the lab session on time:
+
+Q2 The TA uses the time of the lab effectively:
+
+Q3 The TA answers the questions satisfactorily:
+
+Q4 The TA marks the assignments fairly:
+
+Q5 The TA marks the assignments on time:
+
+Q6 The TA posts the solutions on time:
+
+Q7 The TA demonstrated enough knowledge of the material covered:
+
+Q8 The TA responses to emails and messages on time:
+
+Q9 The TA treats the students respectfully:
+
+Q10 I will be happy to have the same TA again:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////Will be deleted later//////////////////////////////////////////////
+
+
 //Testing out notifications
 INSERT INTO notification(notificationid, date, time, status, courseid) VALUES (01, "2021-11-14", "11:11:11", "Database project is due soon", 471);
 INSERT INTO notification(notificationid, date, time, status, courseid) VALUES (02, "2021-11-14", "11:11:12", "480 project starts next week!", 480);
@@ -160,8 +241,3 @@ SELECT DISTINCT user.firstname, user.lastname, communication.communication_id, d
 		writes.communication_id = communication.communication_id AND
 		communication.communication_id = email_list.communication_id AND
 		communication.communication_id = discussion.communication_id;
-
-		
-//Delete statements, will cascade into other tables.
-DELETE FROM student WHERE student.username = "JayStudent"; 
-DELECT FROM user WHERE username = "Ali";
