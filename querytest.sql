@@ -28,13 +28,13 @@ INSERT INTO student(username,studentID,major,year) VALUES("AliStudent",1001,"CPS
 
 //Insert teachers
 
-INSERT INTO teacher(username,teacherid,isTA) VALUES("MoussaviTeacher",9999,"N");
-INSERT INTO teacher(username,teacherid,isTA) VALUES("MourshirPourTeacher",10000,"N");
-INSERT INTO teacher(username,teacherid,isTA) VALUES("Pafederl",10001,"N");
-INSERT INTO teacher(username,teacherid,isTA) VALUES("RedaProfessor",10002,"N");
+INSERT INTO teacher(username,teacherid,isTA) VALUES("MoussaviTeacher",9999,"Teacher");
+INSERT INTO teacher(username,teacherid,isTA) VALUES("MourshirPourTeacher",10000,"Teacher");
+INSERT INTO teacher(username,teacherid,isTA) VALUES("Pafederl",10001,"Teacher");
+INSERT INTO teacher(username,teacherid,isTA) VALUES("RedaProfessor",10002,"Teacher");
 
-INSERT INTO teacher(username,teacherid,isTA) VALUES("KashfiaTA",10003,"Y");
-INSERT INTO teacher(username,teacherid,isTA) VALUES("ChrisMossmanTA",10004,"Y");
+INSERT INTO teacher(username,teacherid,isTA) VALUES("KashfiaTA",10003,"TA");
+INSERT INTO teacher(username,teacherid,isTA) VALUES("ChrisMossmanTA",10004,"TA");
 
 ## Test out different conditions to extract columns
 //Get name of the student
