@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`user_1` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`teacher` (
   `teacherid` INT NOT NULL,
-  `isTA` VARCHAR(4) NOT NULL,
+  `isTA` VARCHAR(10) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   INDEX `teacher_userFK_idx` (`username` ASC) VISIBLE,
   PRIMARY KEY (`teacherid`),
