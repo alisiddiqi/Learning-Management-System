@@ -2,48 +2,41 @@ import { withRouter } from "react-router";
 import {useState,useEffect} from 'react'
 import { Button, Form, Input } from "semantic-ui-react";
 
-
-function ProfilePage(props)
+function InsProfile(props)
 {
     const [courseID,setCourseID]=useState();
-    var [studentid,setStudentID]=useState(null);
+    var [teacherid,setteacherid]=useState(null);
     const [firstName,setfirstName]=useState('');
     const [lastName, setLastName]=useState('');
-    const [year,setYear]=useState('');
-    const [major, setMajor]=useState('');
     var [data, setData]=useState([]);
     const [stuData,setStuData]=useState([]);
     const[stuCourses,setStuCourses]=useState([]);
     var [dupli]=useState([]);
-   const fetchStudents = ()=>{
-      fetch('/students/'+props.match.params.username)
+   const fetchinstructors = ()=>{
+      fetch('/instructors/'+props.match.params.username)
       .then(res=>res.json())
       .then(json=>setData(json));
   }
   const fetchStuData=()=>{
-      fetch('/students/'+props.match.params.username+'/stu')
+      fetch('/instructors/'+props.match.params.username+'/ins')
       .then(res=>res.json())
       .then(json=>setStuData(json));
   }
   const fetchStuCourses=()=>{
-    fetch('/students/'+props.match.params.username+'/courses')
+    fetch('/instructors/'+props.match.params.username+'/courses')
     .then(res=>res.json())
     .then(json=>setStuCourses(json));
 }
   useEffect(()=>{
-      fetchStudents();
+      fetchinstructors();
       fetchStuData();
       fetchStuCourses();
   },[]);
   dupli=[].concat(...stuData);
-  studentid=dupli[3];
+  teacherid=dupli[0];
   const onEdit=({currentFirstName,currentLastName})=>{
     setfirstName(currentFirstName);
     setLastName(currentLastName);
-}
-const onEdit2=({currentMajor,currentYear})=>{
-    setMajor(currentMajor);
-    setYear(currentYear);
 }
   return(
   <div>
@@ -65,10 +58,10 @@ const onEdit2=({currentMajor,currentYear})=>{
     ))
   }
   {
-    stuData.map((item)=>(  
+    stuData.map((item)=>(
         <div>
-        <h1 > Major: {item[1]}</h1>
-        <button
+        <h1 > Role: {item[1]}</h1>
+        {/* <button
         className={"btn-primary"}
         onClick={()=> onEdit2({
             currentMajor: item[1],
@@ -76,7 +69,7 @@ const onEdit2=({currentMajor,currentYear})=>{
         })}
         >
         Set student defaults
-        </button>
+        </button> */}
         </div>
     ))
   }
@@ -105,7 +98,7 @@ const onEdit2=({currentMajor,currentYear})=>{
             <Form.Field type="submit">
                     <Button  onClick={async()=>{
         const newStuToAdd={firstName,lastName};
-        const response=await fetch('/students/'+props.match.params.username,{
+        const response=await fetch('/instructors/'+props.match.params.username,{
             method: "POST",
             headers:{
                 'Content-Type': 'application/json'
@@ -117,7 +110,7 @@ const onEdit2=({currentMajor,currentYear})=>{
     </Button>
      </Form.Field>
         </Form>
-    <Form>
+    {/* <Form>
     <Form.Field>
             <Input value={major}
                 id="major"
@@ -133,7 +126,7 @@ const onEdit2=({currentMajor,currentYear})=>{
             <Form.Field type="submit">
                     <Button  onClick={async()=>{
         const newStuToAdd={major,year};
-        const response=await fetch('/students/'+props.match.params.username+'/stu',{
+        const response=await fetch('/instructors/'+props.match.params.username+'/stu',{
             method: "POST",
             headers:{
                 'Content-Type': 'application/json'
@@ -144,7 +137,7 @@ const onEdit2=({currentMajor,currentYear})=>{
         Edit student fields
     </Button>
      </Form.Field>
-    </Form>
+    </Form> */}
     <Form>
         <Form.Field>
         <Input 
@@ -154,9 +147,8 @@ const onEdit2=({currentMajor,currentYear})=>{
             </Form.Field>
             <Form.Field type="submit">
             <Button  onClick={async()=>{
-                        
-        const newStuToAdd={courseID,studentid};
-        const response=await fetch('/students/'+props.match.params.username+'/courses',{
+        const newStuToAdd={courseID,teacherid};
+        const response=await fetch('/instructors/'+props.match.params.username+'/courses',{
             method: "POST",
             headers:{
                 'Content-Type': 'application/json'
@@ -175,8 +167,8 @@ const onEdit2=({currentMajor,currentYear})=>{
             </Form.Field>
             <Form.Field type="submit">
             <Button  onClick={async()=>{
-        const newStuToAdd={courseID,studentid};
-        const response=await fetch('/students/'+props.match.params.username+'/courses',{
+        const newStuToAdd={courseID,teacherid};
+        const response=await fetch('/instructors/'+props.match.params.username+'/courses',{
             method: "DELETE",
             headers:{
                 'Content-Type': 'application/json'
@@ -192,4 +184,4 @@ const onEdit2=({currentMajor,currentYear})=>{
   );
 }
 
-export default withRouter(ProfilePage)
+export default withRouter(InsProfile)

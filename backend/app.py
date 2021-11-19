@@ -40,15 +40,12 @@ def get_names():
 def students():
     if request.method == 'GET':
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM student")
+        cur.execute("SELECT * FROM user where role=(%s)", ("student",))
         students = cur.fetchall()
         respone = jsonify(students)
         respone.status_code = 200
         cur.close()
         return respone
-
-
-""" DELETE, PATCH, """
 
 
 @app.route('/students/<string:stuUser>', methods=["GET", "POST"])
@@ -128,6 +125,90 @@ def func(stuUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess delete")
+
+# End of student APIs
+###################################################################################################################################
+#       Start of instructor API from Admin view
+
+
+@app.route('/instructors', methods=['GET'])
+def instructors():
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM user where role=(%s)", ("teacher",))
+        instructors = cur.fetchall()
+        respone = jsonify(instructors)
+        respone.status_code = 200
+        cur.close()
+        return respone
+
+@app.route('/instructors/<string:insUser>', methods=["GET", "POST"])
+def insProfile(insUser):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("select * from user where username=(%s)", (insUser,))
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        response.status_code = 200
+        return response
+
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        json = request.json
+        firstName = json['firstName']
+        lastName = json['lastName']
+        cur.execute("update user set firstname=(%s),lastname=(%s) where username=(%s)",
+                    (firstName, lastName, insUser))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess insert")
+
+
+@app.route('/instructors/<string:insUser>/ins', methods=["GET", "POST"])
+def profile2(insUser):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("select * from teacher where username=(%s)", (insUser,))
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        response.status_code = 200
+        cur.close()
+        return response
+
+
+@app.route('/instructors/<string:insUser>/courses', methods=["GET", "POST", "DELETE"])
+def func2(insUser):
+    if request.method == "GET":
+        cur = mysql.connection.cursor()
+        cur.execute("select teacher.teacherid,course.courseid,course.name from courseteacher, course, teacher, user where courseteacher.courseid=course.courseid and teacher.teacherid=courseteacher.teacherid and teacher.username=user.username and user.username=(%s)", (insUser,))
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        response.status_code = 200
+        cur.close()
+        return response
+
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        json = request.json
+        courseid = json['courseID']
+        teacherID = json['teacherid']
+        cur.execute(
+            "INSERT INTO courseteacher(courseid,teacherID) values (%s,%s)", (courseid, teacherID))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess insert")
+
+    if request.method == 'DELETE':
+        cur = mysql.connection.cursor()
+        json = request.json
+        courseid = json['courseID']
+        teacherID = json['teacherid']
+        cur.execute(
+            "delete from courseteacher where teacherID=(%s) and courseid=(%s) ", (teacherID, courseid))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess delete")
+
 
 
 """ /instructor/<string:stuUser>/ 
