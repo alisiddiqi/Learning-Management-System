@@ -59,7 +59,7 @@ const onEdit2=({currentMajor,currentYear})=>{
             currentLastName: item[2]
         })}
         >
-        Make Changes to User fields
+        Set user defaults
         </button>
         </div>
     ))
@@ -75,7 +75,7 @@ const onEdit2=({currentMajor,currentYear})=>{
             currentYear: item[2]
         })}
         >
-        Make Changes to Student fields
+        Set student defaults
         </button>
         </div>
     ))
@@ -165,6 +165,26 @@ const onEdit2=({currentMajor,currentYear})=>{
         })
     }}>
         Add course
+    </Button>
+        </Form.Field>
+        <Form.Field>
+        <Input 
+                id="courseID"
+                placeholder={"Enter courseID to delete"}
+                onChange={e=>setCourseID(e.target.value)}/>
+            </Form.Field>
+            <Form.Field type="submit">
+            <Button  onClick={async()=>{
+        const newStuToAdd={courseID,studentid};
+        const response=await fetch('/students/'+props.match.params.username+'/courses',{
+            method: "DELETE",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newStuToAdd)
+        })
+    }}>
+        Remove course
     </Button>
         </Form.Field>
     </Form>

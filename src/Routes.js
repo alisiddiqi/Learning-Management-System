@@ -8,8 +8,6 @@ import AdminLogin from "./containers/AdminLogin";
 import AdminHome from "./containers/AdminHome";
 import Student from './containers/AdminPages/Students';
 import Instructor from "./containers/AdminPages/Instructor";
-import StudentEdit from './containers/AdminPages/EditableStudent'
-import InstructorEdit from './containers/AdminPages/editableInstructor'
 import StuHome from './Stu-container/StuHome';
 import CoursePage from './Stu-container/Course_main';
 import ContentSec from './Stu-container/Sections/ContentSec';
@@ -40,15 +38,9 @@ export default function Routes() {
         <Route exact path = "/adminhome/student/view">
           <Student/>
         </Route>
-        <Route exact path="/adminhome/student/edit">
-          <StudentEdit></StudentEdit>
-        </Route>
         <Route exact path ="/adminhome/teacher/view">
           <Instructor/>
          </Route>
-         <Route exact path="/adminhome/teacher/edit">
-           <InstructorEdit></InstructorEdit>
-           </Route>
         <Route exact path="/StuHome"> <StuHome /> </Route>
         <Route exact path="/Course_main"> <CoursePage /> </Route>
         <Route exact path="/Course_main/ContentSec"> <ContentSec /> </Route>
