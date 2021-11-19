@@ -68,6 +68,13 @@ body {
 .course-main{
     text-align: center;
 }
+.course-cont{
+    background: whitesmoke;
+    margin: 1rem;
+    padding: 0.5rem;
+    box-shadow: 2.5px 2.5px 5px;
+    border-radius: 5px;
+}
 .courses{
     text-align: center;
     justify-content: center;
