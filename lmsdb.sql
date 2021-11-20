@@ -263,6 +263,48 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`teacher_evaluation` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `lmsdb`.`Assignment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmsdb`.`Assignment` (
+  `assignment_id` INT NOT NULL,
+  `assignment_name` VARCHAR(45) NOT NULL,
+  `due_date` DATE NOT NULL,
+  `content` VARCHAR(45) NOT NULL,
+  `courseid` INT NOT NULL,
+  PRIMARY KEY (`assignment_id`),
+  INDEX `fk_Assignment_course1_idx` (`courseid` ASC) VISIBLE,
+  CONSTRAINT `fk_Assignment_course1`
+    FOREIGN KEY (`courseid`)
+    REFERENCES `lmsdb`.`course` (`courseid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `lmsdb`.`submit`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmsdb`.`submit` (
+  `assignment_id` INT NOT NULL,
+  `studentID` VARCHAR(45) NOT NULL,
+  `grade` INT NOT NULL,
+  PRIMARY KEY (`assignment_id`, `studentID`),
+  INDEX `fk_Assignment_has_student_student1_idx` (`studentID` ASC) VISIBLE,
+  INDEX `fk_Assignment_has_student_Assignment1_idx` (`assignment_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Assignment_has_student_Assignment1`
+    FOREIGN KEY (`assignment_id`)
+    REFERENCES `lmsdb`.`Assignment` (`assignment_id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Assignment_has_student_student1`
+    FOREIGN KEY (`studentID`)
+    REFERENCES `lmsdb`.`student` (`studentID`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
