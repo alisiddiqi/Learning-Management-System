@@ -9,7 +9,7 @@ export default function Home() {
       Student
     </Dropdown.Toggle>
     <Dropdown.Menu>
-      <Dropdown.Item href="student/view" id="dropdown-menu-align-responsive-1">View Student List</Dropdown.Item>
+      <Dropdown.Item href="adminhome/student/view" id="dropdown-menu-align-responsive-1">View Student List</Dropdown.Item>
       <Dropdown.Item href="student/edit" id ="dropdown-menu-align-responsive-1">Edit Student List</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>

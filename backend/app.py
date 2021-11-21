@@ -14,26 +14,8 @@ app.config['MYSQL_DB'] = "lmsdb"
 
 mysql = MySQL(app)
 
-
-@app.route('/', methods=['GET', 'POST'])
-def get_names():
-    if request.method == 'POST':
-        username = request.form['username']
-        # firstname=request.form['firstname']
-        lastname = request['lastname']
-        # role=request.form['role']
-        print(username)
-
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO user(username, firstname, lastname, role) VALUES (%s,%s, %s, %s)",
-                    (username, "a", lastname, "a"))
-        mysql.connection.commit()
-        cur.close()
-        return "success"
-    return render_template('testing.html')
-
-
 """ ---- STUDENT API ----- """
+
 @app.route('/students/<string:stuUser>/courselist', methods=["GET"])
 def courseList(stuUser):
     cur = mysql.connection.cursor()
@@ -44,16 +26,16 @@ def courseList(stuUser):
     cur.close()
     return response
 
-""" NEED SELECT QUERY FOR DOCUMENTS/CONTENT """
-# @app.route('/students/<string:stuUser>/courses/<int:courseID>', methods=["GET"])
-# def selectTeachers(stuUser):
-#     cur = mysql.connection.cursor()
-#     cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
-#     courses = cur.fetchall()
-#     response = jsonify(courses)
-#     response.status_code = 200
-#     cur.close()
-#     return response
+# """ NEED SELECT QUERY FOR DOCUMENTS/CONTENT """
+@app.route('/students/<string:stuUser>/courses/<int:courseID>', methods=["GET"])
+def selectTeachers(stuUser):
+    cur = mysql.connection.cursor()
+    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
 
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/classList', methods=["GET"])
 def classList(stuUser, courseID):
@@ -94,9 +76,6 @@ def studentAssignments(stuUser, courseID):
     response.status_code = 200
     cur.close()
     return response
-
-
-""" ---- ADMIN STUDENT API ----- """
 
 @app.route('/students', methods=['GET'])
 def students():
@@ -130,7 +109,6 @@ def stuProfile(stuUser):
         cur.close()
         return jsonify("sucess insert")
 
-
 @app.route('/students/<string:stuUser>/stu', methods=["GET", "POST"])
 def profile(stuUser):
     if request.method == 'GET':
@@ -152,7 +130,6 @@ def profile(stuUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess insert")
-
 
 @app.route('/students/<string:stuUser>/courses', methods=["GET", "POST", "DELETE"])
 def func(stuUser):
@@ -201,6 +178,7 @@ def instructors():
         respone.status_code = 200
         cur.close()
         return respone
+
 
 @app.route('/instructors/<string:insUser>', methods=["GET", "POST"])
 def insProfile(insUser):
