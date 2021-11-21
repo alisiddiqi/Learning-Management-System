@@ -37,8 +37,38 @@ def selectTeachers(stuUser):
     cur.close()
     return response
 
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/classList', methods=["GET"])
-def classList(stuUser, courseID):
+@app.route('/courses/<int:courseID>/classList/students', methods=["GET"])
+def classStudentList(courseID):
+    cur = mysql.connection.cursor()
+    cur.execute("select user.firstname, user.lastname,user.email from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username  and course.courseid=(%s)", (courseID, ))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
+
+@app.route('/courses/<int:courseID>/classList/teachers', methods=["GET"])
+def classTeacherList(courseID):
+    cur = mysql.connection.cursor()
+    cur.execute("select user.firstname,  user.lastname,user.email, teacher.isTA from courseteacher, course, user, teacher WHERE courseteacher.courseid = course.courseid AND teacher.teacherid = courseteacher.teacherid AND teacher.username = user.username AND course.courseid = (%s)", (courseID, ))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
+
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/grades', methods=["GET"])
+def studentGrades(stuUser, courseID):
+    cur = mysql.connection.cursor()
+    cur.execute("select user.firstname, user.lastname, user.username, student.studentid, course.courseid, course.name, submit.grade, Assignment.assignment_id FROM student, user, submit, Assignment, course WHERE student.studentID = submit.studentID AND  submit.assignment_id = Assignment.assignment_id AND student.username = user.username AND user.username = (%s) AND Assignment.courseid = course.courseid and course.courseid = (%s)", (stuUser, courseID, ))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
+
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/content', methods=["GET"])
+def studentCourseContent(stuUser, courseID):
     cur = mysql.connection.cursor()
     cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
     courses = cur.fetchall()
@@ -47,36 +77,26 @@ def classList(stuUser, courseID):
     cur.close()
     return response
 
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/classList', methods=["GET"])
-def classList(stuUser, courseID):
-    cur = mysql.connection.cursor()
-    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
-    courses = cur.fetchall()
-    response = jsonify(courses)
-    response.status_code = 200
-    cur.close()
-    return response
-
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
-def studentAssignments(stuUser, courseID):
-    cur = mysql.connection.cursor()
-    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
-    courses = cur.fetchall()
-    response = jsonify(courses)
-    response.status_code = 200
-    cur.close()
-    return response
-
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
-def studentAssignments(stuUser, courseID):
-    cur = mysql.connection.cursor()
-    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
-    courses = cur.fetchall()
-    response = jsonify(courses)
-    response.status_code = 200
-    cur.close()
-    return response
-
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/<int:assignmnetID', methods=["GET", "POST"])
+def studentCourseAssignments(stuUser, courseID, assignmnetID):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("select Assignment.assignment_name, submit.grade, course.courseid from student, user, submit, Assignment, course where student.studentID = submit.studentID and submit.assignment_id = Assignment.assignment_id and student.username = user.username and course.courseid = Assignment.courseid and user.username = (%s) and course.courseid = (%s)", (stuUser, courseID))
+        courses = cur.fetchall()
+        response = jsonify(courses)
+        response.status_code = 200
+        cur.close()
+        return response
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        json = request.json
+        assignmnetID = json['assignmnetID']
+        cur.execute("update user set firstname=(%s),lastname=(%s) where username=(%s)", (firstName, lastName, stuUser))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess insert")
+        
+""" ------ ADMIN STUDENT API ----"""
 @app.route('/students', methods=['GET'])
 def students():
     if request.method == 'GET':
@@ -88,7 +108,7 @@ def students():
         cur.close()
         return respone
 
-@app.route('/students/<string:stuUser>', methods=["GET", "POST"])
+@app.route('/students/<string:stuUser>', methods=["GET","PUT","POST"])
 def stuProfile(stuUser):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
@@ -179,7 +199,6 @@ def instructors():
         cur.close()
         return respone
 
-
 @app.route('/instructors/<string:insUser>', methods=["GET", "POST"])
 def insProfile(insUser):
     if request.method == 'GET':
@@ -267,12 +286,6 @@ alsoHave a role of isTa
     /students/<int:stuID>/course/<string: courseId>
     show all the courses student is taking from profile section
     show course instructor, course name
-"""
-
-""" 
-    to get the discussions for a course
-    /students/<string:usrName>/courses/<string: courseId>
-    ask yuekai
 """
 
 """

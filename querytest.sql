@@ -75,7 +75,7 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 		teacher.username = user.username;
 
 // Show all teachers in a course based on course ID 
-SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA 
+SELECT course.courseid, course.name, user.firstname,  user.lastname, teacher.isTA, user.email
 	FROM courseteacher, course, user, teacher
 	WHERE courseteacher.courseid = course.courseid AND 
 		teacher.teacherid = courseteacher.teacherid AND 
@@ -142,15 +142,12 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, user.usernam
 		student.username = user.username AND
 		user.firstname = "Jay";
 
-
-
 //Selecting stuff statements
 SELECT * FROM student;
 SELECT * FROM teacher;
 SELECT * FROM user;
 SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username;//Select all teacher names
 SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username AND isTA = "TA"; // Select all TA
-
 
 //Selecting all students and revealing their info	
 SELECT DISTINCT course.courseid,course.name, student.studentID, firstname, lastname, user.username 
@@ -172,7 +169,6 @@ SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
 	FROM teacher, user, teacher_evaluation
 		WHERE teacher.username = user.username AND 
 			  teacher.teacherid = teacher_evaluation.teacherid;
-
 
 //Select the teacher evaluation using teacherid, output firstname and lastname included
 SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
@@ -239,7 +235,6 @@ Q10 I will be happy to have the same TA again:
 ////////////////////////////****************Assignment Portion**********//////////////////////////
 
 
-
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (1,"Homework 1", "2021-12-14", "Solve Question 1", 471);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (2,"Homework 2", "2021-12-14", "Solve Question 2", 471);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (4,"Homework 3", "2021-12-14", "Solve Question 3", 471);
@@ -299,6 +294,17 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, submit.a
 		student.username = user.username AND
 		course.courseid = Assignment.courseid AND
 		user.firstname = "Ali";
+
+//Show all the assignments that a specific student is taking in a course
+
+SELECT user.firstname, user.lastname, user.username, student.studentid, submit.assignment_id, Assignment.assignment_name, submit.grade, course.courseid
+	FROM student, user, submit, Assignment, course
+	WHERE student.studentID = submit.studentID AND 
+		submit.assignment_id = Assignment.assignment_id AND 
+		student.username = user.username AND
+		course.courseid = Assignment.courseid AND
+		course.courseid = 471 AND
+		user.username = "AliStudent";
 		
 //Calculate the average grade for a specific student
 SELECT user.firstname, user.lastname, user.username, student.studentid, course.courseid, course.name, AVG(submit.grade)
@@ -307,6 +313,17 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, course.c
 		submit.assignment_id = Assignment.assignment_id AND 
 		student.username = user.username AND
 		user.firstname = "Ali" AND Assignment.courseid = 457;
+
+
+// Show grades for a course for a specific student
+//Calculate the average grade for a specific student
+SELECT user.firstname, user.lastname, user.username, student.studentid, course.courseid, course.name, submit.grade, Assignment.assignment_id
+	FROM student, user, submit, Assignment, course
+	WHERE student.studentID = submit.studentID AND 
+		submit.assignment_id = Assignment.assignment_id AND 
+		student.username = user.username AND
+		user.username = "AliStudent" AND Assignment.courseid = course.courseid 
+		and course.courseid = 457;
 
 
 
