@@ -11,7 +11,7 @@ function StuHome() {
     return (
         <div className="home-page">
             <Banner bannerData={StuData.Banner} />
-            <GenNav navData={StuData.homeNav}/>
+        <GenNav navData={StuData.homeNav}/>
             <Courses courseInfo={StuData.courseData}/>
         </div>
     );

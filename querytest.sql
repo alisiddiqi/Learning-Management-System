@@ -181,9 +181,22 @@ SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
 			  teacher.teacherid = teacher_evaluation.teacherid AND 
 			  teacher.isTA = "TA";
 
-  
-			  
-	
+//Select students class List of a course
+SELECT DISTINCT user.firstname, user.lastname, email
+	FROM course, user, student, takes,
+		WHERE (student.studentID = takes.studentID AND
+		user.role = 'student'
+		AND takes.courseID = 471);
+
+//Select teachers class List of a course
+SELECT user.firstname, user.lastname, email
+	FROM user, course, courseteacher, teacher
+		WHERE ( 
+		courseteacher.teacherid = teacher.teacherid  AND
+		user.role = 'teacher'
+	    AND courseteacher.courseid = 471
+	);
+
 //Delete statements, will cascade into other tables.
 DELETE FROM student WHERE student.username = "JayStudent"; 
 DELECT FROM user WHERE username = "Ali";

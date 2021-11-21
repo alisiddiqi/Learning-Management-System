@@ -7,9 +7,9 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_PORT'] = 3307
 
-app.config['MYSQL_PASSWORD'] = ""
+app.config['MYSQL_PASSWORD'] = "root"
 app.config['MYSQL_DB'] = "lmsdb"
 
 mysql = MySQL(app)
@@ -33,8 +33,70 @@ def get_names():
     return render_template('testing.html')
 
 
-""" Get first name, username  """
+""" ---- STUDENT API ----- """
+@app.route('/students/<string:stuUser>/courselist', methods=["GET"])
+def courseList(stuUser):
+    cur = mysql.connection.cursor()
+    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
 
+""" NEED SELECT QUERY FOR DOCUMENTS/CONTENT """
+# @app.route('/students/<string:stuUser>/courses/<int:courseID>', methods=["GET"])
+# def selectTeachers(stuUser):
+#     cur = mysql.connection.cursor()
+#     cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+#     courses = cur.fetchall()
+#     response = jsonify(courses)
+#     response.status_code = 200
+#     cur.close()
+#     return response
+
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/classList', methods=["GET"])
+def classList(stuUser, courseID):
+    cur = mysql.connection.cursor()
+    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
+
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/classList', methods=["GET"])
+def classList(stuUser, courseID):
+    cur = mysql.connection.cursor()
+    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
+
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
+def studentAssignments(stuUser, courseID):
+    cur = mysql.connection.cursor()
+    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
+
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
+def studentAssignments(stuUser, courseID):
+    cur = mysql.connection.cursor()
+    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+    courses = cur.fetchall()
+    response = jsonify(courses)
+    response.status_code = 200
+    cur.close()
+    return response
+
+
+""" ---- ADMIN STUDENT API ----- """
 
 @app.route('/students', methods=['GET'])
 def students():
@@ -46,7 +108,6 @@ def students():
         respone.status_code = 200
         cur.close()
         return respone
-
 
 @app.route('/students/<string:stuUser>', methods=["GET", "POST"])
 def stuProfile(stuUser):
@@ -126,10 +187,9 @@ def func(stuUser):
         cur.close()
         return jsonify("sucess delete")
 
-# End of student APIs
+# End of Admin student APIs
 ###################################################################################################################################
-#       Start of instructor API from Admin view
-
+#       Start of Admin instructor API from Admin view
 
 @app.route('/instructors', methods=['GET'])
 def instructors():
@@ -208,7 +268,6 @@ def func2(insUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess delete")
-
 
 
 """ /instructor/<string:stuUser>/ 
