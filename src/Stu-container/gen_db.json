@@ -1,0 +1,51 @@
+{
+    "Banner": {
+        "stuID": "1007",
+        "profile": "KD",
+        "schoolName": "University of Calgary"
+    },
+    "homeNav": {
+        "platform": "Student",
+        "platformPath": "/",
+        "destination": [
+            {
+                "title": "TOOLS",
+                "path": "/Tools"
+            },
+            {
+                "title": "EMAIL",
+                "path": "/Email"
+            },
+            {
+                "title": "SCHOOL",
+                "path": "/StuHome"
+            }
+        ]
+    },
+    "stuNav": {
+        "platform": "Student",
+        "platformPath": "/StuHome",
+        "destination": [
+            {
+                "title": "CONTENT",
+                "path": "/StuHome/Course_main/Content"
+            },
+            {
+                "title": "COMMUNICATION",
+                "path": "/StuHome/Course_main/Communication"
+            },
+            {
+                "title": "CLASS LIST",
+                "path": "/StuHome/Course_main/ClassList"
+            },
+            {
+                "title": "GRADES",
+                "path": "/StuHome/Course_main/Grades"
+            },
+            {
+                "title": "DROPBOX",
+                "path": "/StuHome/Course_main/Dropbox"
+            }
+        ]
+    }
+}

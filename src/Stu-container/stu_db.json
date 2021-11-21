@@ -1,53 +1,4 @@
 {
-    "Banner": {
-        "stuID": "1005",
-        "profile": "KD",
-        "schoolName": "University of Calgary"
-    },
-    "homeNav": {
-        "platform": "Student",
-        "platformPath": "/",
-        "destination": [
-            {
-                "title": "TOOLS",
-                "path": "/Tools"
-            },
-            {
-                "title": "EMAIL",
-                "path": "/Email"
-            },
-            {
-                "title": "SCHOOL",
-                "path": "/StuHome"
-            }
-        ]
-    },
-    "stuNav": {
-        "platform": "Student",
-        "platformPath": "/StuHome",
-        "destination": [
-            {
-                "title": "CONTENT",
-                "path": "/StuHome/Course_main/Content"
-            },
-            {
-                "title": "COMMUNICATION",
-                "path": "/StuHome/Course_main/Communication"
-            },
-            {
-                "title": "CLASS LIST",
-                "path": "/StuHome/Course_main/ClassList"
-            },
-            {
-                "title": "GRADES",
-                "path": "/StuHome/Course_main/Grades"
-            },
-            {
-                "title": "DROPBOX",
-                "path": "/StuHome/Course_main/Dropbox"
-            }
-        ]
-    },
     "courseData": [
         {
             "courseID": "471",
@@ -131,5 +82,15 @@
             "downloadURL": "N/A",
             "fileContents": "N/A"
         }
-    ]
+    ],
+    "StudentData": {
+        "sID": "1007",
+        "first_name": "Kundai",
+        "last_name": "Dziwa",
+        "username": "Kundai987",
+        "role": "Student",
+        "dob": "Mar 10, 2000",
+        "phone": "(403) 123-7654",
+        "email": "example@gmail.com"
+    }
 }
