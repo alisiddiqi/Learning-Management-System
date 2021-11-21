@@ -15,25 +15,13 @@ app.config['MYSQL_DB'] = "lmsdb"
 mysql = MySQL(app)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def get_names():
-    if request.method == 'POST':
-        username = request.form['username']
-        # firstname=request.form['firstname']
-        lastname = request['lastname']
-        # role=request.form['role']
-        print(username)
-
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO user(username, firstname, lastname, role) VALUES (%s,%s, %s, %s)",
-                    (username, "a", lastname, "a"))
-        mysql.connection.commit()
-        cur.close()
-        return "success"
-    return render_template('testing.html')
+"""This is a basic API that gets the student list.
 
 
-""" Get first name, username  """
+    Returns:
+        [GET]: [Retrns the list of students from user where the role is student]
+        [POST]: [Is used to change the first name and last name of the student as required by the admin]
+"""
 
 
 @app.route('/students', methods=['GET'])
@@ -46,6 +34,14 @@ def students():
         respone.status_code = 200
         cur.close()
         return respone
+
+    """"API is used to display to display profile that is specific to a student from the user table.
+
+    Returns:
+        [GET]: [Returns the list of all students enrolled in a course]
+        [POST]: [Posts new user information of the student, i.e changes basic name information, adds or
+                remove students from a course]
+    """
 
 
 @app.route('/students/<string:stuUser>', methods=["GET", "POST"])
@@ -69,6 +65,14 @@ def stuProfile(stuUser):
         cur.close()
         return jsonify("sucess insert")
 
+    """API can be used to get information from the student table, this is helpful if you want to change the major 
+       or the year of the student
+
+    Returns:
+        [GET]: Gets the student information from the database
+        POST: Makes changes if requested by the admin
+    """
+
 
 @app.route('/students/<string:stuUser>/stu', methods=["GET", "POST"])
 def profile(stuUser):
@@ -91,6 +95,14 @@ def profile(stuUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess insert")
+
+    """Getting course information and changing course information
+
+    Returns:
+        GET: Returns the course information gatherd from performing the appropidate query
+        POST: Updates  the realtionship table to have the correct course for the student.
+        DELETE: Deletes a student from a course, can also add a student to a course using POST method. 
+    """
 
 
 @app.route('/students/<string:stuUser>/courses', methods=["GET", "POST", "DELETE"])
@@ -141,6 +153,7 @@ def instructors():
         respone.status_code = 200
         cur.close()
         return respone
+
 
 @app.route('/instructors/<string:insUser>', methods=["GET", "POST"])
 def insProfile(insUser):
@@ -208,7 +221,6 @@ def func2(insUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess delete")
-
 
 
 """ /instructor/<string:stuUser>/ 
