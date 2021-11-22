@@ -10,7 +10,7 @@ function CourseBody(props) {
     const [teacher, setTeacher] = useState();
     const [searchTerm, setSearchTerm] = useState('');
 
-    if ((props.title === "Lectures") || (props.title === "Content")) {
+    if (props.title === "Lectures") {
         return (
             <div>
                 <h1><b>{props.title}</b></h1>
@@ -28,6 +28,37 @@ function CourseBody(props) {
                     } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     } else if (data.instructor.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    }
+                }).map((data) => <Lecture info={data} />)}
+            </div>
+        );
+    }
+    if (props.title === "Content") {
+        return (
+            <div>
+                <h1><b>{props.title}</b></h1>
+                <input 
+                    placeholder="Search..." 
+                    type="text" 
+                    className="todo-input"
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}
+                />
+                {props.lectureInfo.filter((data) => {
+                    if (searchTerm === "") {
+                        return data;
+                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    } else if (data.instructor.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    }
+                }).map((data) => <Lecture info={data} />)}
+                {props.docInfo.filter((data) => {
+                    if (searchTerm === "") {
+                        return data;
+                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
                 }).map((data) => <Lecture info={data} />)}

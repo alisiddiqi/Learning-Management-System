@@ -14,7 +14,7 @@ class ContentSec extends Component{
                 <Banner bannerData={GenData.Banner} />
                 <GenNav navData={GenData.stuNav} />
                 <div className="contentBody">
-                    <CourseBody lectureInfo={StuData.LecturesData} title="Content"/>
+                    <CourseBody lectureInfo={StuData.LecturesData} docInfo={StuData.DocumentData} title="Content"/>
                 </div>
             </div>
         );

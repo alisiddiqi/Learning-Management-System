@@ -27,27 +27,61 @@
     ],
     "LecturesData": [
         {
+            "course_id": "203",
             "name": "Tuple Relational Calculus",
             "instructor": "Yuekang Wang (Prof.)",
             "date": "MWF - 1:00pm (50min)",
             "filename": "filename"
         },
         {
+            "course_id": "203",
             "name": "SQL Databases",
             "instructor": "Johnny Does (Prof.)",
             "date": "MWF - 1:00pm (50min)",
             "filename": "filename"
         },
         {
+            "course_id": "203",
             "name": "Relational Algebra",
             "instructor": "Jayson jar (Prof.)",
             "date": "MWF - 1:00pm (50min)",
             "filename": "filename"
         },
         {
+            "course_id": "203",
             "name": "XML Queries",
             "instructor": "Simba Doppl (Prof.)",
             "date": "MWF - 1:00pm (50min)",
+            "filename": "filename"
+        }
+    ],
+    "DocumentData": [
+        {
+            "course_id": "203",
+            "name": "HW1",
+            "instructor": "Yuekang Wang (Prof.)",
+            "date": "Nov 30 - 12pm",
+            "filename": "filename"
+        },
+        {
+            "course_id": "203",
+            "name": "HW2",
+            "instructor": "Yuekang Wang (Prof.)",
+            "date": "Nov 30 - 12pm",
+            "filename": "filename"
+        },
+        {
+            "course_id": "203",
+            "name": "HW3",
+            "instructor": "Yuekang Wang (Prof.)",
+            "date": "Nov 30 - 12pm",
+            "filename": "filename"
+        },
+        {
+            "course_id": "203",
+            "name": "HW4",
+            "instructor": "Yuekang Wang (Prof.)",
+            "date": "Nov 30 - 12pm",
             "filename": "filename"
         }
     ],
