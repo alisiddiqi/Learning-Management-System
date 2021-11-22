@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "../stu_db.json";
 import GenData from "../gen_db.json";
 
-class CommunicationSec extends Component{
+class EvaluationSec extends Component{
 
     render() {
         return (
@@ -15,11 +15,11 @@ class CommunicationSec extends Component{
                 <Banner bannerData={GenData.Banner} />
                 <GenNav navData={GenData.stuNav}/>
                 <div className="contentBody">
-                    <CourseBody commInfo={StuData.DiscussionData} title="Discussion"/>
+                    <CourseBody evalInfo={StuData.EvaluationData} teacherInfo={StuData.Teachers} title="Evaluations"/>
                 </div>
             </div>
         );
     }
 }
 
-export default CommunicationSec;
+export default EvaluationSec;

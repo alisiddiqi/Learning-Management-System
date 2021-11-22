@@ -28,37 +28,51 @@
     "LecturesData": [
         {
             "name": "Tuple Relational Calculus",
-            "instructor": "Yuekai Wang (Prof.)",
+            "instructor": "Yuekang Wang (Prof.)",
             "date": "MWF - 1:00pm (50min)",
             "filename": "filename"
         },
         {
-            "name": "Tuple Relational Calculus",
-            "instructor": "Yuekai Wang (Prof.)",
+            "name": "SQL Databases",
+            "instructor": "Johnny Does (Prof.)",
             "date": "MWF - 1:00pm (50min)",
             "filename": "filename"
         },
         {
-            "name": "Tuple Relational Calculus",
-            "instructor": "Yuekai Wang (Prof.)",
+            "name": "Relational Algebra",
+            "instructor": "Jayson jar (Prof.)",
+            "date": "MWF - 1:00pm (50min)",
+            "filename": "filename"
+        },
+        {
+            "name": "XML Queries",
+            "instructor": "Simba Doppl (Prof.)",
             "date": "MWF - 1:00pm (50min)",
             "filename": "filename"
         }
     ],
-    "DiscussionData": [
+    "EvaluationData": [
         {
-            "course": "",
-            "postTitle": "Meta Databases",
-            "postContent": "A bunch of words about a paragraph or sentences which make up the content section of the discussion post. All goes here.",
-            "authorName": "Jay Gujar",
-            "authorRole": "Student"
-        }
-    ],
-    "EmailList": [
-        {
-            "course": "",
-            "role": "Teacher",
-            "email": "example@email.com"
+            "Q1-num": "7",
+            "Q1-com": "comments",
+            "Q2-num": "6",
+            "Q2-com": "comments",
+            "Q3-num": "7",
+            "Q3-com": "comments",
+            "Q4-num": "6",
+            "Q4-com": "comments",
+            "Q5-num": "7",
+            "Q5-com": "comments",
+            "Q6-num": "6",
+            "Q6-com": "comments",
+            "Q7-num": "6",
+            "Q7-com": "comments",
+            "Q8-num": "7",
+            "Q8-com": "comments",
+            "Q9-num": "6",
+            "Q9-com": "comments",
+            "Q10-num": "6",
+            "Q10-com": "comments"
         }
     ],
     "GradesData": [
@@ -81,16 +95,70 @@
             "eval": "N/A",
             "downloadURL": "N/A",
             "fileContents": "N/A"
+        },
+        {
+            "course": "",
+            "type": "Assignment",
+            "name": "Routing",
+            "status": "0 Submission",
+            "grade": "15/20 - 75%",
+            "eval": "N/A",
+            "downloadURL": "N/A",
+            "fileContents": "N/A"
         }
     ],
-    "StudentData": {
-        "sID": "1007",
-        "first_name": "Kundai",
-        "last_name": "Dziwa",
-        "username": "Kundai987",
-        "role": "Student",
-        "dob": "Mar 10, 2000",
-        "phone": "(403) 123-7654",
-        "email": "example@gmail.com"
-    }
+    "StudentData": [
+        {
+            "sID": "1007",
+            "first_name": "Kundai",
+            "last_name": "Dziwa",
+            "username": "Kundai987",
+            "role": "Student",
+            "dob": "Mar 10, 2000",
+            "phone": "(403) 123-7654",
+            "email": "example@gmail.com"
+        }
+    ],
+    "Teachers": [
+        {
+            "tID": "308",
+            "first_name": "Johnny",
+            "last_name": "Does",
+            "username": "jhnd987",
+            "role": "Teacher",
+            "dob": "Mar 10, 2000",
+            "phone": "(403) 123-7654",
+            "email": "example@gmail.com"
+        },
+        {
+            "tID": "309",
+            "first_name": "Johnny",
+            "last_name": "Does",
+            "username": "jhnd987",
+            "role": "Teacher",
+            "dob": "Mar 10, 2000",
+            "phone": "(403) 123-7654",
+            "email": "example@gmail.com"
+        },
+        {
+            "tID": "311",
+            "first_name": "Johnny",
+            "last_name": "Does",
+            "username": "jhnd987",
+            "role": "Teacher",
+            "dob": "Mar 10, 2000",
+            "phone": "(403) 123-7654",
+            "email": "example@gmail.com"
+        },
+        {
+            "tID": "312",
+            "first_name": "Johnny",
+            "last_name": "Does",
+            "username": "jhnd987",
+            "role": "Teacher",
+            "dob": "Mar 10, 2000",
+            "phone": "(403) 123-7654",
+            "email": "example@gmail.com"
+        }
+    ]
 }

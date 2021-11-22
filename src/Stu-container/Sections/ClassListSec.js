@@ -14,7 +14,7 @@ class ClassListSec extends Component{
                 <Banner bannerData={GenData.Banner} />
                 <GenNav navData={GenData.stuNav}/>
                 <div className="contentBody">
-                    <CourseBody emailInfo={StuData.EmailList} title="Emails"/>
+                    <CourseBody teacherInfo={StuData.Teachers} studentInfo={StuData.StudentData} title="Emails"/>
                 </div>
             </div>
         );

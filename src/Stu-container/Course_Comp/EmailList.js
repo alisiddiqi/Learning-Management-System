@@ -6,7 +6,7 @@ function EmailList(props) {
         <Container style={{border: '1px solid #222'}} fluid>
             <Row>
                 <Col>
-                    <h4>Role: {props.info.role}</h4>
+                    <h4>Name: {props.info.first_name} {props.info.last_name}</h4>
                 </Col>
                 <Col>
                     <h4>Email:</h4>

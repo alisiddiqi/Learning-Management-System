@@ -11,10 +11,11 @@ import Instructor from "./containers/AdminPages/Instructor";
 import StuHome from './Stu-container/StuHome';
 import CoursePage from './Stu-container/Course_main';
 import ContentSec from './Stu-container/Sections/ContentSec';
-import CommunicationSec from './Stu-container/Sections/CommunicationSec';
+import EvaluationSec from './Stu-container/Sections/EvaluationSec';
 import GradesSec from './Stu-container/Sections/GradesSec';
 import DropboxSec from './Stu-container/Sections/DropboxSec';
 import ClassListSec from './Stu-container/Sections/ClassListSec';
+import StuProfile from './Stu-container/Home_Comp/StuProflie';
 import Schedule from "./Stu-container/Course_Comp/Schedule";
 import ProfilePage from "./containers/AdminPages/ProfilePage";
 import InsProfilePage from "./containers/AdminPages/InsProfilePage";
@@ -60,12 +61,12 @@ export default function Routes() {
         <Route exact path= "/Tools"> <Schedule /> </Route>
         <Route exact path="/StuHome/Course_main"> <CoursePage /> </Route>
         <Route exact path="/StuHome/Course_main/Content"> <ContentSec /> </Route>
-        <Route exact path="/StuHome/Course_main/Communication"> <CommunicationSec /> </Route>
+        <Route exact path="/StuHome/Course_main/Evaluation"> <EvaluationSec /> </Route>
         <Route exact path="/StuHome/Course_main/Grades"> <GradesSec /> </Route>
         <Route exact path="/StuHome/Course_main/Dropbox"> <DropboxSec /> </Route>
         <Route exact path="/StuHome/Course_main/ClassList"> <ClassListSec /> </Route>
-        <Route exact path="/Tools"> <Schedule /> </Route>
         <Route exact path="/Emails"> <ClassListSec /> </Route>
+        <Route exact path="/StuProfile"> <StuProfile /> </Route>
         <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>
         <Route exact path="/adminhome/teacher/:username"><InsProfilePage/></Route>
         <Route>

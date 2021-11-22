@@ -1,18 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Lecture from './Lecture';
 import Grade from './Grade';
 import Dropbox from './Dropbox';
 import EmailList from './EmailList';
-import Discussion from './Discussion';
-import { Container, Row, Col } from 'react-bootstrap';
+import Evaluation from './Evaluation';
+import { ButtonGroup, ToggleButton, Container, Row, Col } from 'react-bootstrap';
 
 function CourseBody(props) {
+    const [teacher, setTeacher] = useState();
+    const [searchTerm, setSearchTerm] = useState('');
+
     if ((props.title === "Lectures") || (props.title === "Content")) {
         return (
             <div>
                 <h1><b>{props.title}</b></h1>
-                <input placeholder="Search" type="text" className="todo-input"/>
-                {props.lectureInfo.map((data) => <Lecture info={data} />)}
+                <input 
+                    placeholder="Search..." 
+                    type="text" 
+                    className="todo-input"
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}
+                />
+                {props.lectureInfo.filter((data) => {
+                    if (searchTerm === "") {
+                        return data;
+                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    } else if (data.instructor.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    }
+                }).map((data) => <Lecture info={data} />)}
             </div>
         );
     }
@@ -44,6 +62,14 @@ function CourseBody(props) {
         return (
             <div>
                 <h1><b>{props.title}</b></h1>
+                <input 
+                    placeholder="Search..." 
+                    type="text" 
+                    className="todo-input"
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}
+                />
                 <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
                     <Row>
                         <Col>
@@ -63,16 +89,39 @@ function CourseBody(props) {
                         </Col>
                     </Row>
                 </Container>
-                {props.dropboxInfo.map((data) => <Dropbox info={data} />)}
+                {props.dropboxInfo.filter((data) => {
+                    if (searchTerm === "") {
+                        return data;
+                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    }
+                }).map((data) => <Dropbox info={data} />)}
             </div>
         );
     }
-    if (props.title === "Discussions") {
+    if (props.title === "Evaluations") {
         return (
             <div>
                 <h1><b>{props.title}</b></h1>
-                <input placeholder="Search" type="text" className="todo-input"/>
-                {props.commInfo.map((data) => <Discussion info={data} />)}
+                <Container>
+                    <Row>
+                        <ButtonGroup>
+                            {props.teacherInfo.map((data, idx) => <Col><ToggleButton 
+                                type="radio" 
+                                variant="outline-primary" 
+                                key={idx}
+                                name="radio"
+                                id={`radio-${idx}`}
+                                value={data.tID}
+                                checked={teacher === data.tID}
+                                onChange={(e) => setTeacher(e.currentTarget.value)}
+                                >
+                                {data.first_name} {data.last_name}
+                            </ToggleButton></Col>)}
+                        </ButtonGroup>
+                    </Row>
+                </Container>
+                {props.evalInfo.map((data) => <Evaluation info={data} />)}
             </div>
         );
     }
@@ -80,8 +129,34 @@ function CourseBody(props) {
         return (
             <div>
                 <h1><b>{props.title}</b></h1>
-                <input placeholder="Search" type="text" className="todo-input"/>
-                {props.emailInfo.map((data) => <EmailList info={data} />)}
+                <input 
+                    placeholder="Search..." 
+                    type="text" 
+                    className="todo-input"
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}
+                />
+                <h4>Instructors</h4>
+                {props.teacherInfo.filter((data) => {
+                    if (searchTerm === "") {
+                        return data;
+                    } else if (data.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    } else if (data.last_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    }
+                }).map((data) => <EmailList info={data} />)}
+                <h4>Students</h4>
+                {props.studentInfo.filter((data) => {
+                    if (searchTerm === "") {
+                        return data;
+                    } else if (data.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    } else if (data.last_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
+                    }
+                }).map((data) => <EmailList info={data} />)}
             </div>
         );
     }

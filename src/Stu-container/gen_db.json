@@ -2,6 +2,7 @@
     "Banner": {
         "stuID": "1007",
         "profile": "KD",
+        "profilePath": "/StuProfile",
         "schoolName": "University of Calgary"
     },
     "homeNav": {
@@ -31,8 +32,8 @@
                 "path": "/StuHome/Course_main/Content"
             },
             {
-                "title": "COMMUNICATION",
-                "path": "/StuHome/Course_main/Communication"
+                "title": "EVALUATION",
+                "path": "/StuHome/Course_main/Evaluation"
             },
             {
                 "title": "CLASS LIST",
