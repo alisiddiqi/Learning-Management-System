@@ -27,15 +27,6 @@ def courseList(stuUser):
     return response
 
 # """ NEED SELECT QUERY FOR DOCUMENTS/CONTENT """
-@app.route('/students/<string:stuUser>/courses/<int:courseID>', methods=["GET"])
-def selectTeachers(stuUser):
-    cur = mysql.connection.cursor()
-    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
-    courses = cur.fetchall()
-    response = jsonify(courses)
-    response.status_code = 200
-    cur.close()
-    return response
 
 @app.route('/courses/<int:courseID>/classList/students', methods=["GET"])
 def classStudentList(courseID):
@@ -77,7 +68,7 @@ def studentCourseContent(stuUser, courseID):
     cur.close()
     return response
 
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/<int:assignmnetID', methods=["GET", "POST"])
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/<int:assignmnetID>', methods=["GET", "POST"])
 def studentCourseAssignments(stuUser, courseID, assignmnetID):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
@@ -90,7 +81,7 @@ def studentCourseAssignments(stuUser, courseID, assignmnetID):
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         json = request.json
-        assignmnetID = json['assignmnetID']
+        assignmnet_ID = json['assignmnetID']
         cur.execute("update user set firstname=(%s),lastname=(%s) where username=(%s)", (firstName, lastName, stuUser))
         mysql.connection.commit()
         cur.close()
@@ -172,7 +163,6 @@ def func(stuUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess insert")
-
     if request.method == 'DELETE':
         cur = mysql.connection.cursor()
         json = request.json

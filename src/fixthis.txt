@@ -1,0 +1,11 @@
+http://localhost:3000/StuHome 
+The navbar should not exist
+
+Courses displayed on a mobile view are not centered in the container
+
+Student Course content search bar no work
+Search bar is not placed in the right spot
+
+Student Navbar:
+- get rid of notification bell
+- get rid of uofc 
