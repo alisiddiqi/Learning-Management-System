@@ -5,13 +5,14 @@ import GenNav from "../Home_Comp/GenNav";
 import CourseBody from "../Course_Comp/CourseBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "../stu_db.json";
+import GenData from "../gen_db.json";
 
 class GradesSec extends Component{
     render() {
         return (
             <div style={{textAlign:'center'}} className="course-main">
-                <Banner bannerData={StuData.Banner} />
-                <GenNav navData={StuData.stuNav}/>
+                <Banner bannerData={GenData.Banner} />
+                <GenNav navData={GenData.stuNav}/>
                 <div className="contentBody">
                     <CourseBody gradeInfo={StuData.GradesData} title="Grades"/>
                 </div>
