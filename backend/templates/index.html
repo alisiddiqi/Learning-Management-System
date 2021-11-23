@@ -1,0 +1,59 @@
+//index.html
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Python Flask Upload Multiple Images and insert to database using mysqldb</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+<h2>Python Flask Upload Multiple Images and insert to database using mysqldb</h2>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                 {% for message in messages %}
+                   <div class="alert alert-success">
+                    <strong>{{ message }}</strong>
+                  </div>
+                 {% endfor %}
+                  {% endif %}
+                {% endwith %}
+               </p>
+  <div>
+   <!-- File upload form -->
+   <form method="post" action="/upload" enctype="multipart/form-data" class="form-inline">
+    <div class="form-group">
+                      <label>Choose Images: </label>
+                      <input type="file" name="files[]" id="fileInput" class="form-control" multiple >
+                 </div>
+                 <input type="submit" name="submit" class="btn btn-success" value="UPLOAD"/>
+             </form>
+  </div>
+  </div>
+ </div>
+</div>
+<script>
+$(document).ready(function(){
+ // File type validation
+    $("#fileInput").change(function(){
+        var fileLength = this.files.length;
+        var match= ["image/jpeg","image/png","image/jpg","image/gif","application/pdf"];
+        var i;
+        for(i = 0; i < fileLength; i++){ 
+            var file = this.files[i];
+            var imagefile = file.type;
+            if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) || (imagefile==match[3]) || (imagefile == match[4]))){
+                alert('Please select a valid image file (JPEG/JPG/PNG/GIF).');
+                $("#fileInput").val('');
+                return false;
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

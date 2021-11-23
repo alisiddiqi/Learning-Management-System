@@ -305,6 +305,30 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`submit` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `lmsdb`.`document`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `lmsdb`.`document` (
+  `id` INT(11) NOT NULL,
+  `file` LONGBLOB NOT NULL,
+  `courseid` INT NOT NULL,
+  `teacherid` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_document_course1_idx` (`courseid` ASC) VISIBLE,
+  INDEX `fk_document_teacher1_idx` (`teacherid` ASC) VISIBLE,
+  CONSTRAINT `fk_document_course1`
+    FOREIGN KEY (`courseid`)
+    REFERENCES `lmsdb`.`course` (`courseid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_document_teacher1`
+    FOREIGN KEY (`teacherid`)
+    REFERENCES `lmsdb`.`teacher` (`teacherid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

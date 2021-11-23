@@ -1,0 +1,19 @@
+    """ This can read pdf in the console
+pdfFileObj = open(r'C:\Users\ywang\Documents\ThirdYearF2021\CPSC471\471Project\Learning-Management-System\Learning-Management-System\backend\static\uploads\Hm2.pdf', 'rb')
+pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+print(pdfReader.numPages)
+pageObj = pdfReader.getPage(0)
+print(pageObj.extractText())
+pdfFileObj.close() """
+
+
+
+mydb = mysql1.connect(user = 'root', database = 'lmsdb')
+cursor = mydb.cursor()
+query = 'SELECT file FROM document WHERE id = 1'
+cursor.execute(query)
+data = cursor.fetchall() 
+image = data[0][0] # The returned data will be a list of list
+binary_data = base64.b64decode(image) # deconde the string
+image = Image.open(io.BytesIO(binary_data)) #convert the bytes into a PIL image
+image.show() # display the image  "
