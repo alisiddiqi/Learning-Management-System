@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
-import CourseCard from './CourseCard';
 import StuData from "../stu_db.json";
 import GenData from "../gen_db.json";
 import Banner from './Banner';
@@ -13,36 +12,21 @@ class StuProfile extends Component{
             <div>
                 <Banner bannerData={GenData.Banner} />
                 <GenNav navData={GenData.stuNav}/>
-                <Container fluid>
-                    <h2>{StuData.StudentData.first_name} {StuData.StudentData.last_name}</h2>
-                    <Row>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Role</th>
-                                    <th>DoB</th>
-                                    <th>Phone Number</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{StuData.StudentData.username}</td>
-                                    <td> {StuData.StudentData.role}</td>
-                                    <td>{StuData.StudentData.dob}</td>
-                                    <td> {StuData.StudentData.phone}</td>
-                                    <td>{StuData.StudentData.email}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <Container style={{textAlign: "center"}} fluid>
+                    <h2 style={{margin: "20px"}}>{StuData.StudentData[0].first_name} {StuData.StudentData[0].last_name}</h2>
+                    <Row style={{margin: "20px", padding: "10px"}}>
+                        <Col><b>Username:</b><br/>{StuData.StudentData[0].username}</Col>
+                        <Col><b>Role:</b><br/>{StuData.StudentData[0].role}</Col>
+                        <Col><b>Date of Birth:</b><br/>{StuData.StudentData[0].dob}</Col>
+                        <Col><b>Phone Number:</b><br/>{StuData.StudentData[0].phone}</Col>
+                        <Col><b>Email:</b><br/>{StuData.StudentData[0].email}</Col>
                     </Row>
-                    <Row>
+                    <Row className="enrolled">
                         <Col>
-                            <h4>Enrolled Courses</h4>
+                            <h4><b>Enrolled Courses</b></h4>
                         </Col>
                         <Col>
-                            {StuData.courseData.map((data) => <h4>{data.name}</h4>)}
+                            {StuData.courseData.map((data) => <h5>{data.name}</h5>)}
                         </Col>
                     </Row>
                 </Container>

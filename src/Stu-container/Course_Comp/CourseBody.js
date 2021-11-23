@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import '../stu_main.css';
 import Lecture from './Lecture';
 import Grade from './Grade';
 import Dropbox from './Dropbox';
@@ -12,7 +13,7 @@ function CourseBody(props) {
 
     if (props.title === "Lectures") {
         return (
-            <div>
+            <div className="courseTitle">
                 <h1><b>{props.title}</b></h1>
                 <input 
                     placeholder="Search..." 
@@ -36,7 +37,7 @@ function CourseBody(props) {
     }
     if (props.title === "Content") {
         return (
-            <div>
+            <div className="courseTitle">
                 <h1><b>{props.title}</b></h1>
                 <input 
                     placeholder="Search..." 
@@ -68,7 +69,7 @@ function CourseBody(props) {
     if (props.title === "Grades") {
         return (
             <div>
-                <h1><b>{props.title}</b></h1>
+                <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
                     <Row>
                         <Col>
@@ -92,7 +93,7 @@ function CourseBody(props) {
     if (props.title === "Dropboxes") {
         return (
             <div>
-                <h1><b>{props.title}</b></h1>
+                <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <input 
                     placeholder="Search..." 
                     type="text" 
@@ -133,7 +134,7 @@ function CourseBody(props) {
     if (props.title === "Evaluations") {
         return (
             <div>
-                <h1><b>{props.title}</b></h1>
+                <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <Container>
                     <Row>
                         <ButtonGroup>
@@ -159,7 +160,7 @@ function CourseBody(props) {
     if (props.title === "Emails") {
         return (
             <div>
-                <h1><b>{props.title}</b></h1>
+                <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <input 
                     placeholder="Search..." 
                     type="text" 
@@ -168,7 +169,7 @@ function CourseBody(props) {
                         setSearchTerm(e.target.value);
                     }}
                 />
-                <h4>Instructors</h4>
+                <h4 className="emailsTitle">Instructors</h4>
                 {props.teacherInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
@@ -178,7 +179,7 @@ function CourseBody(props) {
                         return data;
                     }
                 }).map((data) => <EmailList info={data} />)}
-                <h4>Students</h4>
+                <h4 className="emailsTitle">Students</h4>
                 {props.studentInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;

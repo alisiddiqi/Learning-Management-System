@@ -153,7 +153,7 @@
             "email": "example@gmail.com"
         }
     ],
-    "Teachers": [
+    "TeacherData": [
         {
             "tID": "308",
             "first_name": "Johnny",

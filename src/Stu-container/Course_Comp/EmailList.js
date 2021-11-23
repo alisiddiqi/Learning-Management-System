@@ -3,13 +3,12 @@ import {Container, Row, Col} from 'react-bootstrap';
 
 function EmailList(props) {
     return (
-        <Container style={{border: '1px solid #222'}} fluid>
+        <Container fluid>
             <Row>
-                <Col>
-                    <h4>Name: {props.info.first_name} {props.info.last_name}</h4>
+                <Col style={{marginBottom: "5px", border: "1px solid #111"}}>
+                    <h5>{props.info.first_name} {props.info.last_name}</h5>
                 </Col>
-                <Col>
-                    <h4>Email:</h4>
+                <Col style={{marginBottom: "5px", border: '1px solid #222'}}>
                     <a href="#">{props.info.email}</a>
                 </Col>
             </Row>
