@@ -54,6 +54,9 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`course` (
   `courseid` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `time` VARCHAR(45) NOT NULL,
+  `isEval` INT NOT NULL,
+  `finalEval` INT NOT NULL,
+  `evalComplete` INT NOT NULL,
   PRIMARY KEY (`courseid`))
 ENGINE = InnoDB;
 
@@ -239,9 +242,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `lmsdb`.`teacher_evaluation`
+-- Table `lmsdb`.`evaluation`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lmsdb`.`teacher_evaluation` (
+CREATE TABLE IF NOT EXISTS `lmsdb`.`evaluation` (
   `teacherid` INT NOT NULL,
   `Q1` VARCHAR(4) NOT NULL,
   `Q2` VARCHAR(4) NOT NULL,
@@ -253,11 +256,25 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`teacher_evaluation` (
   `Q8` VARCHAR(4) NOT NULL,
   `Q9` VARCHAR(4) NOT NULL,
   `Q10` VARCHAR(4) NOT NULL,
+  `courseid` INT NOT NULL,
+  `studentID` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`teacherid`),
   INDEX `fk_teacher_evaluation_teacher1_idx` (`teacherid` ASC) VISIBLE,
+  INDEX `fk_teacher_evaluation_course1_idx` (`courseid` ASC) VISIBLE,
+  INDEX `fk_teacher_evaluation_student1_idx` (`studentID` ASC) VISIBLE,
   CONSTRAINT `teacher_evalFK`
     FOREIGN KEY (`teacherid`)
     REFERENCES `lmsdb`.`teacher` (`teacherid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_teacher_evaluation_course1`
+    FOREIGN KEY (`courseid`)
+    REFERENCES `lmsdb`.`course` (`courseid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_teacher_evaluation_student1`
+    FOREIGN KEY (`studentID`)
+    REFERENCES `lmsdb`.`student` (`studentID`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
