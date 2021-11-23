@@ -12,6 +12,7 @@ function StuHome() {
         <div className="home-page">
             <Banner bannerData={GenData.Banner} />
             <GenNav navData={GenData.homeNav}/>
+              
             <Courses courseInfo={StuData.courseData}/>
         </div>
     );
