@@ -5,3 +5,5 @@ Search bar is not placed in the right spot
 Student Navbar:
 - get rid of notification bell
 - get rid of uofc 
+
+Document database needs a name for the document name

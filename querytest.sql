@@ -119,7 +119,6 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 
 //set which courses the student is taking
 
-
 INSERT INTO takes(courseid,studentID) VALUES(457,1000);
 INSERT INTO takes(courseid,studentID) VALUES(457,1002);
 
@@ -134,8 +133,6 @@ INSERT INTO takes(courseid,studentID) VALUES(480,1002);
 INSERT INTO takes(courseid,studentID) VALUES(511,1000);
 INSERT INTO takes(courseid,studentID) VALUES(511,1001);
 INSERT INTO takes(courseid,studentID) VALUES(511,1002);
-
-
 
 //Check who is taking which course
 SELECT course.courseid, course.name, user.firstname, user.lastname, user.username, student.studentid
@@ -176,10 +173,10 @@ SELECT DISTINCT course.courseid,course.name, student.studentID, firstname, lastn
 		
 //Inserting Evaluation
 INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10001, "Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes", 471, 1000);
-INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10002, "Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes");
-INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10003, "Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
-INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10004, "Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
-INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10005, "No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10002, "Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10003, "Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10004, "Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10005, "No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
 
 // Insert into document
 INSERT INTO document(id, file, courseid, teacherid) VALUES (1, "lecture.pdf", 471, 10001);
