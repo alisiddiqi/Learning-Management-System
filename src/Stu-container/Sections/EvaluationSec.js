@@ -15,7 +15,7 @@ class EvaluationSec extends Component{
                 <Banner bannerData={GenData.Banner} />
                 <GenNav navData={GenData.stuNav}/>
                 <div className="contentBody">
-                    <CourseBody evalInfo={StuData.EvaluationData} teacherInfo={StuData.Teachers} title="Evaluations"/>
+                    <CourseBody evalInfo={StuData.EvaluationData} teacherInfo={StuData.TeacherData} title="Evaluations"/>
                 </div>
             </div>
         );
