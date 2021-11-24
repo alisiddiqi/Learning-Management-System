@@ -7,7 +7,7 @@ function FileUpload(props) {
     const handleChange = (e) => {
       const file = e.target.files[0];
       sessionStorage.setItem("file_content", file);
-      sessionStorage.setItem(props.upInfo.name, file.name);
+      sessionStorage.setItem(props.name, file.name);
       const url = URL.createObjectURL(file);
       sessionStorage.setItem("url", url);
       document.getElementById("flag").style.display = "inline-block";
