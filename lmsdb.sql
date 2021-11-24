@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`evaluation` (
   `Q9` VARCHAR(4) NOT NULL,
   `Q10` VARCHAR(4) NOT NULL,
   `courseid` INT NOT NULL,
-  `studentID` VARCHAR(45) NOT NULL,
+  `studentID` INT NOT NULL,
   PRIMARY KEY (`teacherid`),
   INDEX `fk_teacher_evaluation_teacher1_idx` (`teacherid` ASC) VISIBLE,
   INDEX `fk_teacher_evaluation_course1_idx` (`courseid` ASC) VISIBLE,
