@@ -20,6 +20,8 @@ INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES
 
 INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("KashfiaTA","Kashfia","Sulinaz","Southcenter street","teacher","Kashfia123","Kashfia@gmail.com");
 INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("ChrisMossmanTA","Christopher","Mossman","Downtown street","teacher","Chris123","ChrisMossman@gmail.com");
+INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("DeanTeacherOfMultipleCourses","Dean","TeachesMultipleCourses","TFDL","teacher","Dean123","DeanTeachesMultipleCourses@gmail.com");
+
 
 SELECT * FROM user;
 
@@ -39,9 +41,11 @@ INSERT INTO teacher(username,teacherid,isTA) VALUES("Pafederl",10001,"Teacher");
 INSERT INTO teacher(username,teacherid,isTA) VALUES("RedaProfessor",10002,"Teacher");
 INSERT INTO teacher(username,teacherid,isTA) VALUES("ChrisParkerProf",10005,"Teacher");
 
+INSERT INTO teacher(username,teacherid,isTA) VALUES("DeanTeacherOfMultipleCourses",10006,"Teacher");
 
 INSERT INTO teacher(username,teacherid,isTA) VALUES("KashfiaTA",10003,"TA");
 INSERT INTO teacher(username,teacherid,isTA) VALUES("ChrisMossmanTA",10004,"TA");
+
 
 ## Test out different conditions to extract columns
 //Get name of the student
@@ -49,13 +53,14 @@ SELECT firstname, lastname FROM user,student WHERE student.username = user.usern
 
 //Testing out the relationships
 
-INSERT INTO course(courseid, name,time) VALUES(471,"Database systems","MWF");
-INSERT INTO course(courseid, name,time) VALUES(480,"Principles of Software Development","MWF");
-INSERT INTO course(courseid, name,time) VALUES(457,"Operating Systems","MWF");
-INSERT INTO course(courseid, name,time) VALUES(511,"Embedded Systems","MWF");
+INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(471,"Database systems","MWF", 0,0,0);
+INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(480,"Principles of Software Development","MWF", 0,0,0);
+INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(457,"Operating Systems","MWF",0,0,0);
+INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(511,"Embedded Systems","MWF",0,0,0);
 
 
 //Set who teaches which course
+
 INSERT INTO courseteacher(courseid,teacherid) VALUES(471,10002);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,9999);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,10000);
@@ -63,6 +68,10 @@ INSERT INTO CourseTeacher(courseid,teacherid) VALUES(457,10001);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(471,10003);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(471,10004);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(511,10005);
+
+
+INSERT INTO courseteacher(courseid,teacherid) VALUES(471,10006);
+INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,10006);
 
 //Select all teachers with names
 SELECT teacherid, firstname, lastname, isTA FROM user,teacher WHERE teacher.username = user.username;
@@ -74,8 +83,17 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 		teacher.teacherid = courseteacher.teacherid AND 
 		teacher.username = user.username;
 
-// Show all teachers in a course based on course ID 
+
+// Show the all the courses a teacher teaches
 SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA 
+	FROM courseteacher, course, user, teacher
+	WHERE courseteacher.courseid = course.courseid AND 
+		teacher.teacherid = courseteacher.teacherid AND 
+		teacher.username = user.username AND
+		teacher.teacherid = 10006;
+
+// Show all teachers in a course based on course ID 
+SELECT course.courseid, course.name, user.firstname,  user.lastname, teacher.isTA, user.email
 	FROM courseteacher, course, user, teacher
 	WHERE courseteacher.courseid = course.courseid AND 
 		teacher.teacherid = courseteacher.teacherid AND 
@@ -142,15 +160,12 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, user.usernam
 		student.username = user.username AND
 		user.firstname = "Jay";
 
-
-
 //Selecting stuff statements
 SELECT * FROM student;
 SELECT * FROM teacher;
 SELECT * FROM user;
 SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username;//Select all teacher names
 SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username AND isTA = "TA"; // Select all TA
-
 
 //Selecting all students and revealing their info	
 SELECT DISTINCT course.courseid,course.name, student.studentID, firstname, lastname, user.username 
@@ -160,19 +175,26 @@ SELECT DISTINCT course.courseid,course.name, student.studentID, firstname, lastn
 		AND user.firstname = "Jay";
 		
 //Inserting Evaluation
-INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10001, "Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
+INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10001, "Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes", 471, 1000);
 INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10002, "Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes");
 INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10003, "Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
 INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10004, "Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
 INSERT INTO teacher_evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10) VALUES (10005, "No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
 
+// Insert into document
+INSERT INTO document(id, file, courseid, teacherid) VALUES (1, "lecture.pdf", 471, 10001);
+
+// Select all the documents for a course
+SELECT DISTINCT document.id, file
+	FROM course, document, user
+		WHERE course.courseID = document.courseid AND
+			  course.courseid = 471;
 
 //Select all teachers evaluation: outputs, firstname, lastname, teacherid and Questions
 SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
 	FROM teacher, user, teacher_evaluation
 		WHERE teacher.username = user.username AND 
 			  teacher.teacherid = teacher_evaluation.teacherid;
-
 
 //Select the teacher evaluation using teacherid, output firstname and lastname included
 SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
@@ -239,7 +261,6 @@ Q10 I will be happy to have the same TA again:
 ////////////////////////////****************Assignment Portion**********//////////////////////////
 
 
-
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (1,"Homework 1", "2021-12-14", "Solve Question 1", 471);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (2,"Homework 2", "2021-12-14", "Solve Question 2", 471);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (4,"Homework 3", "2021-12-14", "Solve Question 3", 471);
@@ -299,6 +320,17 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, submit.a
 		student.username = user.username AND
 		course.courseid = Assignment.courseid AND
 		user.firstname = "Ali";
+
+//Show all the assignments that a specific student is taking in a course
+
+SELECT user.firstname, user.lastname, user.username, student.studentid, submit.assignment_id, Assignment.assignment_name, submit.grade, course.courseid
+	FROM student, user, submit, Assignment, course
+	WHERE student.studentID = submit.studentID AND 
+		submit.assignment_id = Assignment.assignment_id AND 
+		student.username = user.username AND
+		course.courseid = Assignment.courseid AND
+		course.courseid = 471 AND
+		user.username = "AliStudent";
 		
 //Calculate the average grade for a specific student
 SELECT user.firstname, user.lastname, user.username, student.studentid, course.courseid, course.name, AVG(submit.grade)
@@ -307,6 +339,17 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, course.c
 		submit.assignment_id = Assignment.assignment_id AND 
 		student.username = user.username AND
 		user.firstname = "Ali" AND Assignment.courseid = 457;
+
+
+// Show grades for a course for a specific student
+//Calculate the average grade for a specific student
+SELECT user.firstname, user.lastname, user.username, student.studentid, course.courseid, course.name, submit.grade, Assignment.assignment_id
+	FROM student, user, submit, Assignment, course
+	WHERE student.studentID = submit.studentID AND 
+		submit.assignment_id = Assignment.assignment_id AND 
+		student.username = user.username AND
+		user.username = "AliStudent" AND Assignment.courseid = course.courseid 
+		and course.courseid = 457;
 
 
 

@@ -7,13 +7,14 @@ import Schedule from './Course_Comp/Schedule';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "./stu_db.json";
+import GenData from "./gen_db.json";
 
 class Course_main extends Component{
     render() {
         return (
             <div className="course-main">
-                <Banner bannerData={StuData.Banner} />
-                <GenNav navData={StuData.stuNav} />
+                <Banner bannerData={GenData.Banner} />
+                <GenNav navData={GenData.stuNav} />
                 <Container className="course-cont">
                     <Row>
                         <Col>

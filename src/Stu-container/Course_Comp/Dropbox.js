@@ -9,6 +9,7 @@ function Dropbox(props) {
             <Row>
                 <Col style={{textAlign:'center'}}>
                     <p>{props.info.type}</p>
+                    
                     <FileDown name={props.info.name} />
                 </Col>
                 <Col>
@@ -18,10 +19,10 @@ function Dropbox(props) {
                     <p>{props.info.grade}</p>
                 </Col>
                 <Col>
-                    <p>{props.info.grade}</p>
+                    <p>{props.info.eval}</p>
                 </Col>
                 <Col>
-                    <FileUp />
+                    <FileUp name={props.info.name} />
                 </Col>
             </Row>
         </Container>

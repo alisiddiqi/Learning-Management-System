@@ -1,0 +1,7 @@
+Courses displayed on a mobile view are not centered in the container
+
+Search bar is not placed in the right spot
+
+Student Navbar:
+- get rid of notification bell
+- get rid of uofc 
