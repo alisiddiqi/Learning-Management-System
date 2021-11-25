@@ -148,12 +148,12 @@ function CourseBody(props) {
                                 checked={teacher === data.tID}
                                 onChange={(e) => setTeacher(e.currentTarget.value)}
                                 >
-                                {data.first_name} {data.last_name}
+                                {data.firstname} {data.lastname}
                             </ToggleButton></Col>)}
                         </ButtonGroup>
                     </Row>
                 </Container>
-                {props.evalInfo.map((data) => <Evaluation info={data} />)}
+                {props.evalInfo.map((data) => <Evaluation info={data} data={props.data} />)}
             </div>
         );
     }

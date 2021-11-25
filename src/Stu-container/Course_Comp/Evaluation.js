@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
+import {withRouter} from 'react-router';
 
 function Evaluation(props) {
     return (
-        <div>
-            <form>
+        <div>{
+            props.data.map((item)=>(
+              item['isEval'] === 1 ? (
+                <form>
                 <Container style={{borderRadius: "5px", boxShadow: "2px 2px 5px"}}>
                     <Row>
                         <label>
@@ -79,6 +82,13 @@ function Evaluation(props) {
                 </Container>
                 <Button style={{margin: "20px"}} type="submit">Submit</Button>
             </form>
+              ) : (
+                  console.log("else")
+              )
+              
+        ))
+            }
+            
         </div>
     );
 }

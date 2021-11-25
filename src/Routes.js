@@ -64,7 +64,7 @@ export default function Routes() {
         <Route exact path= "/Tools"> <Schedule /> </Route>
         <Route exact path="/StuHome/:courseID"> <CoursePage /> </Route>
         <Route exact path="/StuHome/Course_main/Content"> <ContentSec /> </Route>
-        <Route exact path="/StuHome/Course_main/Evaluation"> <EvaluationSec /> </Route>
+        <Route exact path="/StuHome/Course_main/Evaluation/:courseID"> <EvaluationSec /> </Route>
         <Route exact path="/StuHome/Course_main/Grades"> <GradesSec /> </Route>
         <Route exact path="/StuHome/Course_main/Dropbox"> <DropboxSec /> </Route>
         <Route exact path="/StuHome/Course_main/ClassList/:courseID"> <ClassListSec /> </Route>
