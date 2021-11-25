@@ -2,28 +2,28 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import "./Students.css"
 import { BrowserRouter } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function App (){
    const [data, setData]=useState([]);
-   const fetchInstructors = ()=>{
-      fetch('/instructors')
+   const fetchCourses = ()=>{
+      fetch('/courses/sendEvaluations/')
       .then(res=>res.json())
       .then(json=>setData(json));
   }
   useEffect(()=>{
-      fetchInstructors();
+      fetchCourses();
   },[]);
-
   return (
    <div className="container">
-       <h1 style={{alignContent: 'center'}}> Instructor List </h1>
+       <h1 style={{alignContent: 'center'}}> Course List </h1>
        <BrowserRouter>
        <table>
            <thead>
                <tr>
-                   <th>First Name</th>
-                   <th>Username</th>
-                   <th>Profile </th>
+                   <th>Course code</th>
+                   <th> Course name</th>
+                   <th>Evalutions</th>
                </tr>
            </thead>
            <tbody>
@@ -31,9 +31,9 @@ function App (){
                  data.map((item)=>(
                      console.log(item.length),
                     <tr key={item[0]}>
+                     <td>{item[0]}</td>
                      <td>{item[1]}</td>
-                     <td> {item[0]}</td>
-                     <td><div><a href={item[0]}>Profile</a></div>
+                     <td><div><a href={item[0]}>Send Evaluations</a></div>
                       </td>
                      </tr>
                  ))

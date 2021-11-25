@@ -19,6 +19,9 @@ import StuProfile from './Stu-container/Home_Comp/StuProflie';
 import Schedule from "./Stu-container/Course_Comp/Schedule";
 import ProfilePage from "./containers/AdminPages/ProfilePage";
 import InsProfilePage from "./containers/AdminPages/InsProfilePage";
+import EvalutionSend from "./containers/AdminPages/evaluations";
+import EvaluationMethods from "./containers/AdminPages/evaluationMethods";
+import RecieveEvaluations from "./containers/AdminPages/recieveEvaluations";
 // import InstructorLogin from "./containers/InstructorLogin";
 // import InsHome from "./Ins-container/InsHome";
 
@@ -69,6 +72,9 @@ export default function Routes() {
         <Route exact path="/StuProfile"> <StuProfile /> </Route>
         <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>
         <Route exact path="/adminhome/teacher/:username"><InsProfilePage/></Route>
+        <Route exact path="/adminhome/evaluations/send"><EvalutionSend/></Route>
+        <Route exact path="/adminhome/evaluations/:courseID"><EvaluationMethods/></Route>
+        <Route exact path="/adminhome/evaluations/recieve/:courseID"><RecieveEvaluations/></Route>
         <Route>
           <NotFound/>
       </Route>
