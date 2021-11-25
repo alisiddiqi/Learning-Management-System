@@ -6,7 +6,7 @@ function EmailList(props) {
         <Container fluid>
             <Row>
                 <Col style={{marginBottom: "5px", border: "1px solid #111"}}>
-                    <h5>{props.info.first_name} {props.info.last_name}</h5>
+                    <h5>{props.info.firstname} {props.info.lastname}</h5>
                 </Col>
                 <Col style={{marginBottom: "5px", border: '1px solid #222'}}>
                     <a href="#">{props.info.email}</a>

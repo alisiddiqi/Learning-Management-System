@@ -159,6 +159,7 @@ function CourseBody(props) {
     }
     if (props.title === "Emails") {
         return (
+            console.log(props),
             <div>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <input 
@@ -173,9 +174,9 @@ function CourseBody(props) {
                 {props.teacherInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
-                    } else if (data.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.firstname.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
-                    } else if (data.last_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.lastname.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
                 }).map((data) => <EmailList info={data} />)}
