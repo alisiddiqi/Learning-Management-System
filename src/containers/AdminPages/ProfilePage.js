@@ -7,7 +7,7 @@ import Home from '../AdminHome';
 function ProfilePage(props)
 {
     const [courseID,setCourseID]=useState();
-    var [studentid,setStudentI]=useState(null);
+    var [studentid]=useState(null);
     const [firstName,setfirstName]=useState('');
     const [lastName, setLastName]=useState('');
     const [year,setYear]=useState('');

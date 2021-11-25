@@ -57,17 +57,17 @@ export default function Routes() {
         {/* <Route exact path="/InsHome"> <InsHome /> </Route> */}
 
         <Route exact path="/Course_main"> <CoursePage /> </Route>
-        <Route exact path="/Course_main/ContentSec"> <ContentSec /> </Route>
-        <Route exact path="/Course_main/EvaluationSec"> <EvaluationSec /> </Route>
-        <Route exact path="/Course_main/GradesSec"> <GradesSec /> </Route>
+        <Route exact path="/Course_main/:courseID/ContentSec"> <ContentSec /> </Route>
+        <Route exact path="/Course_main/:courseID/EvaluationSec"> <EvaluationSec /> </Route>
+        <Route exact path="/Course_main/:courseID/GradesSec"> <GradesSec /> </Route>
         <Route exact path= "/Course_main/DropboxSec "> <DropboxSec /> </Route>
         <Route exact path= "/Tools"> <Schedule /> </Route>
-        <Route exact path="/StuHome/Course_main"> <CoursePage /> </Route>
+        <Route exact path="/StuHome/:courseID"> <CoursePage /> </Route>
         <Route exact path="/StuHome/Course_main/Content"> <ContentSec /> </Route>
         <Route exact path="/StuHome/Course_main/Evaluation"> <EvaluationSec /> </Route>
         <Route exact path="/StuHome/Course_main/Grades"> <GradesSec /> </Route>
         <Route exact path="/StuHome/Course_main/Dropbox"> <DropboxSec /> </Route>
-        <Route exact path="/StuHome/Course_main/ClassList"> <ClassListSec /> </Route>
+        <Route exact path="/StuHome/Course_main/ClassList/:courseID"> <ClassListSec /> </Route>
         <Route exact path="/Emails"> <ClassListSec /> </Route>
         <Route exact path="/StuProfile"> <StuProfile /> </Route>
         <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>

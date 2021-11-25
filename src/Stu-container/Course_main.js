@@ -8,13 +8,14 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "./stu_db.json";
 import GenData from "./gen_db.json";
+import {withRouter} from 'react-router';
 
-class Course_main extends Component{
-    render() {
+function Course_main(props){
+     {
         return (
             <div className="course-main">
                 <Banner bannerData={GenData.Banner} />
-                <GenNav navData={GenData.stuNav} />
+                <GenNav navData={GenData.stuNav} courseID={props.match.params.courseID} />
                 <Container className="course-cont">
                     <Row>
                         <Col>
@@ -30,4 +31,4 @@ class Course_main extends Component{
     }
 }
 
-export default Course_main;
+export default withRouter(Course_main);
