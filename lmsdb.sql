@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`user` (
   PRIMARY KEY (`username`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `lmsdb`.`student`
 -- -----------------------------------------------------
@@ -45,7 +44,6 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`student` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `lmsdb`.`course`
@@ -283,7 +281,7 @@ ENGINE = InnoDB;
 -- Table `lmsdb`.`Assignment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`Assignment` (
-  `assignment_id` INT NOT NULL,
+  `assignment_id` INT NOT NULL AUTO_INCREMENT,
   `assignment_name` VARCHAR(45) NOT NULL,
   `due_date` DATE NOT NULL,
   `content` VARCHAR(45) NOT NULL,
@@ -302,7 +300,7 @@ ENGINE = InnoDB;
 -- Table `lmsdb`.`submit`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`submit` (
-  `assignment_id` INT NOT NULL,
+  `assignment_id` INT NOT NULL AUTO_INCREMENT,
   `studentID` VARCHAR(45) NOT NULL,
   `grade` INT NOT NULL,
   PRIMARY KEY (`assignment_id`, `studentID`),

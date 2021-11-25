@@ -116,7 +116,6 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 		teacher.username = user.username AND 
 		course.courseid = 480;
 
-
 //set which courses the student is taking
 
 INSERT INTO takes(courseid,studentID) VALUES(457,1000);
@@ -182,10 +181,14 @@ INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, stude
 INSERT INTO document(id, file, courseid, teacherid) VALUES (1, "lecture.pdf", 471, 10001);
 
 // Select all the documents for a course
-SELECT DISTINCT document.id, file
+SELECT DISTINCT document.id, file, TO_BASE64(file),
+    FROM_BASE64(TO_BASE64(file))
 	FROM course, document, user
 		WHERE course.courseID = document.courseid AND
 			  course.courseid = 471;
+
+// Delete a document in the course for teacher
+DELETE FROM document where document.id = 2;
 
 //Select all teachers evaluation: outputs, firstname, lastname, teacherid and Questions
 SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
@@ -225,11 +228,10 @@ SELECT user.firstname, user.lastname, email
 
 //Delete statements, will cascade into other tables.
 DELETE FROM student WHERE student.username = "JayStudent"; 
-DELECT FROM user WHERE username = "Ali";
+DELETE FROM user WHERE username = "Ali";
 
 //Delete a teacher. The teacher will be deleted from teacher_evaluation, teacher, courseteacher. course will not be affected
 DELETE FROM user WHERE user.username = "Pafederl";
-
 
 
 //////////////////////////******************Evaluation portion ********************//////////////////////////
@@ -257,7 +259,6 @@ Q10 I will be happy to have the same TA again:
 
 ////////////////////////////****************Assignment Portion**********//////////////////////////
 
-
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (1,"Homework 1", "2021-12-14", "Solve Question 1", 471);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (2,"Homework 2", "2021-12-14", "Solve Question 2", 471);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (4,"Homework 3", "2021-12-14", "Solve Question 3", 471);
@@ -272,6 +273,15 @@ INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, course
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (9,"Coding Challenge 1", "2021-11-30", "Complete coding challenge 1", 457);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (10,"Coding Challenge 2", "2021-11-30", "Complete coding challenge 2", 457);
 
+// Select all the assignmnets in a course
+SELECT Assignment.assignment_name, course.courseid
+	FROM  Assignment, course
+	WHERE course.courseid = Assignment.courseid AND
+		  course.courseid = 471;
+
+// Delete a assignment for a course
+DELETE FROM Assignment WHERE Assignment.assignment_id = 2; 
+
 //Inserting into submit, takes in studentID and assignment_id as primary keys
 
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 1, 1000, 90);
@@ -284,7 +294,6 @@ INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 7, 1000, 50);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 8, 1000, 100);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 9, 1000, 90);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 10, 1000, 100);
-
 
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 1, 1001, 70);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 2, 1001, 90);
@@ -309,7 +318,6 @@ INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 9, 1002, 0);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 10, 1002, 100);
 
 //Show all the assignments that a specific student is taking
-
 SELECT user.firstname, user.lastname, user.username, student.studentid, submit.assignment_id, Assignment.assignment_name, submit.grade, course.courseid
 	FROM student, user, submit, Assignment, course
 	WHERE student.studentID = submit.studentID AND 
@@ -319,7 +327,6 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, submit.a
 		user.firstname = "Ali";
 
 //Show all the assignments that a specific student is taking in a course
-
 SELECT user.firstname, user.lastname, user.username, student.studentid, submit.assignment_id, Assignment.assignment_name, submit.grade, course.courseid
 	FROM student, user, submit, Assignment, course
 	WHERE student.studentID = submit.studentID AND 
@@ -338,15 +345,13 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, course.c
 		user.firstname = "Ali" AND Assignment.courseid = 457;
 
 
-// Show grades for a course for a specific student
-//Calculate the average grade for a specific student
-SELECT user.firstname, user.lastname, user.username, student.studentid, course.courseid, course.name, submit.grade, Assignment.assignment_id
-	FROM student, user, submit, Assignment, course
+// Show all the submissions of students for a specific assignment
+SELECT student.studentid, course.courseid, course.name, submit.grade, Assignment.assignment_id
+	FROM student, submit, Assignment, course
 	WHERE student.studentID = submit.studentID AND 
 		submit.assignment_id = Assignment.assignment_id AND 
-		student.username = user.username AND
-		user.username = "AliStudent" AND Assignment.courseid = course.courseid 
-		and course.courseid = 457;
+		AND Assignment.courseid = course.courseid 
+		and course.courseid = 471;
 
 
 
