@@ -1,6 +1,7 @@
 import { withRouter } from "react-router";
 import {useState,useEffect} from 'react'
 import { Button, Form, Input } from "semantic-ui-react";
+import Home from '../AdminHome';
 
 
 function ProfilePage(props)
@@ -35,8 +36,7 @@ function ProfilePage(props)
       fetchStuData();
       fetchStuCourses();
   },[]);
-  dupli=[].concat(...stuData);
-  studentid=dupli[3];
+
   const onEdit=({currentFirstName,currentLastName})=>{
     setfirstName(currentFirstName);
     setLastName(currentLastName);
@@ -46,17 +46,18 @@ const onEdit2=({currentMajor,currentYear})=>{
     setYear(currentYear);
 }
   return(
-  <div>
+  <div className="container">
+      <Home/>
     {
-    data.map((item)=>(  
+    data.map((item)=>( 
         <div>
-        <h1 > Username: {item[0]}</h1>
+        <h1 > Username: {item['username']}</h1>
         <button
         className={"btn-primary"}
         onClick={()=> onEdit({
-            username: item[0],
-            currentFirstName: item[1],
-            currentLastName: item[2]
+            username: item['username'],
+            currentFirstName: item['firstname'],
+            currentLastName: item['lastname']
         })}
         >
         Set user defaults
@@ -66,13 +67,15 @@ const onEdit2=({currentMajor,currentYear})=>{
   }
   {
     stuData.map((item)=>(  
+        studentid=stuData[0]['studentID'],
+        console.log(studentid),
         <div>
-        <h1 > Major: {item[1]}</h1>
+        <h1 > Major: {item['major']}</h1>
         <button
         className={"btn-primary"}
         onClick={()=> onEdit2({
-            currentMajor: item[1],
-            currentYear: item[2]
+            currentMajor: item['major'],
+            currentYear: item['year']
         })}
         >
         Set student defaults
@@ -84,7 +87,7 @@ const onEdit2=({currentMajor,currentYear})=>{
   {
       stuCourses.map((item)=>
       <div>
-          <h1>Courses are: {item[1]} {item[2]}</h1>
+          <h1>Courses are: {item['courseid']} {item['name']}</h1>
       </div>
         )
   }
@@ -117,7 +120,7 @@ const onEdit2=({currentMajor,currentYear})=>{
     </Button>
      </Form.Field>
         </Form>
-    <Form>
+    <Form class="feilds">
     <Form.Field>
             <Input value={major}
                 id="major"
@@ -144,8 +147,6 @@ const onEdit2=({currentMajor,currentYear})=>{
         Edit student fields
     </Button>
      </Form.Field>
-    </Form>
-    <Form>
         <Form.Field>
         <Input 
                 id="major"
@@ -166,7 +167,7 @@ const onEdit2=({currentMajor,currentYear})=>{
     }}>
         Add course
     </Button>
-        </Form.Field>
+        </Form.Field><br/>
         <Form.Field>
         <Input 
                 id="courseID"
@@ -186,7 +187,7 @@ const onEdit2=({currentMajor,currentYear})=>{
     }}>
         Remove course
     </Button>
-        </Form.Field>
+    </Form.Field>
     </Form>
     </div>
   );

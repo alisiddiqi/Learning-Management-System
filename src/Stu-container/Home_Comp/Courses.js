@@ -3,6 +3,7 @@ import CourseCard from './CourseCard';
 import {Container, Row, Col} from 'react-bootstrap';
 
 function Courses(props) {
+    console.log(props);
     return (
         <div className="courses">
             <h2>Courses</h2>

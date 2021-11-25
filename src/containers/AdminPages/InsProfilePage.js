@@ -1,6 +1,7 @@
 import { withRouter } from "react-router";
 import {useState,useEffect} from 'react'
 import { Button, Form, Input } from "semantic-ui-react";
+import Home from '../AdminHome';
 
 function InsProfile(props)
 {
@@ -40,16 +41,17 @@ function InsProfile(props)
 }
   return(
   <div>
+      <Home/>
     {
     data.map((item)=>(  
         <div>
-        <h1 > Username: {item[0]}</h1>
+        <h1 > Username: {item['username']}</h1>
         <button
         className={"btn-primary"}
         onClick={()=> onEdit({
-            username: item[0],
-            currentFirstName: item[1],
-            currentLastName: item[2]
+            username: item['username'],
+            currentFirstName: item['firstname'],
+            currentLastName: item['lastname']
         })}
         >
         Set user defaults
@@ -59,8 +61,9 @@ function InsProfile(props)
   }
   {
     stuData.map((item)=>(
+        console.log(item),
         <div>
-        <h1 > Role: {item[1]}</h1>
+        <h1 > Role: {item['isTA']}</h1>
         {/* <button
         className={"btn-primary"}
         onClick={()=> onEdit2({
@@ -77,8 +80,8 @@ function InsProfile(props)
   {
       stuCourses.map((item)=>
       <div>
-          <h1>Courses taught are : {item[1]} {item[2]}</h1>
-      </div>
+          <h1>Courses taught are : {item['courseid']} {item['name']}</h1>
+      </div>    
         )
   }
   <Form>

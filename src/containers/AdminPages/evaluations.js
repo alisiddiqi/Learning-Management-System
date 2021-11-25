@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import "./Students.css"
 import { BrowserRouter } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import Home from '../AdminHome';
 
 function App (){
    const [data, setData]=useState([]);
@@ -16,6 +16,7 @@ function App (){
   },[]);
   return (
    <div className="container">
+       <Home/>
        <h1 style={{alignContent: 'center'}}> Course List </h1>
        <BrowserRouter>
        <table>
@@ -30,10 +31,10 @@ function App (){
               {
                  data.map((item)=>(
                      console.log(item.length),
-                    <tr key={item[0]}>
-                     <td>{item[0]}</td>
-                     <td>{item[1]}</td>
-                     <td><div><a href={item[0]}>Send Evaluations</a></div>
+                    <tr key={item['courseid']}>
+                     <td>{item['courseid']}</td>
+                     <td>{item['name']}</td>
+                     <td><div><a href={item['courseid']}>Send Evaluations</a></div>
                       </td>
                      </tr>
                  ))
