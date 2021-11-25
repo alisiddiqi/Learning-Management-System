@@ -2,6 +2,7 @@ import { withRouter } from "react-router";
 import {useState,useEffect} from 'react'
 import { Form } from "react-bootstrap";
 import {Button as Button2} from 'react-bootstrap'
+import Home from '../AdminHome';
 
 
 function EvaluationMethods(props)
@@ -11,7 +12,7 @@ function EvaluationMethods(props)
     courseid=props.match.params.courseID;
   return(
       <div>
-
+        <Home/>
   <Button2 onClick={async()=>{
         const response=await fetch('/courses/sendEvaluations/'+props.match.params.courseID,{
             method: "POST",

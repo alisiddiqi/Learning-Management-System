@@ -1,6 +1,7 @@
 import { withRouter } from "react-router";
 import {useState,useEffect} from 'react'
 import "./Students.css"
+import Home from '../AdminHome';
 
 function RecieveEvaluations(props)
 {
@@ -13,10 +14,9 @@ function RecieveEvaluations(props)
     useEffect(()=>{
         fetchinstructors();
     },[]);
-    console.log(data);
-    data=[].concat(...data);
   return(
     <div>
+        <Home/>
         <table>
             <thead>
                 <tr>
@@ -37,7 +37,20 @@ function RecieveEvaluations(props)
         <tbody>
         {
             data.map((item)=>(
-                <th>{item}</th>
+                <tr key={item['teacherid']}>
+                <td>{item['teacherid']}</td>
+                <td>{item['studentid']}</td>
+                <td>{item['Q1']}</td>
+                <td>{item['Q2']}</td>
+                <td>{item['Q3']}</td>
+                <td>{item['Q4']}</td>
+                <td>{item['Q5']}</td>
+                <td>{item['Q6']}</td>
+                <td>{item['Q7']}</td>
+                <td>{item['Q8']}</td>
+                <td>{item['Q9']}</td>
+                <td>{item['Q10']}</td>
+                </tr>
                 ))
         }
         </tbody>

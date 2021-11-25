@@ -11,7 +11,7 @@ import GenData from "./gen_db.json";
 function StuHome() {
     const [data, setData]=useState([]);
    const fetchStudents = ()=>{
-      fetch('/students')
+      fetch('/students/KaiStudent/courselist')
       .then(res=>res.json())
       .then(json=>setData(json));
   }

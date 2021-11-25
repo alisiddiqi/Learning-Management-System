@@ -8,9 +8,9 @@ export default function Home() {
     <Navbar bg="dark" variant="dark">
     <Container>
     <Nav className="me-auto">
-      <Nav.Link a href="adminhome/student/view">Student</Nav.Link>
-      <Nav.Link href="adminhome/teacher/view">Instructors</Nav.Link>
-      <Nav.Link href="adminhome/evaluations/send">Evaluations</Nav.Link>
+      <Nav.Link a href="/adminhome/student/view">Student</Nav.Link>
+      <Nav.Link href="/adminhome/teacher/view">Instructors</Nav.Link>
+      <Nav.Link href="/adminhome/evaluations/send">Evaluations</Nav.Link>
     </Nav>
     </Container>
   </Navbar>
