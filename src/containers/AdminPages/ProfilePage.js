@@ -6,7 +6,7 @@ import { Button, Form, Input } from "semantic-ui-react";
 function ProfilePage(props)
 {
     const [courseID,setCourseID]=useState();
-    var [studentid,setStudentID]=useState(null);
+    var [studentid,setStudentI]=useState(null);
     const [firstName,setfirstName]=useState('');
     const [lastName, setLastName]=useState('');
     const [year,setYear]=useState('');
@@ -84,7 +84,7 @@ const onEdit2=({currentMajor,currentYear})=>{
   {
       stuCourses.map((item)=>
       <div>
-          <h1>Courses are : {item[1]} {item[2]}</h1>
+          <h1>Courses are: {item[1]} {item[2]}</h1>
       </div>
         )
   }

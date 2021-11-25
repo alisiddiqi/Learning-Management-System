@@ -5,7 +5,7 @@ import { Button, Form, Input } from "semantic-ui-react";
 function InsProfile(props)
 {
     const [courseID,setCourseID]=useState();
-    var [teacherid,setteacherid]=useState(null);
+    var [teacherid]=useState(null);
     const [firstName,setfirstName]=useState('');
     const [lastName, setLastName]=useState('');
     var [data, setData]=useState([]);
@@ -77,7 +77,7 @@ function InsProfile(props)
   {
       stuCourses.map((item)=>
       <div>
-          <h1>Courses are : {item[1]} {item[2]}</h1>
+          <h1>Courses taught are : {item[1]} {item[2]}</h1>
       </div>
         )
   }

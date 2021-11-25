@@ -16,28 +16,6 @@ mysql = MySQL(app)
 """ ---- STUDENT API ----- """
 
 
-@app.route('/courses/sendEvaluations/', methods=["GET"])
-def sendEval():
-    return None
-
-
-@app.route('/students/<string:stuUser>/courses', methods=["GET"])
-def studentCourseList(stuUser):
-    cur = mysql.connection.cursor()
-    cur.execute("select * from course")
-    courses = cur.fetchall()
-    response = jsonify(courses)
-    response.status_code = 200
-    cur.close()
-    return response
-
-
-# Add logic for changinf the int after Kai changes the database
-@app.route('/courses/sendEvaluations/<int:courseID>', methods=["POST"])
-def sendEvalu():
-    return None
-
-
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/content', methods=["GET"])
 def studentCourseContent(stuUser, courseID):
     cur = mysql.connection.cursor()
@@ -65,9 +43,6 @@ def classStudentList(courseID):
 # """ NEED SELECT QUERY FOR DOCUMENTS/CONTENT """
 
 
-@app.route('/students/<string:stuUser>/courses/<int:courseID>', methods=["GET"])
-def selectTeachers(stuUser):
-    return None
     
 @app.route('/courses/<int:courseID>/classList/teachers', methods=["GET"])
 def classTeacherList(courseID):
@@ -80,9 +55,6 @@ def classTeacherList(courseID):
     return response
 
 
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/classList', methods=["GET"])
-def classList(stuUser):
-    return None
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/grades', methods=["GET"])
 def studentGrades(stuUser, courseID):
     cur = mysql.connection.cursor()
@@ -154,22 +126,6 @@ def teacherCourseList(insUser):
 
 """ For a assigmmnet view submission and submit assign grades """
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 """ ------ ADMIN STUDENT API ----"""
 
 # @app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
@@ -215,7 +171,7 @@ def stuProfile(stuUser):
                     (firstName, lastName, stuUser))
         mysql.connection.commit()
         cur.close()
-        return jsonify("sucess insert")
+        return jsonify("sucess edited")
 
 
 @app.route('/students/<string:stuUser>/stu', methods=["GET", "POST"])
@@ -353,8 +309,39 @@ def func2(insUser):
             "delete from courseteacher where teacherID=(%s) and courseid=(%s) ", (teacherID, courseid))
         mysql.connection.commit()
         cur.close()
-        return jsonify("sucess delete")
+        return jsonify("sucess deleted with courseid=(%s)",(courseid,))
 
+@app.route('/courses/sendEvaluations/<int:courseID>',methods=["POST"])
+def sendEvals(courseID):
+    if request.method=="POST":
+        cur = mysql.connection.cursor()
+        cur.execute(
+            "update course set isEval=(%s), finalEval=(%s) where courseid=(%s)",(1,1,courseID))
+        mysql.connection.commit()
+        cur.close()
+        return ("successfully sent evaluations")
+
+@app.route('/courses/recieveEvaluations/<int:courseID>', methods=["GET"])
+def recieveEvaluations(courseID):
+    if request.method=="GET":
+        cur = mysql.connection.cursor()
+        cur.execute("select teacherid,studentid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10 from evaluation where courseid=(%s)", (courseID,))
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        response.status_code = 200
+        cur.close()
+        return response
+
+@app.route('/courses/sendEvaluations/',methods=["GET"])
+def func4():
+    if request.method=="GET":
+        cur = mysql.connection.cursor()
+        cur.execute("select * from course")
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        response.status_code = 200
+        cur.close()
+        return response
 
 """ /instructor/<string:stuUser>/ 
 alsoHave a role of isTa

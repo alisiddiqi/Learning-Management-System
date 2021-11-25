@@ -16,7 +16,7 @@ function App (){
   },[]);
   return (
    <div className="container">
-       <h1 style={{alignContent: 'center'}}> Student List </h1>
+       <h1 style={{alignContent: 'center'}}> Course List </h1>
        <BrowserRouter>
        <table>
            <thead>

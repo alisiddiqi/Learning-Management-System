@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import "./Instructor.css"
+import "./Students.css"
 import { BrowserRouter } from 'react-router-dom';
 
 function App (){
