@@ -332,7 +332,7 @@ def func2(insUser):
         return jsonify("sucess deleted with courseid=(%s)", (courseid,))
 
 
-@app.route('/courses/sendEvaluations/<int:courseID>', methods=["POST"])
+@app.route('/courses/sendEvaluations/<int:courseID>', methods=["GET","POST"])
 def sendEvals(courseID):
     if request.method == "POST":
         cur = mysql.connection.cursor()
@@ -341,6 +341,14 @@ def sendEvals(courseID):
         mysql.connection.commit()
         cur.close()
         return ("successfully sent evaluations")
+    if request.method=="GET":
+        cur = mysql.connection.cursor()
+        cur.execute("select * from course where courseid=(%s)", (courseID,))
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        response.status_code = 200
+        cur.close()
+        return response
 
 
 @app.route('/courses/recieveEvaluations/<int:courseID>', methods=["GET"])
