@@ -108,12 +108,6 @@ body {
     box-shadow: 10px 1px 20px;
     transition: 0.25s ease-in-out;
 }
-
-/* ----- Each Course Card ----- */
-.course-card:hover{
-    box-shadow: 10px 1px 20px;
-    transition: 0.25s ease-in-out;
-}
   
 /* ----- Lectures Section ----- */
 .lectures-sec {

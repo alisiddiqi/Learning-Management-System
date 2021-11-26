@@ -11,7 +11,7 @@ class StuProfile extends Component{
         return (
             <div>
                 <Banner bannerData={GenData.Banner} />
-                <GenNav navData={GenData.stuNav}/>
+                <GenNav navData={GenData.insNav}/>
                 <Container style={{textAlign: "center"}} fluid>
                     <h2 style={{margin: "20px"}}>{StuData.StudentData[0].first_name} {StuData.StudentData[0].last_name}</h2>
                     <Row style={{margin: "20px", padding: "10px"}}>
