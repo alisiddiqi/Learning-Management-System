@@ -24,14 +24,14 @@ function GradeItem(props) {
             </Row>
             <Row>
                 <Col>
-                    <Button onClick={(e) => document.getElementById(props.info.name).style.display = "block"}>Add Grade</Button>
+                    <Button onClick={(e) => document.getElementById(props.info.filename).style.display = "block"}>Add Grade</Button>
                 </Col>
                 <Col>
-                    <form className="editGrade" id={props.info.name}>
+                    <form className="editGrade" id={props.info.filename}>
                         <input style={{margin: "10px"}} type="text" name="Grade" placeholder="Grade" onChange={(e) => sessionStorage.setItem(e.target.name, e.target.value)} />
-                        <input style={{margin: "10px"}} type="text"name="Feedback" placeholder="Feedback" onChange={(e) => sessionStorage.setItem(e.target.name, e.target.value)} />
+                        <input style={{margin: "10px"}} type="text" name="Feedback" placeholder="Feedback" onChange={(e) => sessionStorage.setItem(e.target.name, e.target.value)} />
                         <Button style={{margin: "10px"}} type="submit">Enter Grade</Button>
-                        <Button style={{margin: "10px"}} onClick={() => document.getElementById(props.info.name).style.display = "none"} >Cancel</Button>
+                        <Button style={{margin: "10px"}} onClick={() => document.getElementById(props.info.filename).style.display = "none"} >Cancel</Button>
                     </form>
                 </Col>
             </Row>
