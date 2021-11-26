@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import '../stu_main.css';
-import Lecture from './Lecture';
-import Grade from './Grade';
-import Dropbox from './Dropbox';
-import EmailList from './EmailList';
-import Evaluation from './Evaluation';
+import '../../Stu-container/stu_main.css';
+import Lecture from '../../Stu-container/Course_Comp/Lecture';
+import GradeItem from '../EditComp/GradeItem';
+import EmailList from '../../Stu-container/Course_Comp/EmailList';
+import Eval from '../EditComp/Eval';
+import AddDoc from '../EditComp/AddDoc';
+import DelDoc from '../EditComp/DelDoc';
 import { ButtonGroup, ToggleButton, Container, Row, Col } from 'react-bootstrap';
 
-function CourseBody(props) {
-    const [teacher, setTeacher] = useState();
+function PageBody(props) {
+    const [student, setStudent] = useState();
     const [searchTerm, setSearchTerm] = useState('');
 
     if (props.title === "Lectures") {
@@ -28,9 +29,7 @@ function CourseBody(props) {
                         return data;
                     } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
-                    } else if (data.instructor.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    }
+                    } 
                 }).map((data) => <Lecture info={data} />)}
             </div>
         );
@@ -47,6 +46,8 @@ function CourseBody(props) {
                         setSearchTerm(e.target.value);
                     }}
                 />
+                <AddDoc />
+                <DelDoc />
                 {props.lectureInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
@@ -66,31 +67,7 @@ function CourseBody(props) {
             </div>
         );
     }
-    if (props.title === "Grades") {
-        return (
-            <div>
-                <h1 className="courseTitle"><b>{props.title}</b></h1>
-                <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
-                    <Row>
-                        <Col>
-                            <h4>Grade Item</h4>
-                        </Col>
-                        <Col>
-                            <h4>Weight</h4>
-                        </Col>
-                        <Col>
-                            <h4>Grade</h4>
-                        </Col>
-                        <Col>
-                            <h4>Feedback</h4>
-                        </Col>
-                    </Row>
-                </Container>
-                {props.gradeInfo.map((data) => <Grade info={data} />)}
-            </div>
-        );
-    }
-    if (props.title === "Dropboxes") {
+    if (props.title === "Assignments") {
         return (
             <div>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
@@ -105,10 +82,13 @@ function CourseBody(props) {
                 <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
                     <Row>
                         <Col>
-                            <h4>File Item</h4>
+                            <h4>Student</h4>
                         </Col>
                         <Col>
-                            <h4>Completion Status</h4>
+                            <h4>Grade Item</h4>
+                        </Col>
+                        <Col>
+                            <h4>File</h4>
                         </Col>
                         <Col>
                             <h4>Grade</h4>
@@ -116,18 +96,17 @@ function CourseBody(props) {
                         <Col>
                             <h4>Feedback</h4>
                         </Col>
-                        <Col>
-                            <h4>Submission</h4>
-                        </Col>
                     </Row>
                 </Container>
-                {props.dropboxInfo.filter((data) => {
+                {props.gradeInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
                     } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
+                    } else if (data.student.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return data;
                     }
-                }).map((data) => <Dropbox info={data} />)}
+                }).map((data) => <GradeItem info={data} />)}
             </div>
         );
     }
@@ -138,26 +117,26 @@ function CourseBody(props) {
                 <Container>
                     <Row>
                         <ButtonGroup>
-                            {props.teacherInfo.map((data, idx) => <Col><ToggleButton 
+                            {props.studentInfo.map((data, idx) => <Col><ToggleButton 
                                 type="radio" 
                                 variant="outline-primary" 
                                 key={idx}
                                 name="radio"
                                 id={`radio-${idx}`}
-                                value={data.tID}
-                                checked={teacher === data.tID}
-                                onChange={(e) => setTeacher(e.currentTarget.value)}
+                                value={data.sID}
+                                checked={student === data.sID}
+                                onChange={(e) => setStudent(e.currentTarget.value)}
                                 >
                                 {data.first_name} {data.last_name}
                             </ToggleButton></Col>)}
                         </ButtonGroup>
                     </Row>
                 </Container>
-                {props.evalInfo.map((data) => <Evaluation info={data} />)}
+                {props.evalInfo.map((data) => (student === data.sID) ? (<Eval info={data} stu_id={student} />) : <Container fluid><h4>Select a Student</h4></Container> )}
             </div>
         );
     }
-    if (props.title === "Emails") {
+    if (props.title === "ClassList") {
         return (
             <div>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
@@ -169,18 +148,8 @@ function CourseBody(props) {
                         setSearchTerm(e.target.value);
                     }}
                 />
-                <h4 className="emailsTitle">Instructors</h4>
-                {props.teacherInfo.filter((data) => {
-                    if (searchTerm === "") {
-                        return data;
-                    } else if (data.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    } else if (data.last_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    }
-                }).map((data) => <EmailList info={data} />)}
                 <h4 className="emailsTitle">Students</h4>
-                {props.studentInfo.filter((data) => {
+                {props.classInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
                     } else if (data.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -194,4 +163,4 @@ function CourseBody(props) {
     }
 }
 
-export default CourseBody;
+export default PageBody;

@@ -28,6 +28,7 @@
     "LecturesData": [
         {
             "course_id": "203",
+            "ins_id": "308",
             "name": "Tuple Relational Calculus",
             "instructor": "Yuekang Wang (Prof.)",
             "date": "MWF - 1:00pm (50min)",
@@ -35,13 +36,15 @@
         },
         {
             "course_id": "203",
+            "ins_id": "308",
             "name": "SQL Databases",
-            "instructor": "Johnny Does (Prof.)",
+            "instructor": "Yuekang Wang (Prof.)",
             "date": "MWF - 1:00pm (50min)",
             "filename": "filename"
         },
         {
             "course_id": "203",
+            "ins_id": "310",
             "name": "Relational Algebra",
             "instructor": "Jayson jar (Prof.)",
             "date": "MWF - 1:00pm (50min)",
@@ -49,6 +52,7 @@
         },
         {
             "course_id": "203",
+            "ins_id": "311",
             "name": "XML Queries",
             "instructor": "Simba Doppl (Prof.)",
             "date": "MWF - 1:00pm (50min)",
@@ -87,31 +91,27 @@
     ],
     "EvaluationData": [
         {
-            "Q1-num": "7",
-            "Q1-com": "comments",
-            "Q2-num": "6",
-            "Q2-com": "comments",
-            "Q3-num": "7",
-            "Q3-com": "comments",
-            "Q4-num": "6",
-            "Q4-com": "comments",
-            "Q5-num": "7",
-            "Q5-com": "comments",
-            "Q6-num": "6",
-            "Q6-com": "comments",
-            "Q7-num": "6",
-            "Q7-com": "comments",
-            "Q8-num": "7",
-            "Q8-com": "comments",
-            "Q9-num": "6",
-            "Q9-com": "comments",
-            "Q10-num": "6",
-            "Q10-com": "comments"
+            "sID": "1007",
+            "tID": "308",
+            "student": "Kundai Dziwa",
+            "q1": "7",
+            "q2": "6",
+            "q3": "7",
+            "q4": "6",
+            "q5": "7",
+            "q6": "6",
+            "q7": "6",
+            "q8": "7",
+            "q9": "6",
+            "q10": "6",
+            "comments": "comments"
         }
     ],
     "GradesData": [
         {
-            "course": "",
+            "course": "203",
+            "s_id": "1233",
+            "s_name": "kunlive dee",
             "type": "Quiz",
             "title": "Midterm Practice Quiz 1",
             "weight": "18/20",
@@ -121,22 +121,26 @@
     ],
     "DropboxData": [
         {
-            "course": "",
+            "course": "432",
+            "student": "Jayson Jar",
             "type": "Assignment",
             "name": "HW3 and HW4",
             "status": "1 Submission",
-            "grade": "15/20 - 75%",
-            "eval": "N/A",
+            "filename": "N/A",
+            "grade": "75%",
+            "feedback": "N/A",
             "downloadURL": "N/A",
             "fileContents": "N/A"
         },
         {
-            "course": "",
+            "course": "439",
+            "student": "Jeryy gajar",
             "type": "Assignment",
             "name": "Routing",
             "status": "0 Submission",
-            "grade": "15/20 - 75%",
-            "eval": "N/A",
+            "filename": "N/A",
+            "grade": "75%",
+            "feedback": "N/A",
             "downloadURL": "N/A",
             "fileContents": "N/A"
         }

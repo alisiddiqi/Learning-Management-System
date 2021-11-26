@@ -48,5 +48,31 @@
                 "path": "/StuHome/Course_main/Dropbox"
             }
         ]
+    },
+    "insNav": {
+        "platform": "Instructor",
+        "platformPath": "/InsHome",
+        "destination": [
+            {
+                "title": "CONTENT",
+                "path": "/InsHome/InsCourse/Content"
+            },
+            {
+                "title": "EVALUATION",
+                "path": "/InsHome/InsCourse/Evaluation"
+            },
+            {
+                "title": "CLASS LIST",
+                "path": "/InsHome/InsCourse/ClassList"
+            },
+            {
+                "title": "ASSIGNMENTS",
+                "path": "/InsHome/InsCourse/Assignments"
+            },
+            {
+                "title": "PROFILE",
+                "path": "/InsHome/InsProfile"
+            }
+        ]
     }
 }

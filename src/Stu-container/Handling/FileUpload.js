@@ -26,7 +26,7 @@ function FileUpload(props) {
           type="file"
           hidden
         />
-        <p id="flag" style={{margin: "5px", display: "none"}}>Submitted</p>
+        <p id="flag" style={{margin: "5px", display: "none"}}>Uploaded</p>
       </div>
     );
 }

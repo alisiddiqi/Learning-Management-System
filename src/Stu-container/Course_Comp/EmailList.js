@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
+import '../stu_main.css';
 
 function EmailList(props) {
     return (

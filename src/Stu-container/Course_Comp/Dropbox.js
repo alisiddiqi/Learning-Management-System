@@ -19,7 +19,7 @@ function Dropbox(props) {
                     <p>{props.info.grade}</p>
                 </Col>
                 <Col>
-                    <p>{props.info.eval}</p>
+                    <p>{props.info.feedback}</p>
                 </Col>
                 <Col>
                     <FileUp name={props.info.name} />
