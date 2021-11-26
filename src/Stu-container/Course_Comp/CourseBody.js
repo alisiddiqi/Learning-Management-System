@@ -134,6 +134,10 @@ function CourseBody(props) {
     if (props.title === "Evaluations") {
         return (
             <div>
+                {
+            props.data.map((item)=>(
+              item['isEval'] === 1 ? (
+                  <>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <Container>
                     <Row>
@@ -154,6 +158,13 @@ function CourseBody(props) {
                     </Row>
                 </Container>
                 {props.evalInfo.map((data) => <Evaluation info={data} data={props.data} />)}
+                </>
+              ) : (
+                    <h4>There are no evaluations avaiable at this time</h4>
+              )
+              
+        ))
+        }
             </div>
         );
     }

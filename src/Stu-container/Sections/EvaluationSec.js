@@ -10,6 +10,12 @@ import {withRouter} from 'react-router';
 
 function EvaluationSec (props){
     const [data,setData]=useState([]);
+    const [teacherList,setTeacherList]=useState([]);
+    const fetchInstructors = ()=>{
+        fetch('/courses/'+props.match.params.courseID+'/classList/teachers')
+        .then(res=>res.json())
+        .then(json=>setTeacherList(json));
+    }
     const fetchStudents = ()=>{
         fetch('/courses/sendEvaluations/'+props.match.params.courseID)
         .then(res=>res.json())
@@ -17,13 +23,14 @@ function EvaluationSec (props){
     }
     useEffect(()=>{
         fetchStudents();
+        fetchInstructors();
     },[]);
         return (
             <div style={{textAlign:'center'}} className="course-main">
                 <Banner bannerData={GenData.Banner} />
                 <GenNav navData={GenData.stuNav} />
                 <div className="contentBody">
-                    <CourseBody evalInfo={StuData.EvaluationData} teacherInfo={StuData.TeacherData} data={data} title="Evaluations"/>
+                    <CourseBody evalInfo={StuData.EvaluationData} teacherInfo={teacherList} data={data} title="Evaluations"/>
                 </div>
             </div>
         );
