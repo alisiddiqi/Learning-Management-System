@@ -55,19 +55,19 @@
         "destination": [
             {
                 "title": "CONTENT",
-                "path": "/InsHome/InsCourse/Content"
+                "path": "/InsHome/Content"
             },
             {
                 "title": "EVALUATION",
-                "path": "/InsHome/InsCourse/Evaluation"
+                "path": "/InsHome/Evaluation"
             },
             {
                 "title": "CLASS LIST",
-                "path": "/InsHome/InsCourse/ClassList"
+                "path": "/InsHome/ClassList"
             },
             {
                 "title": "ASSIGNMENTS",
-                "path": "/InsHome/InsCourse/Assignments"
+                "path": "/InsHome/Assignments"
             },
             {
                 "title": "PROFILE",

@@ -16,7 +16,7 @@ class InsCourse extends Component{
                         </Col>
                     </Row>
                     <Row>
-                        <Button href="/InsHome/InsCourse/Content">Add Lecture</Button> 
+                        <Button href="/InsHome/Content">Add Lecture</Button> 
                     </Row>
                 </Container>
             </div>

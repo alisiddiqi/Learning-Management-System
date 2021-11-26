@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 // import App from './App'
-import App from './Ins-container/InsComp/AssignmentPage'
+import App from './Stu-container/Sections/DropboxSec'
 import {Amplify} from 'aws-amplify';
 import config from './config';
 
