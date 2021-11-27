@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import '../stu_main.css';
 import Lecture from './Lecture';
-import Grade from './Grade';
 import Dropbox from './Dropbox';
 import EmailList from './EmailList';
 import Evaluation from './Evaluation';
+import FileUp from '../Handling/FileUpload';
 import { ButtonGroup, ToggleButton, Container, Row, Col } from 'react-bootstrap';
 
 function CourseBody(props) {
@@ -66,58 +66,30 @@ function CourseBody(props) {
             </div>
         );
     }
-    if (props.title === "Grades") {
-        return (
-            <div>
-                <h1 className="courseTitle"><b>{props.title}</b></h1>
-                <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
-                    <Row>
-                        <Col>
-                            <h4>Grade Item</h4>
-                        </Col>
-                        <Col>
-                            <h4>Weight</h4>
-                        </Col>
-                        <Col>
-                            <h4>Grade</h4>
-                        </Col>
-                        <Col>
-                            <h4>Feedback</h4>
-                        </Col>
-                    </Row>
-                </Container>
-                {props.gradeInfo.map((data) => <Grade info={data} />)}
-            </div>
-        );
-    }
     if (props.title === "Dropboxes") {
         return (
             <div>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <input 
-                    placeholder="Search..." 
-                    type="text" 
-                    className="todo-input"
-                    onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                    }}
+                    type="text"
+                    placeholder="File for Upload"
+                    name="file"
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
+                <FileUp filename={searchTerm}/>
+                <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px', marginTop: "10px"}} fluid>
                     <Row>
                         <Col>
-                            <h4>File Item</h4>
+                            <h4>File Name</h4>
                         </Col>
                         <Col>
-                            <h4>Completion Status</h4>
+                            <h4>Submission</h4>
                         </Col>
                         <Col>
                             <h4>Grade</h4>
                         </Col>
                         <Col>
                             <h4>Feedback</h4>
-                        </Col>
-                        <Col>
-                            <h4>Submission</h4>
                         </Col>
                     </Row>
                 </Container>
@@ -127,7 +99,7 @@ function CourseBody(props) {
                     } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
-                }).map((data) => <Dropbox info={data} />)}
+                }).map((data) => <Dropbox info={data} uploaded={searchTerm} />)}
             </div>
         );
     }

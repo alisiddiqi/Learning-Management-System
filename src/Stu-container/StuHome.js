@@ -20,7 +20,7 @@ function StuHome() {
   },[]);
     return (
         <div className="home-page">
-            <Banner bannerData={GenData.Banner} />
+            <Banner bannerData={GenData.Banner} user="Student"/>
             <GenNav navData={GenData.homeNav}/>
             <Courses courseInfo={data}/>
         </div>
