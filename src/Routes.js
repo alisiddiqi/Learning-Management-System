@@ -12,7 +12,6 @@ import StuHome from './Stu-container/StuHome';
 import CoursePage from './Stu-container/Course_main';
 import ContentSec from './Stu-container/Sections/ContentSec';
 import EvaluationSec from './Stu-container/Sections/EvaluationSec';
-import GradesSec from './Stu-container/Sections/GradesSec';
 import DropboxSec from './Stu-container/Sections/DropboxSec';
 import ClassListSec from './Stu-container/Sections/ClassListSec';
 import StuProfile from './Stu-container/Home_Comp/StuProflie';
@@ -70,7 +69,6 @@ export default function Routes() {
         <Route exact path="/StuHome/:courseID"> <CoursePage /> </Route>
         <Route exact path="/StuHome/Course_main/Content"> <ContentSec /> </Route>
         <Route exact path="/StuHome/Course_main/Evaluation/:courseID"> <EvaluationSec /> </Route>
-        <Route exact path="/StuHome/Course_main/Grades"> <GradesSec /> </Route>
         <Route exact path="/StuHome/Course_main/Dropbox"> <DropboxSec /> </Route>
         <Route exact path="/StuHome/Course_main/ClassList/:courseID"> <ClassListSec /> </Route>
         <Route exact path="/Emails"> <ClassListSec /> </Route>
