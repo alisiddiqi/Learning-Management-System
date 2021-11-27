@@ -9,18 +9,12 @@ function Lecture(props) {
             <Row>
                 <Col>
                     <h3>{props.info.name}</h3>
-                    <Button variant="outline-primary"><FileDown name="Download"/></Button>
-                    <Button variant="outline-primary"><FileDown name="Delete"/></Button>
                 </Col>
                 <Col>
-                    <h3>{props.info.instructor}</h3>
-                    <p>{props.info.date}</p>
+                    <Button variant="outline-primary"><FileDown name={props.info.filename}/> Download</Button>
                 </Col>
             </Row>
         </Container>
-        {/* <Container>
-        <Button variant="outline-primary"><FileDown name="Add Lecture"/></Button>
-        </Container> */}
         </>
 
     );
