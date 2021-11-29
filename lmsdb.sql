@@ -246,18 +246,19 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`evaluation` (
   `teacherid` INT NOT NULL,
-  `Q1` VARCHAR(4) NOT NULL,
-  `Q2` VARCHAR(4) NOT NULL,
-  `Q3` VARCHAR(4) NOT NULL,
-  `Q4` VARCHAR(4) NOT NULL,
-  `Q5` VARCHAR(4) NOT NULL,
-  `Q6` VARCHAR(4) NOT NULL,
-  `Q7` VARCHAR(4) NOT NULL,
-  `Q8` VARCHAR(4) NOT NULL,
-  `Q9` VARCHAR(4) NOT NULL,
-  `Q10` VARCHAR(4) NOT NULL,
+  `Q1` INT NOT NULL,
+  `Q2` INT NOT NULL,
+  `Q3` INT NOT NULL,
+  `Q4` INT NOT NULL,
+  `Q5` INT NOT NULL,
+  `Q6` INT NOT NULL,
+  `Q7` INT NOT NULL,
+  `Q8` INT NOT NULL,
+  `Q9` INT NOT NULL,
+  `Q10` INT NOT NULL,
   `courseid` INT NOT NULL,
-  `studentID` INT NOT NULL,
+  `studentID` VARCHAR(45) NOT NULL,
+  `comment` VARCHAR(120) NOT NULL,
   PRIMARY KEY (`teacherid`),
   INDEX `fk_teacher_evaluation_teacher1_idx` (`teacherid` ASC) VISIBLE,
   INDEX `fk_teacher_evaluation_course1_idx` (`courseid` ASC) VISIBLE,
@@ -284,7 +285,7 @@ ENGINE = InnoDB;
 -- Table `lmsdb`.`Assignment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`Assignment` (
-  `assignment_id` INT NOT NULL,
+  `assignment_id` INT NOT NULL AUTO_INCREMENT,
   `assignment_name` VARCHAR(45) NOT NULL,
   `due_date` DATE NOT NULL,
   `content` VARCHAR(45) NOT NULL,
@@ -306,6 +307,7 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`submit` (
   `assignment_id` INT NOT NULL,
   `studentID` VARCHAR(45) NOT NULL,
   `grade` INT NOT NULL,
+  `feedback` VARCHAR(45) NULL,
   PRIMARY KEY (`assignment_id`, `studentID`),
   INDEX `fk_Assignment_has_student_student1_idx` (`studentID` ASC) VISIBLE,
   INDEX `fk_Assignment_has_student_Assignment1_idx` (`assignment_id` ASC) VISIBLE,
@@ -326,10 +328,11 @@ ENGINE = InnoDB;
 -- Table `lmsdb`.`document`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`document` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `file` LONGBLOB NOT NULL,
   `courseid` INT NOT NULL,
   `teacherid` INT NOT NULL,
+  `document_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_document_course1_idx` (`courseid` ASC) VISIBLE,
   INDEX `fk_document_teacher1_idx` (`teacherid` ASC) VISIBLE,
