@@ -14,7 +14,7 @@ function Course_main(props){
      {
         return (
             <div className="course-main">
-                <Banner bannerData={GenData.Banner} />
+                <Banner bannerData={GenData.Banner} user="Student" />
                 <GenNav navData={GenData.stuNav} courseID={props.match.params.courseID} />
                 <Container className="course-cont">
                     <Row>

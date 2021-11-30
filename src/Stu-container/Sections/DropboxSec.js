@@ -11,7 +11,7 @@ class DropboxSec extends Component{
     render() {
         return (
             <div style={{textAlign:'center'}} className="course-main">
-                <Banner bannerData={GenData.Banner} />
+                <Banner bannerData={GenData.Banner} user="Student" />
                 <GenNav navData={GenData.stuNav} />
                 <div className="contentBody">
                     <CourseBody dropboxInfo={StuData.DropboxData} title="Dropboxes"/>

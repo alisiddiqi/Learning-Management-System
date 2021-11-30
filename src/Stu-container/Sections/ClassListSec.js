@@ -28,7 +28,7 @@ function ClassListSec (props){
      {
         return (
             <div style={{textAlign:'center'}} className="course-main">
-                <Banner bannerData={GenData.Banner} />
+                <Banner bannerData={GenData.Banner} user="Student" />
                 <GenNav navData={GenData.stuNav}/>
                 <div className="contentBody">
                     <CourseBody teacherInfo={data} studentInfo={stuData} title="Emails"/>
