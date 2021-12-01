@@ -26,22 +26,23 @@
     "stuNav": {
         "platform": "Student",
         "platformPath": "/StuHome",
+        "start": "/Course_main/",
         "destination": [
             {
                 "title": "CONTENT",
-                "path": "/StuHome/Course_main/Content"
+                "path": "/Content"
             },
             {
                 "title": "EVALUATION",
-                "path": "/StuHome/Course_main/Evaluation"
+                "path": "/Evaluation"
             },
             {
                 "title": "CLASS LIST",
-                "path": "/StuHome/Course_main/ClassList"
+                "path": "/ClassList"
             },
             {
                 "title": "DROPBOX",
-                "path": "/StuHome/Course_main/Dropbox"
+                "path": "/Dropbox"
             }
         ]
     },

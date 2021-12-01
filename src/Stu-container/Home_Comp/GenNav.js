@@ -11,7 +11,7 @@ function GenNav(props) {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
-                        {props.navData.destination.map((data) => <Nav.Link href={data.path+'/'+props.courseID}>{data.title}</Nav.Link>)}
+                        {props.navData.destination.map((data) => <Nav.Link href={sessionStorage.getItem(data.title)}>{data.title}</Nav.Link>)}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
