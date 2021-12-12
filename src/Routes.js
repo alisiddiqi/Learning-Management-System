@@ -60,17 +60,18 @@ export default function Routes() {
 
         <Route exact path="/InsHome"> <InsHome /> </Route>
 
-        <Route exact path="/Course_main"> <CoursePage /> </Route>
+        <Route exact path="/Course_main/:courseID"> <CoursePage /> </Route>
         <Route exact path="/Course_main/:courseID/Content"> <ContentSec /> </Route>
         <Route exact path="/Course_main/:courseID/Evaluation"> <EvaluationSec /> </Route>
-        <Route exact path= "/Course_main/DropboxSec "> <DropboxSec /> </Route>
-        <Route exact path= "/Tools"> <Schedule /> </Route>
+        <Route exact path="/Course_main/:courseID/ClassList"> <ClassListSec /> </Route>
+        <Route exact path="/Course_main/:courseID/DropboxSec "> <DropboxSec /> </Route>
         <Route exact path="/StuHome/:courseID"> <CoursePage /> </Route>
-        <Route exact path="/StuHome/Course_main/Content"> <ContentSec /> </Route>
-        <Route exact path="/StuHome/Course_main/Evaluation/:courseID"> <EvaluationSec /> </Route>
-        <Route exact path="/StuHome/Course_main/Dropbox"> <DropboxSec /> </Route>
-        <Route exact path="/StuHome/Course_main/ClassList/:courseID"> <ClassListSec /> </Route>
+        <Route exact path="/StuHome/Course_main/:courseID/Content"> <ContentSec /> </Route>
+        <Route exact path="/StuHome/Course_main/:courseID/Evaluation"> <EvaluationSec /> </Route>
+        <Route exact path="/StuHome/Course_main/:courseID/ClassList"> <ClassListSec /> </Route>
+        <Route exact path="/StuHome/Course_main/:courseID/Dropbox"> <DropboxSec /> </Route>
         <Route exact path="/Emails"> <ClassListSec /> </Route>
+        <Route exact path="/Tools"> <Schedule /> </Route>
         <Route exact path="/StuProfile"> <StuProfile /> </Route>
         <Route exact path="/InsHome/Content"> <InsContentPage /> </Route>
         <Route exact path="/InsHome/Evaluation"> <InsEvalPage /> </Route>
