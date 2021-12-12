@@ -21,7 +21,7 @@ function EvaluationSec (props){
         return (
             <div style={{textAlign:'center'}} className="course-main">
                 <Banner bannerData={GenData.Banner} user="Student" />
-                <GenNav navData={GenData.stuNav} />
+                <GenNav navData={GenData.stuNav} user="Student" />
                 <div className="contentBody">
                     <CourseBody evalInfo={StuData.EvaluationData} teacherInfo={StuData.TeacherData} data={data} title="Evaluations"/>
                 </div>

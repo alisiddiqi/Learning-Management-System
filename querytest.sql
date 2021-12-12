@@ -61,7 +61,7 @@ INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(
 
 //Set who teaches which course
 
-INSERT INTO courseteacher(courseid,teacherid) VALUES(471,10002);
+INSERT INTO Courseteacher(courseid,teacherid) VALUES(471,10002);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,9999);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,10000);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(457,10001);
@@ -70,7 +70,7 @@ INSERT INTO CourseTeacher(courseid,teacherid) VALUES(471,10004);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(511,10005);
 
 
-INSERT INTO courseteacher(courseid,teacherid) VALUES(471,10006);
+INSERT INTO Courseteacher(courseid,teacherid) VALUES(471,10006);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,10006);
 
 //Select all teachers with names

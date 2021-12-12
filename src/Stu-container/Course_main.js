@@ -1,5 +1,5 @@
 import './stu_main.css';
-import React, {Component} from 'react';
+import React from 'react';
 import Banner from "./Home_Comp/Banner";
 import GenNav from "./Home_Comp/GenNav";
 import CourseBody from "./Course_Comp/CourseBody";
@@ -11,12 +11,12 @@ import GenData from "./gen_db.json";
 import {withRouter} from 'react-router';
 
 function Course_main(props){
-    {props.navData.destination.map((data) => sessionStorage.setItem(data.title, props.navData.start+props.match.params.courseID+data.path))}
-     
+    {GenData.stuNav.destination.map((data) => sessionStorage.setItem(data.title, GenData.stuNav.start+props.match.params.courseID+data.path))};
+
     return (
         <div className="course-main">
             <Banner bannerData={GenData.Banner} user="Student" />
-            <GenNav navData={GenData.stuNav} courseID={props.match.params.courseID} />
+            <GenNav navData={GenData.stuNav} user="Student" />
             <Container className="course-cont">
                 <Row>
                     <Col>

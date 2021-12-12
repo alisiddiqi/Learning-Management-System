@@ -1,7 +1,6 @@
 {
     "Banner": {
-        "stuID": "1007",
-        "profile": "KD",
+        "profile": "P",
         "profilePath": "/StuProfile",
         "schoolName": "University of Calgary"
     },
@@ -28,6 +27,10 @@
         "platformPath": "/StuHome",
         "start": "/Course_main/",
         "destination": [
+            {
+                "title": "HOME",
+                "path": ""
+            },
             {
                 "title": "CONTENT",
                 "path": "/Content"
