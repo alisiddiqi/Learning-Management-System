@@ -27,7 +27,7 @@ import InsProfilePage from "./containers/AdminPages/InsProfilePage";
 import EvalutionSend from "./containers/AdminPages/evaluations";
 import EvaluationMethods from "./containers/AdminPages/evaluationMethods";
 import RecieveEvaluations from "./containers/AdminPages/recieveEvaluations";
-// import InstructorLogin from "./containers/InstructorLogin";
+//import InstructorLogin from "./containers/InstructorLogin";
 
 export default function Routes() {
   return (
