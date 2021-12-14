@@ -27,8 +27,6 @@
     ],
     "LecturesData": [
         {
-            "course_id": "203",
-            "ins_id": "308",
             "name": "Tuple Relational Calculus",
             "instructor": "Yuekang Wang (Prof.)",
             "date": "MWF - 1:00pm (50min)",
@@ -123,7 +121,7 @@
         {
             "course": "432",
             "student": "Jayson Jar",
-            "type": "Assignment",
+            "due": "12/12/2021",
             "name": "HW3 and HW4",
             "filename": "Jayson_HW3",
             "grade": "75%",
@@ -134,7 +132,7 @@
         {
             "course": "439",
             "student": "Jerry gajar",
-            "type": "Assignment",
+            "due": "12/12/2021",
             "name": "Routing",
             "filename": "Jerry_Routing",
             "grade": "75%",

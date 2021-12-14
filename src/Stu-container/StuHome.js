@@ -20,6 +20,7 @@ function StuHome() {
       fetchStudents();
     },[]);
 
+    console.log(data);
     return (
         <div className="home-page">
             <Banner bannerData={GenData.Banner} user="Student"/>
