@@ -8,7 +8,7 @@ function Banner(props) {
             <Container className="banner" fluid>
                 <Row>
                     <Col>
-                        <Button className="profile-btn" href={props.bannerData.profilePath}>{props.bannerData.profile}</Button>
+                        <Button className="profile-btn" href={props.bannerData.profilePath+sessionStorage.getItem("stuID")}>{props.bannerData.profile}</Button>
                     </Col>
                     <Col md={6}><h1>University of Calgary</h1></Col>
                     <Col>

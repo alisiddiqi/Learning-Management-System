@@ -112,8 +112,6 @@ function CourseBody(props) {
                   <>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <Container>
-                {sessionStorage.clear()}
-                {/* {sessionStorage.setItem('teacherName','Pavol')} */}
                     <Row>
                         <ButtonGroup>
                             {props.teacherInfo.map((data, idx) => <Col><ToggleButton 
