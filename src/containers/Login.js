@@ -1,10 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "./components/LoaderButton";
 import "./Login.css";
 import { useAppContext } from "../lib/contextLib";
 import { useHistory } from "react-router-dom";
-import {onError} from "../lib/errorLib";
 
 export default function Login() {
   const history=useHistory();
@@ -13,7 +12,7 @@ export default function Login() {
   const {userHasAuthenticated}=useAppContext();
   const [isLoading,setIsLoading]=useState(false);
   const [data,setData]=useState([]);
-  var [studentID,setStudentID] =useState();
+  var [studentID] =useState();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -30,7 +29,7 @@ export default function Login() {
     loginAuth();
     setIsLoading(false);
   }
-    if(data.length!=0){
+    if(data.length!==0){
       studentID = data[0].studentID;
       userHasAuthenticated(true);
       history.push('/StuHome/'+studentID);
