@@ -391,7 +391,7 @@ def getGrades(courseID,studentID):
         cur = mysql.connection.cursor()
         cur.execute(
             "select assignment_name, grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)",(studentID,courseID));
-        profile = cur.fetchall()
+        profile =cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
         cur.close()
@@ -406,6 +406,17 @@ def func4():
         profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
+        cur.close()
+        return response
+
+@app.route('/StuLogin/<string:userName>/<string:password>')
+def stuAuth(userName,password):
+    if(request.method=="GET"):
+        cur= mysql.connection.cursor()
+        cur.execute("select student.studentID from user, student where user.username=student.username and user.username=(%s) and user.password=(%s)",(userName,password));
+        profile = cur.fetchall()
+        print(profile);
+        response = jsonify(profile)
         cur.close()
         return response
 

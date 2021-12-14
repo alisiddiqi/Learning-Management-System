@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "./components/LoaderButton";
 import "./Login.css";
@@ -12,30 +12,40 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const {userHasAuthenticated}=useAppContext();
   const [isLoading,setIsLoading]=useState(false);
+  const [data,setData]=useState([]);
+  var [studentID,setStudentID] =useState();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
 
-  async function handleSubmit(event) {
+  function HandleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
-    try{
-      userHasAuthenticated(true);
-      history.push("/StuHome");
-    }catch (e){
-      onError(e);
-    }
+      const loginAuth=()=>{
+        fetch('/StuLogin/'+email+'/'+password)
+        .then(res=>res.json())
+        .then(json=>setData(json));
+      }
+    loginAuth();
+    setIsLoading(false);
   }
+    if(data.length!=0){
+      studentID = data[0].studentID;
+      userHasAuthenticated(true);
+      history.push('/StuHome/'+studentID);
+    }else{
+      userHasAuthenticated(false);
+    }
 
   return (
     <div className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="username" size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
+      <Form onSubmit={HandleSubmit}>
+        <Form.Group className="username" size="lg" controlId="text">
+          <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
+            type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
