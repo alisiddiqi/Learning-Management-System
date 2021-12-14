@@ -312,9 +312,11 @@ def func2(insUser):
         cur = mysql.connection.cursor()
         json = request.json
         courseid = json['courseID']
-        teacherID = json['teacherid']
+        teacherID = json['teacherID']
+        print(json)
         cur.execute(
             "INSERT INTO courseteacher(courseid,teacherID) values (%s,%s)", (courseid, teacherID))
+        print("sucess")
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess insert")
@@ -384,7 +386,7 @@ def settingEvals(studentID,courseID):
     if(request.method =="POST"):
         cur = mysql.connection.cursor()
         json = request.json;
-        
+        teacherName = json['teacherName'];
         Q1= json['q1'];
         Q2= json['q2'];
         Q3= json['q3'];
@@ -395,8 +397,11 @@ def settingEvals(studentID,courseID):
         Q8= json['q8'];
         Q9= json['q9'];
         Q10= json['q10'];
-        cur.execute("insert into evaluations (teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(10001,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseID,studentID))
-        print("did the query")
+        cur.execute("select teacher.teacherid from teacher,user where teacher.username=user.username and user.firstname=(%s)",(teacherName,))
+        profile= cur.fetchall()
+        #teacherID=profile['teacherid'];
+        print(profile[0])
+        cur.execute("insert into evaluations (teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(10002,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseID,studentID))
         mysql.connection.commit()
         cur.close()
         return "Sucessfully changed"
@@ -431,7 +436,6 @@ def stuAuth(userName,password):
         cur= mysql.connection.cursor()
         cur.execute("select student.studentID from user, student where user.username=student.username and user.username=(%s) and user.password=(%s)",(userName,password));
         profile = cur.fetchall()
-        print(profile);
         response = jsonify(profile)
         cur.close()
         return response
