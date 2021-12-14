@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Button, Container, Row, Form } from 'react-bootstrap';
 
 function Evaluation(props) {
@@ -86,9 +86,12 @@ function Evaluation(props) {
                     </Row>
                 </Container>
                 <Button style={{margin: "20px"}} type="submit"  onClick={async()=>{
-        const newStuToAdd={q1: sessionStorage.getItem('q1'),q2: sessionStorage.getItem('q2'),q3: sessionStorage.getItem('q3'),q4 :sessionStorage.getItem('q4'),q5: sessionStorage.getItem('q5'),q6: sessionStorage.getItem('q6'),q7: sessionStorage.getItem('q7'),q8: sessionStorage.getItem('q8')
+                    // setTeacherName(sessionStorage.getItem('teacherName'));
+                    // setTeacherName("Pavol");
+        const newStuToAdd={teacherName: sessionStorage.getItem('teacherName'),q1: sessionStorage.getItem('q1'),q2: sessionStorage.getItem('q2'),q3: sessionStorage.getItem('q3'),q4 :sessionStorage.getItem('q4'),q5: sessionStorage.getItem('q5'),q6: sessionStorage.getItem('q6'),q7: sessionStorage.getItem('q7'),q8: sessionStorage.getItem('q8')
                             ,q9: sessionStorage.getItem('q9'),q10: sessionStorage.getItem('q10')};
-        const response=await fetch('/students/'+props.match.params.username+'/',{
+                            sessionStorage.clear();
+        const response=await fetch('/evaluations/1002/457',{
             method: "POST",
             headers:{
                 'Content-Type': 'application/json'

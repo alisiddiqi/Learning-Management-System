@@ -6,12 +6,13 @@ import Home from '../AdminHome';
 function InsProfile(props)
 {
     const [courseID,setCourseID]=useState();
-    var [teacherid]=useState(null);
+    var [teacherid]=useState([]);
     const [firstName,setfirstName]=useState('');
     const [lastName, setLastName]=useState('');
     var [data, setData]=useState([]);
     const [stuData,setStuData]=useState([]);
     const[stuCourses,setStuCourses]=useState([]);
+    var teacherID = useState();
     var [dupli]=useState([]);
    const fetchinstructors = ()=>{
       fetch('/instructors/'+props.match.params.username)
@@ -61,18 +62,9 @@ function InsProfile(props)
   }
   {
     stuData.map((item)=>(
-        console.log(item),
         <div>
         <h1 > Role: {item['isTA']}</h1>
-        {/* <button
-        className={"btn-primary"}
-        onClick={()=> onEdit2({
-            currentMajor: item[1],
-            currentYear: item[2]
-        })}
-        >
-        Set student defaults
-        </button> */}
+        
         </div>
     ))
   }
@@ -113,34 +105,6 @@ function InsProfile(props)
     </Button>
      </Form.Field>
         </Form>
-    {/* <Form>
-    <Form.Field>
-            <Input value={major}
-                id="major"
-                placeholder={"Enter major"}
-                onChange={e=>setMajor(e.target.value)}/>
-            </Form.Field>
-            <Form.Field>
-            <Input value={year}
-                id="year"
-                placeholder={"Enter year"}
-                onChange={e=>setYear(e.target.value)}></Input>
-            </Form.Field>
-            <Form.Field type="submit">
-                    <Button  onClick={async()=>{
-        const newStuToAdd={major,year};
-        const response=await fetch('/instructors/'+props.match.params.username+'/stu',{
-            method: "POST",
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newStuToAdd)
-        })
-    }}>
-        Edit student fields
-    </Button>
-     </Form.Field>
-    </Form> */}
     <Form>
         <Form.Field>
         <Input 
@@ -150,7 +114,8 @@ function InsProfile(props)
             </Form.Field>
             <Form.Field type="submit">
             <Button  onClick={async()=>{
-        const newStuToAdd={courseID,teacherid};
+                teacherID = teacherid['teacherid'];
+        const newStuToAdd={courseID,teacherID};
         const response=await fetch('/instructors/'+props.match.params.username+'/courses',{
             method: "POST",
             headers:{
