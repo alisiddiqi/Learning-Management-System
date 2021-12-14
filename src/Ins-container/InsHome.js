@@ -10,10 +10,11 @@ import GenData from "../Stu-container/gen_db.json";
 
 class InsHome extends Component {
     render() {
+        sessionStorage.setItem("teacherID", "10001");
         return (
             <div className="home-page">
                 <Banner />
-                <GenNav navData={GenData.insNav}/>
+                <GenNav navData={GenData.insNav} user="Teacher"/>
                 
                 <InsCourse courseInfo={StuData.courseData}/>
             </div>

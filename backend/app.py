@@ -98,6 +98,7 @@ def studentAssignments(stuUser, courseID):
     cur.close()
     return response
 
+
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/<int:assignmnetID>', methods=["GET", "POST"])
 def studentCourseAssignments(stuUser, courseID, assignmnetID):
     if request.method == 'GET':
@@ -333,7 +334,7 @@ def func2(insUser):
         return jsonify("sucess deleted with courseid=(%s)", (courseid,))
 
 
-@app.route('/courses/sendEvaluations/<int:courseID>', methods=["GET","POST"])
+@app.route('/courses/sendEvaluations/<int:courseID>', methods=["GET", "POST"])
 def sendEvals(courseID):
     if request.method == "POST":
         cur = mysql.connection.cursor()
@@ -342,7 +343,7 @@ def sendEvals(courseID):
         mysql.connection.commit()
         cur.close()
         return ("successfully sent evaluations")
-    if request.method=="GET":
+    if request.method == "GET":
         cur = mysql.connection.cursor()
         cur.execute("select * from course where courseid=(%s)", (courseID,))
         profile = cur.fetchall()
@@ -381,38 +382,41 @@ def recieveEvaluations(courseID):
     #     q10: json['q10'];
     #     cur.execute("")
 
+
 @app.route('/evaluations/<int:studentID>/<int:courseID>', methods=["POST"])
-def settingEvals(studentID,courseID):
-    if(request.method =="POST"):
+def settingEvals(studentID, courseID):
+    if(request.method == "POST"):
         cur = mysql.connection.cursor()
-        json = request.json;
-        teacherName = json['teacherName'];
-        Q1= json['q1'];
-        Q2= json['q2'];
-        Q3= json['q3'];
-        Q4= json['q4'];
-        Q5= json['q5'];
-        Q6= json['q6'];
-        Q7= json['q7'];
-        Q8= json['q8'];
-        Q9= json['q9'];
-        Q10= json['q10'];
-        cur.execute("select teacher.teacherid from teacher,user where teacher.username=user.username and user.firstname=(%s)",(teacherName,))
-        profile= cur.fetchall()
-        #teacherID=profile['teacherid'];
-        print(profile[0])
-        cur.execute("insert into evaluations (teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(10002,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseID,studentID))
+        json = request.json
+        teacherName = json['teacherName']
+        Q1 = json['q1']
+        Q2 = json['q2']
+        Q3 = json['q3']
+        Q4 = json['q4']
+        Q5 = json['q5']
+        Q6 = json['q6']
+        Q7 = json['q7']
+        Q8 = json['q8']
+        Q9 = json['q9']
+        Q10 = json['q10']
+        cur.execute(
+            "select teacher.teacherid from teacher,user where teacher.username=user.username and user.firstname=(%s)", (teacherName,))
+        profile = cur.fetchall()
+        teacherID = profile[0]['teacherid']
+        cur.execute("insert into evaluations (teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                    (teacherID, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, courseID, studentID))
         mysql.connection.commit()
         cur.close()
         return "Sucessfully changed"
 
-@app.route('/grades/<int:courseID>/<int:studentID>',methods=["GET"])
-def getGrades(courseID,studentID):
-    if(request.method=="GET"):
+
+@app.route('/grades/<int:courseID>/<int:studentID>', methods=["GET"])
+def getGrades(courseID, studentID):
+    if(request.method == "GET"):
         cur = mysql.connection.cursor()
         cur.execute(
-            "select assignment_name, grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)",(studentID,courseID));
-        profile =cur.fetchall()
+            "select assignment_name, grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)", (studentID, courseID))
+        profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
         cur.close()
@@ -430,11 +434,12 @@ def func4():
         cur.close()
         return response
 
+
 @app.route('/StuLogin/<string:userName>/<string:password>')
-def stuAuth(userName,password):
-    if(request.method=="GET"):
-        cur= mysql.connection.cursor()
-        cur.execute("select student.studentID from user, student where user.username=student.username and user.username=(%s) and user.password=(%s)",(userName,password));
+def stuAuth(userName, password):
+    if(request.method == "GET"):
+        cur = mysql.connection.cursor()
+        cur.execute("select student.studentID from user, student where user.username=student.username and user.username=(%s) and user.password=(%s)", (userName, password))
         profile = cur.fetchall()
         response = jsonify(profile)
         cur.close()

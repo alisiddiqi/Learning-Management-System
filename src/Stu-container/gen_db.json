@@ -1,12 +1,12 @@
 {
     "Banner": {
         "profile": "P",
-        "profilePath": "/StuProfile",
+        "profilePath": "/StuProfile/",
         "schoolName": "University of Calgary"
     },
     "homeNav": {
         "platform": "Student",
-        "platformPath": "/StuHome",
+        "platformPath": "/StuHome/",
         "destination": [
             {
                 "title": "TOOLS",
