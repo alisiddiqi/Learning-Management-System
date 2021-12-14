@@ -56,9 +56,9 @@ export default function Routes() {
         <Route exact path ="/adminhome/teacher/view">
           <Instructor/>
          </Route>
-        <Route exact path="/StuHome"> <StuHome /> </Route>
+        <Route exact path="/StuHome/"> <StuHome /> </Route>
 
-        <Route exact path="/InsHome"> <InsHome /> </Route>
+        <Route exact path="/InsHome/"> <InsHome /> </Route>
 
         <Route exact path="/Course_main/:courseID"> <CoursePage /> </Route>
         <Route exact path="/Course_main/:courseID/Content"> <ContentSec /> </Route>

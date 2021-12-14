@@ -98,7 +98,6 @@ def studentAssignments(stuUser, courseID):
     cur.close()
     return response
 
-
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/<int:assignmnetID>', methods=["GET", "POST"])
 def studentCourseAssignments(stuUser, courseID, assignmnetID):
     if request.method == 'GET':

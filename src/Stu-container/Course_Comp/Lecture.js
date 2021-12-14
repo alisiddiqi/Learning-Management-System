@@ -9,6 +9,7 @@ function Lecture(props) {
             <Row>
                 <Col>
                     <h3>{props.info.name}</h3>
+                    <p>{props.info.instructor}</p>
                 </Col>
                 <Col>
                     <Button variant="outline-primary"><FileDown name={props.info.filename}/> Download</Button>

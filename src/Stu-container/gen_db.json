@@ -24,7 +24,7 @@
     },
     "stuNav": {
         "platform": "Student",
-        "platformPath": "/StuHome",
+        "platformPath": "/StuHome/",
         "start": "/Course_main/",
         "destination": [
             {
@@ -51,27 +51,27 @@
     },
     "insNav": {
         "platform": "Instructor",
-        "platformPath": "/InsHome",
+        "platformPath": "/InsHome/",
         "destination": [
             {
                 "title": "CONTENT",
-                "path": "/InsHome/Content"
+                "path": "/Content"
             },
             {
                 "title": "EVALUATION",
-                "path": "/InsHome/Evaluation"
+                "path": "/Evaluation"
             },
             {
                 "title": "CLASS LIST",
-                "path": "/InsHome/ClassList"
+                "path": "/ClassList"
             },
             {
                 "title": "ASSIGNMENTS",
-                "path": "/InsHome/Assignments"
+                "path": "/Assignments"
             },
             {
                 "title": "PROFILE",
-                "path": "/InsHome/InsProfile"
+                "path": "/InsProfile"
             }
         ]
     }
