@@ -7,6 +7,7 @@ import '../../Stu-container/stu_main.css';
 
 class InsCourse extends Component{
     render() {
+
         return (
             <div className="course-main">
                 <Container className="course-cont">

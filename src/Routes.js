@@ -58,7 +58,7 @@ export default function Routes() {
          </Route>
         <Route exact path="/StuHome/:studentID"> <StuHome /> </Route>
 
-        <Route exact path="/InsHome/"> <InsHome /> </Route>
+        <Route exact path="/InsHome//:teacherID"> <InsHome /> </Route>
 
         <Route exact path="/StuHome/:studentID/Course_main/:courseID"> <CoursePage /> </Route>
         <Route exact path="/StuHome/:studentID/Course_main/:courseID/Content"> <ContentSec /> </Route>
@@ -68,11 +68,11 @@ export default function Routes() {
         <Route exact path="/Emails"> <ClassListSec /> </Route>
         <Route exact path="/Tools"> <Schedule /> </Route>
         <Route exact path="/StuProfile/:studentID"> <StuProfile /> </Route>
-        <Route exact path="/InsHome/Content"> <InsContentPage /> </Route>
-        <Route exact path="/InsHome/Evaluation"> <InsEvalPage /> </Route>
-        <Route exact path="/InsHome/ClassList"> <InsClassList /> </Route>
-        <Route exact path="/InsHome/Assignments"> <InsAssignment /> </Route>
-        <Route exact path="/InsHome/Profile"> <InsProfile /> </Route>
+        <Route exact path="/InsHome/:teacherID/Course_main/:courseID//Content"> <InsContentPage /> </Route>
+        <Route exact path="/InsHome/:teacherID/Course_main/:courseID//Evaluation"> <InsEvalPage /> </Route>
+        <Route exact path="/InsHome/:teacherID/Course_main/:courseID//ClassList"> <InsClassList /> </Route>
+        <Route exact path="/InsHome/:teacherID/Course_main/:courseID/Assignments"> <InsAssignment /> </Route>
+        <Route exact path="/InsHome/:teacherID/Profile"> <InsProfile /> </Route>
         <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>
         <Route exact path="/adminhome/teacher/:username"><InsProfilePage/></Route>
         <Route exact path="/adminhome/evaluations/send"><EvalutionSend/></Route>
