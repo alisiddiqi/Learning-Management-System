@@ -4,6 +4,7 @@ import LoaderButton from "./components/LoaderButton";
 import "./Login.css";
 import { useAppContext } from "../lib/contextLib";
 import { useHistory } from "react-router-dom";
+import GenData from "../Stu-container/gen_db.json";
 import {onError} from "../lib/errorLib";
 
 export default function Login() {
@@ -34,6 +35,7 @@ export default function Login() {
       studentID = data[0].studentID;
       userHasAuthenticated(true);
       history.push('/StuHome/'+studentID);
+      sessionStorage.setItem("stuID", studentID);
     }else{
       userHasAuthenticated(false);
     }

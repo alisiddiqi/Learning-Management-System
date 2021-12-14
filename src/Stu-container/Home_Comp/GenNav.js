@@ -8,7 +8,7 @@ function GenNav(props) {
             <BrowserRouter>
             <Navbar className="options" collapseOnSelect expand="sm">
                 <Container bg="light" variant="light" fluid>
-                    <Navbar.Brand href={props.navData.platformPath}>{props.navData.platform}</Navbar.Brand>
+                    <Navbar.Brand href={props.navData.platformPath+sessionStorage.getItem("stuID")}>{props.navData.platform}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav>
@@ -24,7 +24,7 @@ function GenNav(props) {
             <BrowserRouter>
             <Navbar className="options" collapseOnSelect expand="sm">
                 <Container bg="light" variant="light" fluid>
-                    <Navbar.Brand href={props.navData.platformPath}>{props.navData.platform}</Navbar.Brand>
+                    <Navbar.Brand href={props.navData.platformPath+sessionStorage.getItem("stuID")}>{props.navData.platform}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav>

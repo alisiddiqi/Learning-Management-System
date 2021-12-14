@@ -56,23 +56,18 @@ export default function Routes() {
         <Route exact path ="/adminhome/teacher/view">
           <Instructor/>
          </Route>
-        <Route exact path="/StuHome/"> <StuHome /> </Route>
+        <Route exact path="/StuHome/:studentID"> <StuHome /> </Route>
 
         <Route exact path="/InsHome/"> <InsHome /> </Route>
 
-        <Route exact path="/Course_main/:courseID"> <CoursePage /> </Route>
-        <Route exact path="/Course_main/:courseID/Content"> <ContentSec /> </Route>
-        <Route exact path="/Course_main/:courseID/Evaluation"> <EvaluationSec /> </Route>
-        <Route exact path="/Course_main/:courseID/ClassList"> <ClassListSec /> </Route>
-        <Route exact path="/Course_main/:courseID/Dropbox"> <DropboxSec /> </Route>
-        <Route exact path="/StuHome/:courseID"> <CoursePage /> </Route>
-        <Route exact path="/StuHome/Course_main/:courseID/Content"> <ContentSec /> </Route>
-        <Route exact path="/StuHome/Course_main/:courseID/Evaluation"> <EvaluationSec /> </Route>
-        <Route exact path="/StuHome/Course_main/:courseID/ClassList"> <ClassListSec /> </Route>
-        <Route exact path="/StuHome/Course_main/:courseID/Dropbox"> <DropboxSec /> </Route>
+        <Route exact path="/StuHome/:studentID/Course_main/:courseID"> <CoursePage /> </Route>
+        <Route exact path="/StuHome/:studentID/Course_main/:courseID/Content"> <ContentSec /> </Route>
+        <Route exact path="/StuHome/:studentID/Course_main/:courseID/Evaluation"> <EvaluationSec /> </Route>
+        <Route exact path="/StuHome/:studentID/Course_main/:courseID/ClassList"> <ClassListSec /> </Route>
+        <Route exact path="/StuHome/:studentID/Course_main/:courseID/Dropbox"> <DropboxSec /> </Route>
         <Route exact path="/Emails"> <ClassListSec /> </Route>
         <Route exact path="/Tools"> <Schedule /> </Route>
-        <Route exact path="/StuProfile"> <StuProfile /> </Route>
+        <Route exact path="/StuProfile/:studentID"> <StuProfile /> </Route>
         <Route exact path="/InsHome/Content"> <InsContentPage /> </Route>
         <Route exact path="/InsHome/Evaluation"> <InsEvalPage /> </Route>
         <Route exact path="/InsHome/ClassList"> <InsClassList /> </Route>
