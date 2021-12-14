@@ -4,10 +4,11 @@ import FileDown from '../Handling/FileDownload';
 
 function Dropbox(props) {
     return (
+        console.log(props),
         <Container className="m-2" fluid>
             <Row>
                 <Col style={{textAlign:'center'}}>
-                    <b><p>{props.info.name}</p></b>
+                    <b><p>{props.info.assignment_name}</p></b>
                 </Col>
                 <Col>
                     <FileDown name={props.info.filename} />
