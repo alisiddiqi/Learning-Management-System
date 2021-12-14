@@ -363,6 +363,40 @@ def recieveEvaluations(courseID):
         cur.close()
         return response
 
+    # if(request.method =="POST"):
+    #     cur = mysql.connection.cursor();
+    #     json = request.json;
+    #     courseID = json['courseID'];
+    #     studentID = json['studentID'];
+    #     q1: json['q1'];
+    #     q2: json['q2'];
+    #     q3: json['q3'];
+    #     q4: json['q4'];
+    #     q5: json['q5'];
+    #     q6: json['q6'];
+    #     q7: json['q7'];
+    #     q8: json['q8'];
+    #     q9: json['q9'];
+    #     q10: json['q10'];
+    #     cur.execute("")
+
+@app.route('/evaluations/<int:courseID>/<int:studentID>', methods=["POST"])
+def getEvalus(courseID,studentID):
+    if(request.method =="POST"):
+        return None
+
+@app.route('/grades/<int:courseID>/<int:studentID>')
+def getGrades(courseID,studentID):
+    if(request.method=="GET"):
+        cur = mysql.connection.cursor()
+        cur.execute(
+            "select assignment_name, grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)",(studentID,courseID));
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        response.status_code = 200
+        cur.close()
+        return response
+
 
 @app.route('/courses/sendEvaluations/', methods=["GET"])
 def func4():
