@@ -59,7 +59,7 @@ export default function Login() {
           isLoading={isLoading}
           disabled={!validateForm()}
         >
-          Admin Login
+        Login
         </LoaderButton>
       </Form>
     </div>
