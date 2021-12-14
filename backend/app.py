@@ -379,12 +379,29 @@ def recieveEvaluations(courseID):
     #     q10: json['q10'];
     #     cur.execute("")
 
-@app.route('/evaluations/<int:courseID>/<int:studentID>', methods=["POST"])
-def getEvalus(courseID,studentID):
+@app.route('/evaluations/<int:studentID>/<int:courseID>', methods=["POST"])
+def settingEvals(studentID,courseID):
     if(request.method =="POST"):
-        return None
+        cur = mysql.connection.cursor()
+        json = request.json;
+        
+        Q1= json['q1'];
+        Q2= json['q2'];
+        Q3= json['q3'];
+        Q4= json['q4'];
+        Q5= json['q5'];
+        Q6= json['q6'];
+        Q7= json['q7'];
+        Q8= json['q8'];
+        Q9= json['q9'];
+        Q10= json['q10'];
+        cur.execute("insert into evaluations (teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(10001,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseID,studentID))
+        print("did the query")
+        mysql.connection.commit()
+        cur.close()
+        return "Sucessfully changed"
 
-@app.route('/grades/<int:courseID>/<int:studentID>')
+@app.route('/grades/<int:courseID>/<int:studentID>',methods=["GET"])
 def getGrades(courseID,studentID):
     if(request.method=="GET"):
         cur = mysql.connection.cursor()
