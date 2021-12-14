@@ -13,7 +13,7 @@ function CourseCard(props) {
             <Card.Body>
                 <Card.Title>{props.info.courseid} {props.info.name}<Button variant="outline"><img className="pin-btn" src={tack} alt="Pin"/></Button></Card.Title>
                 <Card.Text><p>{props.info.time}</p></Card.Text>
-                <Button href={"/StuHome/"+props.info.courseid} variant="outline-primary">SELECT</Button>
+                <Button href={"/StuHome/"+sessionStorage.getItem("stuID")+"/course_main/"+props.info.courseid} variant="outline-primary">SELECT</Button>
             </Card.Body>
         </Card>
         </BrowserRouter>

@@ -11,7 +11,7 @@ import GenData from "./gen_db.json";
 import {withRouter} from 'react-router';
 
 function Course_main(props){
-    {GenData.stuNav.destination.map((data) => sessionStorage.setItem(data.title, GenData.stuNav.start+props.match.params.courseID+data.path))};
+    {GenData.stuNav.destination.map((data) => sessionStorage.setItem(data.title, GenData.stuNav.platformPath+sessionStorage.getItem("stuID")+GenData.stuNav.start+props.match.params.courseID+data.path))};
 
     return (
         <div className="course-main">

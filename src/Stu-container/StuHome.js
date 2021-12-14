@@ -8,8 +8,7 @@ import Courses from "./Home_Comp/Courses";
 import GenData from "./gen_db.json";
 
 function StuHome() {
-    sessionStorage.clear();
-
+    const h = sessionStorage.getItem("stuID");
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
       fetch('/students/KaiStudent/courselist')
@@ -24,7 +23,7 @@ function StuHome() {
     return (
         <div className="home-page">
             <Banner bannerData={GenData.Banner} user="Student"/>
-            <GenNav navData={GenData.homeNav}/>
+            <GenNav navData={GenData.homeNav} home={h}/>
             <Courses courseInfo={data}/>
         </div>
     );

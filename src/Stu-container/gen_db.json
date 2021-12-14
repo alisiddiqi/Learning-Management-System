@@ -6,7 +6,7 @@
     },
     "homeNav": {
         "platform": "Student",
-        "platformPath": "/",
+        "platformPath": "/StuHome",
         "destination": [
             {
                 "title": "TOOLS",
@@ -14,11 +14,11 @@
             },
             {
                 "title": "EMAIL",
-                "path": "/Email"
+                "path": "/Emails"
             },
             {
                 "title": "SCHOOL",
-                "path": "/StuHome"
+                "path": "/"
             }
         ]
     },
