@@ -112,6 +112,8 @@ function CourseBody(props) {
                   <>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
                 <Container>
+                {sessionStorage.clear()}
+                {/* {sessionStorage.setItem('teacherName','Pavol')} */}
                     <Row>
                         <ButtonGroup>
                             {props.teacherInfo.map((data, idx) => <Col><ToggleButton 
@@ -122,7 +124,7 @@ function CourseBody(props) {
                                 id={`radio-${idx}`}
                                 value={data.tID}
                                 checked={teacher === data.tID}
-                                onChange={(e) => setTeacher(e.currentTarget.value)}
+                                onClick={ sessionStorage.setItem('teacherName',data.firstname)}
                                 >
                                 {data.firstname} {data.lastname}
                             </ToggleButton></Col>)}
