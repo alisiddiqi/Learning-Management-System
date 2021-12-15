@@ -2,6 +2,7 @@ import { withRouter } from "react-router";
 import {useState,useEffect} from 'react'
 import "./Students.css"
 import Home from '../AdminHome';
+import { Button } from "react-bootstrap";
 
 function RecieveEvaluations(props)
 {
@@ -58,6 +59,12 @@ function RecieveEvaluations(props)
         }
         </tbody>
         </table>
+        <Button href={"bestTeacher/"+props.match.params.courseID}>
+            Get Best Teacher
+        </Button>
+        <Button href={"worstTeacher/"+props.match.params.courseID}>
+            Get Worst Teacher
+        </Button>
     </div>
   );
 }
