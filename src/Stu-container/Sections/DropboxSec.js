@@ -10,7 +10,7 @@ import GenData from "../gen_db.json";
 function DropboxSec (props){
     const [data, setData]= useState([]);
     const fetchStudents = ()=>{
-        fetch('/grades/'+sessionStorage.getItem('DROPBOX').substring(13,16)+'/1002')
+        fetch('/grades/'+sessionStorage.getItem('DROPBOX').substring(26,29)+'/'+sessionStorage.getItem('DROPBOX').substring(9,14))
         .then(res=>res.json())
         .then(json=>setData(json));
       }

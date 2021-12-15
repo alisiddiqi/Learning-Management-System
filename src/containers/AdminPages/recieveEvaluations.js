@@ -32,11 +32,13 @@ function RecieveEvaluations(props)
                     <th>Q8</th>
                     <th>Q9</th>
                     <th>Q10</th>
+                    <th>Comments</th>
                 </tr>
             </thead>
         <tbody>
         {
             data.map((item)=>(
+                console.log(item),
                 <tr key={item['teacherid']}>
                 <td>{item['teacherid']}</td>
                 <td>{item['studentid']}</td>
@@ -50,6 +52,7 @@ function RecieveEvaluations(props)
                 <td>{item['Q8']}</td>
                 <td>{item['Q9']}</td>
                 <td>{item['Q10']}</td>
+                <td>{item['comment']}</td>
                 </tr>
                 ))
         }
