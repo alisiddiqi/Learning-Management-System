@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`Assignment` (
   `due_date` DATE NOT NULL,
   `content` VARCHAR(45) NOT NULL,
   `courseid` INT NOT NULL,
-  `file` LONGBLOB NOT NULL,
+  `file` LONGBLOB,
   PRIMARY KEY (`assignment_id`),
   INDEX `fk_Assignment_course1_idx` (`courseid` ASC) VISIBLE,
   CONSTRAINT `fk_Assignment_course1`
