@@ -8,6 +8,7 @@ import '../../Stu-container/stu_main.css';
 
 class InsProfile extends Component{
     render() {
+        // pull data from data base with get request.
         return (
             <div>
                 <Banner />

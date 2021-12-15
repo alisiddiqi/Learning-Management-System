@@ -458,6 +458,16 @@ def stuAuth(userName, password):
         cur.close()
         return response
 
+@app.route('/InsLogin/<string:userName>/<string:password>')
+def insAuth(userName, password):
+    if(request.method == "GET"):
+        cur = mysql.connection.cursor()
+        cur.execute("select teacher.teacherid from user, teacher where user.username=teacher.username and user.username=(%s)' and user.password=(%s)", (userName, password))
+        profile = cur.fetchall()
+        response = jsonify(profile)
+        cur.close()
+        return response
+
 
 """ /instructor/<string:stuUser>/ 
 alsoHave a role of isTa

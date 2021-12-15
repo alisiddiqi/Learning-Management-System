@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import LoaderButton from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
 import { useAppContext } from "../lib/contextLib";
@@ -10,31 +10,45 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {userHasAuthenticated}=useAppContext();
+  const [isLoading,setIsLoading]=useState(false);
+  const [data,setData]=useState([]);
+  var [teacherid] =useState();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
+
   /*
-  Handle onSubmit of Guest, rest logic is same as Login
+  Handle onSubmit of Instructor, rest logic is same as Login
   */
   function handleSubmit(event) {
     event.preventDefault();
-    try{
+    setIsLoading(true);
+      const loginAuth=()=>{
+        fetch('/InsLogin/'+email +'/'+password)
+        .then(res=>res.json())
+        .then(json=>setData(json));
+      }
+    loginAuth();
+    setIsLoading(false);
+  }
+    if(data.length!==0){
+      teacherid = data[0].teacherid;
       userHasAuthenticated(true);
-      history.push("/guesthome")
-  }catch (e){
-    alert(e.message);
-  }
-  }
+      history.push('/InsHome/'+teacherid);
+      sessionStorage.setItem("teacherID", teacherid);
+    }else{
+      userHasAuthenticated(false);
+    }
 
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="username" size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
+        <Form.Group className="username" size="lg" controlId="text">
+          <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
+            type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -47,9 +61,9 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button className="Login-btn" block size="lg" type="submit" disabled={!validateForm()}>
+        <LoaderButton className="Login-btn" block size="lg" type="submit" isLoading={isLoading} disabled={!validateForm()}>
           Login
-        </Button>
+        </LoaderButton>
       </Form>
     </div>
   );
