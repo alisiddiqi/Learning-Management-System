@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
-import GuestLogin from "./containers/GuestLogin";
+import InstructorLogin from "./containers/InstructorLogin";
 import AdminLogin from "./containers/AdminLogin";
 import AdminHome from "./containers/AdminHome";
 import Student from './containers/AdminPages/Students';
@@ -27,7 +27,9 @@ import InsProfilePage from "./containers/AdminPages/InsProfilePage";
 import EvalutionSend from "./containers/AdminPages/evaluations";
 import EvaluationMethods from "./containers/AdminPages/evaluationMethods";
 import RecieveEvaluations from "./containers/AdminPages/recieveEvaluations";
-//import InstructorLogin from "./containers/InstructorLogin";
+
+import BestTeacher from './containers/AdminPages/bestTeacher';
+import WorstTeacher from './containers/AdminPages/worstTeacher';
 
 export default function Routes() {
   return (
@@ -38,15 +40,15 @@ export default function Routes() {
       <Route exact path="/login">
             <Login />
         </Route>
-        <Route exact path="/guestlogin">
+        {/* <Route exact path="/guestlogin">
             <GuestLogin />
-        </Route>
+        </Route> */}
         <Route exact path="/adminlogin">
             <AdminLogin />
         </Route>
-        {/* <Route exact path="/instructorlogin">
+        <Route exact path="/instructorlogin">
             <InstructorLogin />
-        </Route> */}
+        </Route>
         <Route exact path ="/adminhome">
           <AdminHome/>
         </Route>
@@ -78,6 +80,8 @@ export default function Routes() {
         <Route exact path="/adminhome/evaluations/send"><EvalutionSend/></Route>
         <Route exact path="/adminhome/evaluations/:courseID"><EvaluationMethods/></Route>
         <Route exact path="/adminhome/evaluations/recieve/:courseID"><RecieveEvaluations/></Route>
+        <Route exact path="/adminhome/evaluations/recieve/bestTeacher/:courseID"><BestTeacher/></Route>
+        <Route exact path="/adminhome/evaluations/recieve/worstTeacher/:courseID"><WorstTeacher/></Route>
         <Route>
           <NotFound/>
       </Route>

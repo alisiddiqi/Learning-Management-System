@@ -52,9 +52,9 @@ function App() {
                                     <LinkContainer to="/instructorlogin">
                                     <Nav.Link>Instructor Login</Nav.Link>
                                     </LinkContainer>
-                                    <LinkContainer to="/guestlogin">
+                                    {/* <LinkContainer to="/guestlogin">
                                     <Nav.Link>Guest Login</Nav.Link>
-                                    </LinkContainer>
+                                    </LinkContainer> */}
                                   <LinkContainer to="/adminlogin">
                                     <Nav.Link>Admin Login</Nav.Link>
                                   </LinkContainer>
