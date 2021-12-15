@@ -29,14 +29,14 @@ export default function Login() {
     loginAuth();
     setIsLoading(false);
   }
-    if(data.length!==0){
-      studentID = data[0].studentID;
-      userHasAuthenticated(true);
-      history.push('/StuHome/'+studentID);
-      sessionStorage.setItem("stuID", studentID);
-    }else{
-      userHasAuthenticated(false);
-    }
+  if(data.length!==0){
+    studentID = data[0].studentID;
+    userHasAuthenticated(true);
+    history.push('/StuHome/'+studentID);
+    sessionStorage.setItem("stuID", studentID);
+  }else{
+    userHasAuthenticated(false);
+  }
 
   return (
     <div className="Login">
