@@ -360,6 +360,16 @@ def recieveEvaluations(courseID):
         cur.execute(
             "select teacherid,studentid,comment,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10 from evaluation where courseid=(%s)", (courseID,))
         profile = cur.fetchall()
+        profile[0]['Q1'] *= 0.5
+        profile[0]['Q2'] *= 0.5
+        profile[0]['Q3'] *= 0.5
+        profile[0]['Q4'] *= 0.5
+        profile[0]['Q5'] *= 0.5
+        profile[0]['Q6'] *= 0.5
+        profile[0]['Q7'] *= 0.5
+        profile[0]['Q8'] *= 0.5
+        profile[0]['Q9'] *= 0.5
+        profile[0]['Q10'] *= 0.5
         response = jsonify(profile)
         response.status_code = 200
         cur.close()
@@ -405,7 +415,7 @@ def settingEvals(courseID, studentID):
         profile = cur.fetchall()
         teacherID = profile[0]['teacherid']
         cur.execute("insert into evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID,comment) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                    (teacherID, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, courseID, studentID,commments))
+                    (teacherID, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, courseID, studentID, commments))
         mysql.connection.commit()
         cur.close()
         return "Sucessfully changed"
