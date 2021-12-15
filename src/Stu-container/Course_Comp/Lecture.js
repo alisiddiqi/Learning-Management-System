@@ -12,7 +12,7 @@ function Lecture(props) {
                     <p>{props.info.instructor}</p>
                 </Col>
                 <Col>
-                    <Button variant="outline-primary"><FileDown name={props.info.filename}/> Download</Button>
+                    <Button variant="outline-primary"><FileDown name={sessionStorage.getItem(props.info.filename)}/>Download</Button>
                 </Col>
             </Row>
         </Container>

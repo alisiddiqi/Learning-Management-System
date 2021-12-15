@@ -58,7 +58,7 @@ export default function Routes() {
          </Route>
         <Route exact path="/StuHome/:studentID"> <StuHome /> </Route>
 
-        <Route exact path="/InsHome//:teacherID"> <InsHome /> </Route>
+        <Route exact path="/InsHome/:teacherID"> <InsHome /> </Route>
 
         <Route exact path="/StuHome/:studentID/Course_main/:courseID"> <CoursePage /> </Route>
         <Route exact path="/StuHome/:studentID/Course_main/:courseID/Content"> <ContentSec /> </Route>
