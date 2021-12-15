@@ -14,7 +14,7 @@ class InsHome extends Component {
         return (
             <div className="home-page">
                 <Banner />
-                <GenNav navData={GenData.insNav}/>
+                <GenNav navData={GenData.insNav} user="Teacher"/>
                 
                 <InsCourse courseInfo={StuData.courseData}/>
             </div>

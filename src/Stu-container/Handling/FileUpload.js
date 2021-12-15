@@ -11,7 +11,6 @@ function FileUpload(props) {
       const url = URL.createObjectURL(file);
       sessionStorage.setItem("url", url);
       document.getElementById("flag").style.display = "inline-block";
-
     };
     
     return (
