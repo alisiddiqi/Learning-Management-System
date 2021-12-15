@@ -330,7 +330,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`document` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `file` LONGBLOB NOT NULL,
+  `file` VARCAHR(100) NOT NULL,
   `courseid` INT NOT NULL,
   `teacherid` INT NOT NULL,
   `document_name` VARCHAR(45) NOT NULL,
