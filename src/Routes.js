@@ -28,6 +28,9 @@ import EvalutionSend from "./containers/AdminPages/evaluations";
 import EvaluationMethods from "./containers/AdminPages/evaluationMethods";
 import RecieveEvaluations from "./containers/AdminPages/recieveEvaluations";
 
+import BestTeacher from './containers/AdminPages/bestTeacher';
+import WorstTeacher from './containers/AdminPages/worstTeacher';
+
 export default function Routes() {
   return (
     <Switch>
@@ -77,6 +80,8 @@ export default function Routes() {
         <Route exact path="/adminhome/evaluations/send"><EvalutionSend/></Route>
         <Route exact path="/adminhome/evaluations/:courseID"><EvaluationMethods/></Route>
         <Route exact path="/adminhome/evaluations/recieve/:courseID"><RecieveEvaluations/></Route>
+        <Route exact path="/adminhome/evaluations/recieve/bestTeacher/:courseID"><BestTeacher/></Route>
+        <Route exact path="/adminhome/evaluations/recieve/worstTeacher/:courseID"><WorstTeacher/></Route>
         <Route>
           <NotFound/>
       </Route>
