@@ -87,11 +87,8 @@ function Evaluation(props) {
                 </Container>
                 <Button style={{margin: "20px"}} type="submit"  onClick={async()=>{
         const newStuToAdd={teacherName: sessionStorage.getItem('teacherName'),q1: sessionStorage.getItem('q1'),q2: sessionStorage.getItem('q2'),q3: sessionStorage.getItem('q3'),q4 :sessionStorage.getItem('q4'),q5: sessionStorage.getItem('q5'),q6: sessionStorage.getItem('q6'),q7: sessionStorage.getItem('q7'),q8: sessionStorage.getItem('q8')
-
                             ,q9: sessionStorage.getItem('q9'),q10: sessionStorage.getItem('q10'),comments: sessionStorage.getItem('comments')};
         const response=await fetch('/evaluations/'+sessionStorage.getItem('DROPBOX').substring(26,29)+'/'+sessionStorage.getItem('DROPBOX').substring(9,13),{
-                            ,q9: sessionStorage.getItem('q9'),q10: sessionStorage.getItem('q10')};
-        const response=await fetch('/evaluations/1002/457',{
             method: "POST",
             headers:{
                 'Content-Type': 'application/json'
