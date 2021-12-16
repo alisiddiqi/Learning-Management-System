@@ -6,7 +6,7 @@ import Banner from "./Home_Comp/Banner";
 import GenNav from "./Home_Comp/GenNav";
 import Courses from "./Home_Comp/Courses";
 import GenData from "./gen_db.json";
-
+import Main from "./FileUpload";
 function StuHome() {
     const h = sessionStorage.getItem("stuID");
     const [data, setData]=useState([]);
@@ -25,6 +25,7 @@ function StuHome() {
             <Banner bannerData={GenData.Banner} user="Student"/>
             <GenNav navData={GenData.homeNav} home={h}/>
             <Courses courseInfo={data}/>
+            
         </div>
     );
 }

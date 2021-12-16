@@ -1,8 +1,22 @@
-from flask import Flask, json, jsonify, request, render_template
+from flask import Flask, json, jsonify, request, render_template,request, redirect, url_for, session
 import flask
 from flask_mysqldb import MySQL
+from werkzeug.utils import secure_filename
+from flask_cors import CORS, cross_origin
+import logging
+import os
+
+
+logging.basicConfig(level=logging.INFO)
+
+logger = logging.getLogger('HELLO WORLD')
+
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = ''
+
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -11,6 +25,7 @@ app.config['MYSQL_PORT'] = 3307
 app.config['MYSQL_PASSWORD'] = "root"
 app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+CORS(app, expose_headers='Authorization')
 
 
 mysql = MySQL(app)
@@ -19,6 +34,53 @@ mysql = MySQL(app)
 
 
 """ content needs to use  a file"""
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            print("path is" + os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('upload_file', name=filename))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+    '''
+    
+
+@app.route('/upload', methods=['POST'])
+def fileUpload():
+    target = os.path.join(app.config['UPLOAD_FOLDER'], 'test')
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    logger.info("welcome to upload`")
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    destination = "/".join([target, filename])
+    file.save(destination)
+    session['uploadFilePath'] = destination
+    response = "Whatever you wish too return"
+    return response
 
 
 @app.route('/courses/<int:courseID>/content', methods=["GET"])
@@ -496,4 +558,8 @@ alsoHave a role of isTa
 """
 
 if __name__ == "__main__":
+    app.secret_key = os.urandom(24)
     app.run(debug=True)
+
+
+
