@@ -375,23 +375,14 @@ def recieveEvaluations(courseID):
         cur.close()
         return response
 
-    # if(request.method =="POST"):
-    #     cur = mysql.connection.cursor();
-    #     json = request.json;
-    #     courseID = json['courseID'];
-    #     studentID = json['studentID'];
-    #     q1: json['q1'];
-    #     q2: json['q2'];
-    #     q3: json['q3'];
-    #     q4: json['q4'];
-    #     q5: json['q5'];
-    #     q6: json['q6'];
-    #     q7: json['q7'];
-    #     q8: json['q8'];
-    #     q9: json['q9'];
-    #     q10: json['q10'];
-    #     cur.execute("")
-
+@app.route('/bestTeacher/<int:courseID>',methods=["GET"])
+def bestTeacher(courseID):
+    if(request.method=="GET"):
+        cur = mysql.connection.cursor()
+        cur.execute("select teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10) as Total from evaluation group by studentid")
+        profile=cur.fetchall()
+        
+        
 
 @app.route('/evaluations/<int:courseID>/<int:studentID>', methods=["POST"])
 def settingEvals(courseID, studentID):
