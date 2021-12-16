@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap';
 function FileUpload(props) {
     const fileRef = useRef();
   
+    // Try and upload to folder, then maybe use flask
     const handleChange = (e) => {
       const file = e.target.files[0];
       sessionStorage.setItem("file_content", file);

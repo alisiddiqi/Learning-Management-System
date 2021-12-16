@@ -1,4 +1,5 @@
 import React from 'react';
+import MyPDF from '../../Files/test.pdf';
 
 function FileDownload(props) {
     const url = sessionStorage.getItem("url");
@@ -6,7 +7,7 @@ function FileDownload(props) {
 
     return (
         <div>
-            <a href={url} download={file}>{props.uploaded}</a>
+            <a href={MyPDF} download="My_File.pdf"> Download this </a>
         </div>
     );
 }
