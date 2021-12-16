@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap';
 import { useState } from 'react';
-
 import "./Students.css"
-import { NavLink } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Home from '../AdminHome';
 
 function App (){
    const [data, setData]=useState([]);
-   const fetchTeacher = ()=>{
-      fetch('/teacher')
+   const fetchInstructors = ()=>{
+      fetch('/instructors')
       .then(res=>res.json())
       .then(json=>setData(json));
   }
   useEffect(()=>{
-      fetchTeacher();
+      fetchInstructors();
   },[]);
 
   return (
    <div className="container">
-       <h1> Teacher List </h1>
+       <Home/>
+       <h1 style={{alignContent: 'center'}}> Instructor List </h1>
+       <BrowserRouter>
        <table>
            <thead>
                <tr>
@@ -30,17 +31,18 @@ function App (){
            <tbody>
               {
                  data.map((item)=>(
-                    <tr key={item[0]}>
-                     <td>{item[1]}</td>
-                     <td> {item[0]}</td>
-                     <td><LinkContainer to="/students/profile">
-                     <NavLink> Profile </NavLink>
-                     </LinkContainer> </td>
+                     console.log(item.length),
+                    <tr key={item['username']}>
+                     <td>{item['firstname']}</td>
+                     <td> {item['username']}</td>
+                     <td><div><a href={item['username']}>Profile</a></div>
+                      </td>
                      </tr>
                  ))
               }
            </tbody>
          </table>
+         </BrowserRouter>
       </div>
   );
 }

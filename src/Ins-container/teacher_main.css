@@ -1,0 +1,12 @@
+/* ----- Teacher Evaluations ----- */
+.eval-cont {
+    margin-top: 15px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px;
+}
+
+/* ----- Teacher Grades ----- */
+.editGrade {
+    box-shadow: 1px 1px 3px;
+    display: none;
+}

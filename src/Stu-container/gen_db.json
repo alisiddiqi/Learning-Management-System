@@ -1,0 +1,74 @@
+{
+    "Banner": {
+        "profile": "P",
+        "profilePath": "/StuProfile/",
+        "schoolName": "University of Calgary"
+    },
+    "homeNav": {
+        "platform": "Student",
+        "platformPath": "/StuHome/",
+        "destination": [
+            {
+                "title": "TOOLS",
+                "path": "/Tools"
+            },
+            {
+                "title": "EMAIL",
+                "path": "/Emails"
+            },
+            {
+                "title": "SCHOOL",
+                "path": "/"
+            }
+        ]
+    },
+    "stuNav": {
+        "platform": "Student",
+        "platformPath": "/StuHome/",
+        "start": "/Course_main/",
+        "destination": [
+            {
+                "title": "HOME",
+                "path": ""
+            },
+            {
+                "title": "CONTENT",
+                "path": "/Content"
+            },
+            {
+                "title": "EVALUATION",
+                "path": "/Evaluation"
+            },
+            {
+                "title": "CLASS LIST",
+                "path": "/ClassList"
+            },
+            {
+                "title": "DROPBOX",
+                "path": "/Dropbox"
+            }
+        ]
+    },
+    "insNav": {
+        "platform": "Instructor",
+        "platformPath": "/InsHome/",
+        "destination": [
+            {
+                "title": "HOME",
+                "path": ""
+            },
+            {
+                "title": "CONTENT",
+                "path": "/Content"
+            },
+            {
+                "title": "CLASS LIST",
+                "path": "/ClassList"
+            },
+            {
+                "title": "ASSIGNMENTS",
+                "path": "/Assignments"
+            }
+        ]
+    }
+}

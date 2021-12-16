@@ -4,18 +4,19 @@ import FileDown from '../Handling/FileDownload';
 
 function Lecture(props) {
     return (
+        <>
         <Container className="lecture" fluid>
             <Row>
                 <Col>
                     <h3>{props.info.name}</h3>
-                    <Button variant="outline-primary"><FileDown name="Download"/></Button>
+                    <p>{props.info.instructor}</p>
                 </Col>
                 <Col>
-                    <h3>{props.info.instructor}</h3>
-                    <p>{props.info.date}</p>
+                    <Button variant="outline-primary"><FileDown name={sessionStorage.getItem(props.info.filename)}/>Download</Button>
                 </Col>
             </Row>
         </Container>
+        </>
 
     );
 }

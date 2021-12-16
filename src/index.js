@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import App from './App'
+import App from './App';
 import {Amplify} from 'aws-amplify';
 import config from './config';
+import FileUpload2 from '../src/FileUpload2';
 
 Amplify.configure({
   Auth: {
@@ -34,6 +35,8 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <App />
+      {/* <FileUpload2/> */}
+      
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

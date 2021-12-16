@@ -1,0 +1,35 @@
+Courses displayed on a mobile view are not centered in the container
+
+Search bar is not placed in the right spot
+
+Student Navbar:
+- get rid of notification bell
+- get rid of uofc 
+
+
+Student: Grades tab is not needed. 
+
+Student Dropbox: why is evaluation there
+                - Search is not working properly
+                - add feeback instead of evaluation
+                - Add option to submit assignments btn
+                    - Enter assignment name and upload the file
+                - Complete status should be a hyperlink for downloading the submission
+
+Student evaluation: 
+    - should only have comments for the end for the entire evaluation
+    - choose the teacher id or teacher name
+
+Admin: 
+- login using the database
+
+
+DATABASE:
+
+- Teacher needs a relationship called creates assignment and that has a id, 
+- Submit holds the student submission file, grade, assignment id
+- Added to Submit table auto increment
+- URGENT: evaluation needs to be integer for score and comments are needed which are string
+- Shouldnt need to pass in ids, they should be auto generated in api and SQL_MODE
+- Document database needs a name for the document name
+- Assignment or Submission need to have a feeback field or can use content field

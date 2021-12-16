@@ -4,15 +4,16 @@ import {Button} from 'react-bootstrap';
 function FileUpload(props) {
     const fileRef = useRef();
   
+    // Try and upload to folder, then maybe use flask
     const handleChange = (e) => {
       const file = e.target.files[0];
       sessionStorage.setItem("file_content", file);
-      sessionStorage.setItem("file", file.name);
+      sessionStorage.setItem(props.filename, file.name);
       const url = URL.createObjectURL(file);
       sessionStorage.setItem("url", url);
       document.getElementById("flag").style.display = "inline-block";
     };
-  
+    
     return (
       <div>
         <Button onClick={() => fileRef.current.click()}>
@@ -25,7 +26,10 @@ function FileUpload(props) {
           type="file"
           hidden
         />
-        <p id="flag" style={{margin: "5px", display: "none"}}>Submitted</p>
+        <p id="flag" style={{margin: "5px", display: "none"}}>Uploaded</p>
+        <Button onClick={() => document.getElementById("flag").style.display = "none"}>
+          Submit
+        </Button>
       </div>
     );
 }

@@ -5,15 +5,16 @@ import GenNav from "../Home_Comp/GenNav";
 import CourseBody from "../Course_Comp/CourseBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "../stu_db.json";
+import GenData from "../gen_db.json";
 
 class ContentSec extends Component{
     render() {
         return (
             <div style={{textAlign:'center'}} className="course-main">
-                <Banner bannerData={StuData.Banner} />
-                <GenNav navData={StuData.stuNav} />
+                <Banner bannerData={GenData.Banner} user="Student" />
+                <GenNav navData={GenData.stuNav} user="Student" />
                 <div className="contentBody">
-                    <CourseBody lectureInfo={StuData.LecturesData} title="Content"/>
+                    <CourseBody lectureInfo={StuData.LecturesData} docInfo={StuData.DocumentData} title="Content"/>
                 </div>
             </div>
         );

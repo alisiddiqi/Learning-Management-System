@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap';
 import { useState } from 'react';
-import { Route } from 'react-router';
 import "./Students.css"
-import { BrowserRouter, Link } from 'react-router-dom';
-import Routes from '../../Routes';
+import { BrowserRouter } from 'react-router-dom';
+import Home from '../AdminHome';
 
 function App (){
    const [data, setData]=useState([]);
@@ -16,9 +14,9 @@ function App (){
   useEffect(()=>{
       fetchStudents();
   },[]);
-
   return (
    <div className="container">
+       <Home/>
        <h1 style={{alignContent: 'center'}}> Student List </h1>
        <BrowserRouter>
        <table>
@@ -32,11 +30,11 @@ function App (){
            <tbody>
               {
                  data.map((item)=>(
-                     console.log(item.length),
-                    <tr key={item[0]}>
-                     <td>{item[1]}</td>
-                     <td> {item[0]}</td>
-                     <td><div><a href={item[0]}>Profile</a></div>
+                     console.log(item),
+                    <tr key={item['username']}>
+                     <td>{item['firstname']}</td>
+                     <td> {item['username']}</td>
+                     <td><div><a href={item['username']}>Profile</a></div>
                       </td>
                      </tr>
                  ))

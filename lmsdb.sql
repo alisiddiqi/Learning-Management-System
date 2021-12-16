@@ -259,7 +259,6 @@ CREATE TABLE IF NOT EXISTS `lmsdb`.`evaluation` (
   `courseid` INT NOT NULL,
   `studentID` VARCHAR(45) NOT NULL,
   `comment` VARCHAR(120) NOT NULL,
-  PRIMARY KEY (`teacherid`),
   INDEX `fk_teacher_evaluation_teacher1_idx` (`teacherid` ASC) VISIBLE,
   INDEX `fk_teacher_evaluation_course1_idx` (`courseid` ASC) VISIBLE,
   INDEX `fk_teacher_evaluation_student1_idx` (`studentID` ASC) VISIBLE,
@@ -330,7 +329,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `lmsdb`.`document` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `file` LONGBLOB NOT NULL,
+  `file` VARCHAR(100) NOT NULL,
   `courseid` INT NOT NULL,
   `teacherid` INT NOT NULL,
   `document_name` VARCHAR(45) NOT NULL,

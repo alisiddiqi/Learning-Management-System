@@ -36,6 +36,15 @@ body {
     text-align: center;
 }
 
+/* ----- Profile Page ----- */
+.enrolled {
+    margin: 5%; 
+    padding: 5%;
+    align-items: center;
+    background: linear-gradient(to right, #5899e2 0%, whitesmoke 50%);
+    border-radius: 15px;
+}
+
 /* ----- Navigation bar ----- */
 .options{
     border-top: 0.075rem solid #ccc;
@@ -90,11 +99,8 @@ body {
     background: whitesmoke;
     padding: 2rem;
 }
-
-/* ----- Each Course Card ----- */
-.course-card:hover{
-    box-shadow: 10px 1px 20px;
-    transition: 0.25s ease-in-out;
+.courseTitle {
+    margin-top: 10px;
 }
 
 /* ----- Each Course Card ----- */
@@ -113,4 +119,12 @@ body {
     box-shadow: 2px 2px 5px;
     margin: 10px 0 10px 0;
     padding: 10px 0 10px 0;
+}
+
+/* ----- Class List Section ----- */
+.emailsTitle {
+    margin-top: 15px;
+    padding: 10px;
+    box-shadow: 1px 1px 3px;
+    background: linear-gradient(to bottom right, #5899e2 0%, whitesmoke 20%);
 }
