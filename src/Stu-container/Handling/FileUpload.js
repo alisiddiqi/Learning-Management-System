@@ -2,7 +2,7 @@ import React, { useRef,useState,useEffect } from 'react';
 import {Button} from 'react-bootstrap';
 import FileSaver from "file-saver";
 
-async function FileUpload(props) {
+ function FileUpload(props) {
     const fileRef = useRef();
     // Try and upload to folder, then maybe use flask
     const HandleChange = (e) => {
@@ -16,8 +16,8 @@ async function FileUpload(props) {
         localStorage.setItem('text', read.result.toString());
         console.log("get file" + localStorage.getItem('text'));
 
-        var blob = new Blob([localStorage.getItem('text')], {type: "text/plain;charset=utf-8"});
-        FileSaver.saveAs(blob, "testfile1.txt");
+        // var blob = new Blob([localStorage.getItem('text')], {type: "text/plain;charset=utf-8"});
+        // FileSaver.saveAs(blob, "testfile1.txt");
       }
   
     };
