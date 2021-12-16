@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef,useState,useEffect } from 'react';
 import {Button} from 'react-bootstrap';
 import FileSaver from "file-saver";
 
 async function FileUpload(props) {
     const fileRef = useRef();
     // Try and upload to folder, then maybe use flask
-    const handleChange = (e) => {
+    const HandleChange = (e) => {
+      e.preventDefault();
       const file = e.target.files[0];
       console.log(file);
       let read = new FileReader();
@@ -28,7 +29,7 @@ async function FileUpload(props) {
         </Button>
         <input
           ref={fileRef}
-          onChange={handleChange}
+          onChange={HandleChange}
           multiple={false}
           type="file"
           hidden

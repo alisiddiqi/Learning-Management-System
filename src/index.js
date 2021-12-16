@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import {Amplify} from 'aws-amplify';
 import config from './config';
-import FileUpload2 from '../src/FileUpload2';
+//import FileUpload2 from '../src/FileUpload2';
 
 Amplify.configure({
   Auth: {

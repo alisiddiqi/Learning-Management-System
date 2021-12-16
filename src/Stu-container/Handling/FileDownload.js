@@ -8,7 +8,7 @@ function FileDownload(props) {
     console.log("IN FILE DONWLOAD" + getFile);
     return (
         <div>
-            <a href={MyPDF} download="My_File.pdf"> Download this </a>
+            <a href={props.name} download="My_File.pdf"> Download this </a>
         </div>
     );
 }

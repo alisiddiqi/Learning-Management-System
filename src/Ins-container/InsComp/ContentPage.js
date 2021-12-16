@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StuData from "../../Stu-container/stu_db.json";
 import GenData from "../../Stu-container/gen_db.json";
@@ -7,8 +7,17 @@ import GenNav from '../../Stu-container/Home_Comp/GenNav';
 import PageBody from './PageBody';
 import '../../Stu-container/stu_main.css';
 
-class ContentPage extends Component{
-    render() {
+
+function ContentPage(){
+    const [data, setData]=useState([]);
+    const fetchStudents = ()=>{
+      fetch('/instructors/'+sessionStorage.getItem('teacherID')+'/courses')
+      .then(res=>res.json())
+      .then(json=>setData(json));
+    }
+    useEffect(()=>{
+      fetchStudents();
+    },[]);
         return (
             <div style={{textAlign:'center'}} className="course-main">
                 <Banner />
@@ -18,7 +27,6 @@ class ContentPage extends Component{
                 </div>
             </div>
         );
-    }
 }
 
 export default ContentPage;

@@ -20,9 +20,9 @@ app.config['UPLOAD_FOLDER'] = ''
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3307
+app.config['MYSQL_PORT'] = 3306
 
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = ""
 app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 CORS(app, expose_headers='Authorization')
@@ -185,11 +185,11 @@ def studentCourseAssignments(stuUser, courseID, assignmnetID):
 """ ---- INSTRUCTOR API ----- """
 
 
-@app.route('/instructors/<string:insUser>/courses', methods=["GET"])
-def teacherCourseList(insUser):
+@app.route('/instructors/<string:insID>/courses', methods=["GET"])
+def teacherCourseList(insID):
     if request.method == "GET":
         cur = mysql.connection.cursor()
-        cur.execute("select teacher.teacherid,course.courseid,course.name from courseteacher, course, teacher, user where courseteacher.courseid=course.courseid and teacher.teacherid=courseteacher.teacherid and teacher.username=user.username and user.username=(%s)", (insUser,))
+        cur.execute("select teacher.teacherid,course.courseid,course.name from courseteacher, course, teacher, user where courseteacher.courseid=course.courseid and teacher.teacherid=courseteacher.teacherid and teacher.username=user.username and teacher.teacherid=(%s)", (insID,))
         profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
@@ -364,7 +364,7 @@ def profile2(insUser):
 def func2(insUser):
     if request.method == "GET":
         cur = mysql.connection.cursor()
-        cur.execute("select teacher.teacherid,course.courseid,course.name from courseteacher, course, teacher, user where courseteacher.courseid=course.courseid and teacher.teacherid=courseteacher.teacherid and teacher.username=user.username and user.username=(%s)", (insUser,))
+        cur.execute("select teacher.teacherid,course.courseid,course.name from courseteacher, course, teacher, user where courseteacher.courseid=course.courseid and teacher.teacherid=courseteacher.teacherid and teacher.username=user.username and teacher.teacherid=(%s)", (insUser,))
         profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
@@ -394,6 +394,10 @@ def func2(insUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess deleted with courseid=(%s)", (courseid,))
+
+
+
+        
 
 
 @app.route('/courses/sendEvaluations/<int:courseID>', methods=["GET", "POST"])
@@ -437,23 +441,14 @@ def recieveEvaluations(courseID):
         cur.close()
         return response
 
-    # if(request.method =="POST"):
-    #     cur = mysql.connection.cursor();
-    #     json = request.json;
-    #     courseID = json['courseID'];
-    #     studentID = json['studentID'];
-    #     q1: json['q1'];
-    #     q2: json['q2'];
-    #     q3: json['q3'];
-    #     q4: json['q4'];
-    #     q5: json['q5'];
-    #     q6: json['q6'];
-    #     q7: json['q7'];
-    #     q8: json['q8'];
-    #     q9: json['q9'];
-    #     q10: json['q10'];
-    #     cur.execute("")
-
+@app.route('/bestTeacher/<int:courseID>',methods=["GET"])
+def bestTeacher(courseID):
+    if(request.method=="GET"):
+        cur = mysql.connection.cursor()
+        cur.execute("select teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10) as Total from evaluation group by studentid")
+        profile=cur.fetchall()
+        
+        
 
 @app.route('/evaluations/<int:courseID>/<int:studentID>', methods=["POST"])
 def settingEvals(courseID, studentID):
