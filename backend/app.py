@@ -358,8 +358,18 @@ def recieveEvaluations(courseID):
     if request.method == "GET":
         cur = mysql.connection.cursor()
         cur.execute(
-            "select teacherid,studentid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10 from evaluation where courseid=(%s)", (courseID,))
+            "select teacherid,studentid,comment,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10 from evaluation where courseid=(%s)", (courseID,))
         profile = cur.fetchall()
+        profile[0]['Q1'] *= 0.5
+        profile[0]['Q2'] *= 0.5
+        profile[0]['Q3'] *= 0.5
+        profile[0]['Q4'] *= 0.5
+        profile[0]['Q5'] *= 0.5
+        profile[0]['Q6'] *= 0.5
+        profile[0]['Q7'] *= 0.5
+        profile[0]['Q8'] *= 0.5
+        profile[0]['Q9'] *= 0.5
+        profile[0]['Q10'] *= 0.5
         response = jsonify(profile)
         response.status_code = 200
         cur.close()
@@ -383,8 +393,8 @@ def recieveEvaluations(courseID):
     #     cur.execute("")
 
 
-@app.route('/evaluations/<int:studentID>/<int:courseID>', methods=["POST"])
-def settingEvals(studentID, courseID):
+@app.route('/evaluations/<int:courseID>/<int:studentID>', methods=["POST"])
+def settingEvals(courseID, studentID):
     if(request.method == "POST"):
         cur = mysql.connection.cursor()
         json = request.json
@@ -399,25 +409,28 @@ def settingEvals(studentID, courseID):
         Q8 = json['q8']
         Q9 = json['q9']
         Q10 = json['q10']
+        commments = json['comments']
         cur.execute(
             "select teacher.teacherid from teacher,user where teacher.username=user.username and user.firstname=(%s)", (teacherName,))
         profile = cur.fetchall()
         teacherID = profile[0]['teacherid']
-        cur.execute("insert into evaluations (teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                    (teacherID, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, courseID, studentID))
+        cur.execute("insert into evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID,comment) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                    (teacherID, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, courseID, studentID, commments))
         mysql.connection.commit()
         cur.close()
         return "Sucessfully changed"
 
 
-@app.route('/grades/<int:courseID>/<int:studentID>', methods=["GET"])
+@app.route('/grades/<string:courseID>/<string:studentID>/', methods=["GET"])
 def getGrades(courseID, studentID):
     if(request.method == "GET"):
+        print(courseID+'  '+studentID)
         cur = mysql.connection.cursor()
         cur.execute(
             "select assignment_name, grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)", (studentID, courseID))
         profile = cur.fetchall()
         response = jsonify(profile)
+        print(profile)
         response.status_code = 200
         cur.close()
         return response
