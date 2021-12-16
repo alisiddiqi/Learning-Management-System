@@ -1,17 +1,24 @@
 import React, { useRef } from 'react';
 import {Button} from 'react-bootstrap';
+import FileSaver from "file-saver";
 
-function FileUpload(props) {
+async function FileUpload(props) {
     const fileRef = useRef();
-  
     // Try and upload to folder, then maybe use flask
     const handleChange = (e) => {
       const file = e.target.files[0];
-      sessionStorage.setItem("file_content", file);
-      sessionStorage.setItem(props.filename, file.name);
-      const url = URL.createObjectURL(file);
-      sessionStorage.setItem("url", url);
-      document.getElementById("flag").style.display = "inline-block";
+      console.log(file);
+      let read = new FileReader();
+      read.readAsBinaryString(file);
+      read.onloadend = function(){
+        console.log("-- READING2 --" + read.result.toString());
+        localStorage.setItem('text', read.result.toString());
+        console.log("get file" + localStorage.getItem('text'));
+
+        var blob = new Blob([localStorage.getItem('text')], {type: "text/plain;charset=utf-8"});
+        FileSaver.saveAs(blob, "testfile1.txt");
+      }
+  
     };
     
     return (
