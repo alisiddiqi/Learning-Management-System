@@ -12,7 +12,7 @@ class ClassListPage extends Component{
         return (
             <div style={{textAlign:'center'}} className="course-main">
                 <Banner />
-                <GenNav navData={GenData.insNav} />
+                <GenNav navData={GenData.insNav} user="Teacher" />
                 <div className="contentBody">
                     <PageBody classInfo={StuData.StudentData} title="ClassList"/>
                 </div>

@@ -12,7 +12,7 @@ import {withRouter} from 'react-router';
 
 function Course_main(props){
     {GenData.stuNav.destination.map((data) => sessionStorage.setItem(data.title, GenData.stuNav.platformPath+sessionStorage.getItem("stuID")+GenData.stuNav.start+props.match.params.courseID+data.path))};
-
+    console.log(props.match);
     return (
         <div className="course-main">
             <Banner bannerData={GenData.Banner} user="Student" />

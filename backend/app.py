@@ -448,7 +448,7 @@ def func4():
         return response
 
 
-@app.route('/StuLogin/<string:userName>/<string:password>')
+@app.route('/StuLogin/<string:userName>/<string:password>', methods=["GET"])
 def stuAuth(userName, password):
     if(request.method == "GET"):
         cur = mysql.connection.cursor()
@@ -458,11 +458,11 @@ def stuAuth(userName, password):
         cur.close()
         return response
 
-@app.route('/InsLogin/<string:userName>/<string:password>')
+@app.route('/InsLogin/<string:userName>/<string:password>', methods=["GET"])
 def insAuth(userName, password):
     if(request.method == "GET"):
         cur = mysql.connection.cursor()
-        cur.execute("select teacher.teacherid from user, teacher where user.username=teacher.username and user.username=(%s)' and user.password=(%s)", (userName, password))
+        cur.execute("select teacher.teacherid from user, teacher where user.username=teacher.username and user.username=(%s) and user.password=(%s)", (userName, password))
         profile = cur.fetchall()
         response = jsonify(profile)
         cur.close()

@@ -12,7 +12,7 @@ class InsProfile extends Component{
         return (
             <div>
                 <Banner />
-                <GenNav navData={GenData.insNav}/>
+                <GenNav navData={GenData.insNav} user="Teacher" />
                 <Container style={{textAlign: "center"}} fluid>
                     <h2 style={{margin: "20px"}}>(Prof.) {StuData.TeacherData[0].first_name} {StuData.TeacherData[0].last_name}</h2>
                     <Row style={{margin: "20px", padding: "10px"}}>
