@@ -3,7 +3,6 @@ import '../../Stu-container/stu_main.css';
 import Lecture from '../../Stu-container/Course_Comp/Lecture';
 import GradeItem from '../EditComp/GradeItem';
 import EmailList from '../../Stu-container/Course_Comp/EmailList';
-import Eval from '../EditComp/Eval';
 import AddDoc from '../EditComp/AddDoc';
 import DelDoc from '../EditComp/DelDoc';
 import { ButtonGroup, ToggleButton, Container, Row, Col } from 'react-bootstrap';
@@ -110,32 +109,6 @@ function PageBody(props) {
             </div>
         );
     }
-    // if (props.title === "Evaluations") {
-    //     return (
-    //         <div>
-    //             <h1 className="courseTitle"><b>{props.title}</b></h1>
-    //             <Container>
-    //                 <Row>
-    //                     <ButtonGroup>
-    //                         {props.studentInfo.map((data, idx) => <Col><ToggleButton 
-    //                             type="radio" 
-    //                             variant="outline-primary" 
-    //                             key={idx}
-    //                             name="radio"
-    //                             id={`radio-${idx}`}
-    //                             value={data.sID}
-    //                             checked={student === data.sID}
-    //                             onChange={(e) => setStudent(e.currentTarget.value)}
-    //                             >
-    //                             {data.first_name} {data.last_name}
-    //                         </ToggleButton></Col>)}
-    //                     </ButtonGroup>
-    //                 </Row>
-    //             </Container>
-    //             {props.evalInfo.map((data) => (student === data.sID) ? (<Eval info={data} stu_id={student} />) : <Container fluid><h4>Select a Student</h4></Container> )}
-    //         </div>
-    //     );
-    // }
     if (props.title === "ClassList") {
         return (
             <div>

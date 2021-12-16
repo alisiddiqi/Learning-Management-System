@@ -12,7 +12,7 @@ class AssignmentPage extends Component{
         return (
             <div style={{textAlign:'center'}} className="course-main">
                 <Banner />
-                <GenNav navData={GenData.insNav} />
+                <GenNav navData={GenData.insNav} user="Teacher" />
                 <div className="contentBody">
                     <PageBody gradeInfo={StuData.DropboxData} title="Assignments"/>
                 </div>

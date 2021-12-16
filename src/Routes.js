@@ -16,8 +16,8 @@ import DropboxSec from './Stu-container/Sections/DropboxSec';
 import ClassListSec from './Stu-container/Sections/ClassListSec';
 import StuProfile from './Stu-container/Home_Comp/StuProflie';
 import InsHome from './Ins-container/InsHome';
+import InsCourseHome from './Ins-container/InsCourseHome';
 import InsProfile from './Ins-container/InsComp/InsProfile';
-import InsEvalPage from './Ins-container/InsComp/EvalPage';
 import InsContentPage from './Ins-container/InsComp/ContentPage';
 import InsClassList from './Ins-container/InsComp/ClassListPage';
 import InsAssignment from './Ins-container/InsComp/AssignmentPage';
@@ -37,9 +37,6 @@ export default function Routes() {
       <Route exact path="/login">
             <Login />
         </Route>
-        {/* <Route exact path="/guestlogin">
-            <GuestLogin />
-        </Route> */}
         <Route exact path="/adminlogin">
             <AdminLogin />
         </Route>
@@ -67,10 +64,10 @@ export default function Routes() {
         <Route exact path="/Emails"> <ClassListSec /> </Route>
         <Route exact path="/Tools"> <Schedule /> </Route>
         <Route exact path="/StuProfile/:studentID"> <StuProfile /> </Route>
-        <Route exact path="/InsHome/:teacherID/Course_main/:courseID//Content"> <InsContentPage /> </Route>
-        <Route exact path="/InsHome/:teacherID/Course_main/:courseID//Evaluation"> <InsEvalPage /> </Route>
-        <Route exact path="/InsHome/:teacherID/Course_main/:courseID//ClassList"> <InsClassList /> </Route>
-        <Route exact path="/InsHome/:teacherID/Course_main/:courseID/Assignments"> <InsAssignment /> </Route>
+        <Route exact path="/InsHome/:teacherID/:courseID"> <InsCourseHome /> </Route>
+        <Route exact path="/InsHome/:teacherID/:courseID/Content"> <InsContentPage /> </Route>
+        <Route exact path="/InsHome/:teacherID/:courseID/ClassList"> <InsClassList /> </Route>
+        <Route exact path="/InsHome/:teacherID/:courseID/Assignments"> <InsAssignment /> </Route>
         <Route exact path="/InsHome/:teacherID/Profile"> <InsProfile /> </Route>
         <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>
         <Route exact path="/adminhome/teacher/:username"><InsProfilePage/></Route>

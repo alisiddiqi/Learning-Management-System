@@ -54,6 +54,10 @@
         "platformPath": "/InsHome/",
         "destination": [
             {
+                "title": "HOME",
+                "path": ""
+            },
+            {
                 "title": "CONTENT",
                 "path": "/Content"
             },
@@ -64,10 +68,6 @@
             {
                 "title": "ASSIGNMENTS",
                 "path": "/Assignments"
-            },
-            {
-                "title": "PROFILE",
-                "path": "/InsProfile"
             }
         ]
     }
