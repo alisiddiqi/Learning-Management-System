@@ -5,6 +5,8 @@ import GradeItem from '../EditComp/GradeItem';
 import EmailList from '../../Stu-container/Course_Comp/EmailList';
 import AddDoc from '../EditComp/AddDoc';
 import DelDoc from '../EditComp/DelDoc';
+import { Button} from 'react-bootstrap';
+import FileDown from '../../Stu-container/Handling/FileDownload';
 import { ButtonGroup, ToggleButton, Container, Row, Col } from 'react-bootstrap';
 
 function PageBody(props) {
@@ -55,14 +57,34 @@ function PageBody(props) {
                     } else if (data.instructor.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
-                }).map((data) => <Lecture info={data} />)}
+                }).map((data) => { <Container className="lecture" fluid>
+            <Row>
+                <Col>
+                    <h3>{data.name}</h3>
+                    <p>{data.instructor}</p>
+                </Col>
+                <Col>
+                    <Button variant="outline-primary"><FileDown name={sessionStorage.getItem(data.filename)}/>Download</Button>
+                </Col>
+            </Row>
+        </Container>})}
                 {props.docInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
                     } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
-                }).map((data) => <Lecture info={data} />)}
+                }).map((data) =>  <Container className="lecture" fluid>
+                <Row>
+                    <Col>
+                        <h3>{data.name}</h3>
+                        <p>{data.instructor}</p>
+                    </Col>
+                    <Col>
+                        <Button variant="outline-primary"><FileDown name={localStorage.getItem("A1.pdf")}/>Download</Button>
+                    </Col>
+                </Row>
+            </Container>)}
             </div>
         );
     }
