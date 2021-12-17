@@ -74,7 +74,7 @@ function CourseBody(props) {
                     type="text"
                     placeholder="File for Upload"
                     name="file"
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) => sessionStorage.setItem("fileName", e.target.value)}
                 />
                 <FileUp filename={searchTerm}/>
                 <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px', marginTop: "10px"}} fluid>
