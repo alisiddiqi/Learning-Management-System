@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
+import { ButtonOr } from 'semantic-ui-react';
+import FileDownload from '../../Stu-container/Handling/FileDownload';
 import '../../Stu-container/stu_main.css';
 
 function GradeItem(props) {
@@ -10,10 +12,10 @@ function GradeItem(props) {
                     <p>{props.info.studentID}</p>
                 </Col>
                 <Col>
-                    <p>{props.info.assignment_id}</p>
+                    <p>{props.info.assignment_name}</p>
                 </Col>
                 <Col>
-                    <p>{props.info.assignment_name}</p>
+                    <FileDownload name={props.info.assignment_name}></FileDownload>
                 </Col>
                 <Col>
                     <p>{props.info.grade}</p>

@@ -103,10 +103,10 @@ function PageBody(props) {
                 <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px'}} fluid>
                     <Row>
                         <Col>
-                            <h4>Student</h4>
+                            <h4>Student ID</h4>
                         </Col>
                         <Col>
-                            <h4>Assignment ID</h4>
+                            <h4>Assignment Name</h4>
                         </Col>
                         <Col>
                             <h4>File</h4>
@@ -122,11 +122,9 @@ function PageBody(props) {
                 {props.gradeInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
-                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.assignment_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
-                    } else if (data.student.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    }
+                    } 
                 }).map((data) => <GradeItem info={data} />)}
             </div>
         );
