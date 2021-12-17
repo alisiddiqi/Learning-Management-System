@@ -6,7 +6,7 @@ import CourseBody from "../Course_Comp/CourseBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GenData from "../gen_db.json";
 
-function ContentSec(props) {
+function ContentSec() {
     const [Contentdata,setContentData]=useState([]); 
     const fetchDocuments = ()=>{
         fetch('/courses/'+sessionStorage.getItem("courseID")+'/content/')
