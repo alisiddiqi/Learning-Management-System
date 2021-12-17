@@ -106,7 +106,7 @@ function PageBody(props) {
                             <h4>Student</h4>
                         </Col>
                         <Col>
-                            <h4>Grade Item</h4>
+                            <h4>Assignment ID</h4>
                         </Col>
                         <Col>
                             <h4>File</h4>
