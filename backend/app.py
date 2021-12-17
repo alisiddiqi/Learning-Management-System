@@ -463,8 +463,9 @@ def recieveEvaluations(courseID):
 @app.route('/bestTeacher/<int:courseID>',methods=["GET"])
 def bestTeacher(courseID):
     if(request.method=="GET"):
+        print(courseID)
         cur = mysql.connection.cursor()
-        cur.execute("select teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10)*0.5 as Total from evaluation group by teacherid")
+        cur.execute("select evaluation.teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10)*0.5 as Total from evaluation,courseteacher where courseteacher.courseid=(%s) and evaluation.teacherid=courseteacher.teacherid group by evaluation.teacherid",(courseID,))
         profile=cur.fetchall()
         var = 0
         id = 0
