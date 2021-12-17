@@ -36,8 +36,8 @@ function PageBody(props) {
         );
     }
     if (props.title === "Content") {
+        console.log(props.docInfo);
         return (
-           
             <div className="courseTitle">
                 <h1><b>{props.title}</b></h1>
                 <input 

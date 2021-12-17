@@ -10,7 +10,7 @@ import FileUpload from '../../Stu-container/Handling/FileUpload';
 function InsCourse (){
     const [data, setData]= useState([]);
     const fetchStudents = ()=>{
-        fetch('/teacher/'+sessionStorage.getItem('teacherID')+'courses/'+sessionStorage.getItem('courseID')+'/content/')
+        fetch('/teacher/'+sessionStorage.getItem('teacherID')+'/courses/'+sessionStorage.getItem('courseID')+'/content/')
         .then(res=>res.json())
         .then(json=>setData(json));
       }

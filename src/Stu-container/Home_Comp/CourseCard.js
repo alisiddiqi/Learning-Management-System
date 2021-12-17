@@ -5,7 +5,7 @@ import tack from "../Images/tack.png";
 import {BrowserRouter} from 'react-router-dom';
 
 function CourseCard(props) {
-    const saveCourse = () => {sessionStorage.setItem("InsCourse", props.info.courseid);};
+    const saveCourse = () => {sessionStorage.setItem("courseID", props.info.courseid);};
 
     if (props.user === "Teach") {
         return (

@@ -7,29 +7,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import GenData from "../gen_db.json";
 
 function ContentSec(props) {
-    const [Ldata,setData]=useState([]); 
-    const [Adata,setStuData]=useState([]);
-    const fetchInstructors = ()=>{
-        fetch('/students/'+sessionStorage.getItem("stuID")+'/courses/'+sessionStorage.getItem("courseID")+'/assignments')
+    const [Contentdata,setContentData]=useState([]); 
+    const fetchDocuments = ()=>{
+        fetch('/courses/'+sessionStorage.getItem("courseID")+'/content/')
         .then(res=>res.json())
-        .then(json=>setData(json));
+        .then(json=>setContentData(json));
     }
     useEffect(()=>{
-        fetchInstructors();
-        fetchStudents();
+        fetchDocuments();
     },[]);
-    const fetchStudents = ()=>{
-        fetch('/courses/'+props.match.params.courseID+'/classList/students')
-        .then(res=>res.json())
-        .then(json=>setStuData(json));
-    }
 
     return (
         <div style={{textAlign:'center'}} className="course-main">
             <Banner bannerData={GenData.Banner} user="Student" />
             <GenNav navData={GenData.stuNav} user="Student" />
             <div className="contentBody">
-                <CourseBody lectureInfo={Ldata} docInfo={Adata} title="Content"/>
+                <CourseBody docInfo={Contentdata} title="Content"/>
             </div>
         </div>
     );

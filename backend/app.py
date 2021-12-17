@@ -25,10 +25,10 @@ mysql = MySQL(app)
 
 """ content needs to use  a file"""
 
-@app.route('/courses/<int:courseID>/content', methods=["GET"])
+@app.route('/courses/<int:courseID>/content/', methods=["GET"])
 def courseContent(courseID):
     cur = mysql.connection.cursor()
-    cur.execute("select * from course")
+    cur.execute("select * from document where courseid = (%s)", (courseID,))
     courses = cur.fetchall()
     response = jsonify(courses)
     response.status_code = 200
