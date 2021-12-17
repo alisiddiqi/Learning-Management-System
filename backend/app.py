@@ -17,7 +17,6 @@ app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 CORS(app, expose_headers='Authorization')
 
-
 mysql = MySQL(app)
 
 """ ---- STUDENT API ----- """
