@@ -28,7 +28,7 @@ function PageBody(props) {
                 {props.lectureInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
-                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.document_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     } 
                 }).map((data) => <Lecture info={data} />)}
@@ -36,6 +36,7 @@ function PageBody(props) {
         );
     }
     if (props.title === "Content") {
+        
         console.log(props.docInfo);
         return (
             <div className="courseTitle">
@@ -50,29 +51,10 @@ function PageBody(props) {
                 />
                 <AddDoc />
                 <DelDoc />
-                {props.lectureInfo.filter((data) => {
-                    if (searchTerm === "") {
-                        return data;
-                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    } else if (data.instructor.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    }
-                }).map((data) => { <Container className="lecture" fluid>
-            <Row>
-                <Col>
-                    <h3>{data.name}</h3>
-                    <p>{data.instructor}</p>
-                </Col>
-                <Col>
-                    <Button variant="outline-primary"><FileDown />Download</Button>
-                </Col>
-            </Row>
-        </Container>})}
                 {props.docInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
-                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.document_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
                 }).map((data) =>  <Container className="lecture" fluid>
