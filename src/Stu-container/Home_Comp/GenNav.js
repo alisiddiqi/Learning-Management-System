@@ -28,8 +28,7 @@ function GenNav(props) {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav>
-                            {props.navData.destination.map((data) => <Nav.Link href={props.navData.platformPath+sessionStorage.getItem("teacherID")+"/"+sessionStorage.getItem("InsCourse")+data.path}>{data.title}</Nav.Link>)}
-                            <Nav.Link href={props.navData.platformPath+sessionStorage.getItem("teacherID")+"/Profile"}>PROFILE</Nav.Link>
+                            {props.navData.destination.map((data) => <Nav.Link href={props.navData.platformPath+sessionStorage.getItem("teacherID")+"/"+sessionStorage.getItem("courseID")+data.path}>{data.title}</Nav.Link>)}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

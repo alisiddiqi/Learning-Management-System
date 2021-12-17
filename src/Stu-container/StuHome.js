@@ -10,7 +10,7 @@ import GenData from "./gen_db.json";
 function StuHome() {
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
-      fetch('/students/'+sessionStorage.getItem('stuID')+'/courselist')
+      fetch('/students/'+sessionStorage.getItem("stuID")+'/courseList/')
       .then(res=>res.json())
       .then(json=>setData(json));
     }
