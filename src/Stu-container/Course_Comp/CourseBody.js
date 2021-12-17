@@ -47,15 +47,6 @@ function CourseBody(props) {
                         setSearchTerm(e.target.value);
                     }}
                 />
-                {props.lectureInfo.filter((data) => {
-                    if (searchTerm === "") {
-                        return data;
-                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    } else if (data.instructor.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    }
-                }).map((data) => <Lecture info={data} />)}
                 {props.docInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
