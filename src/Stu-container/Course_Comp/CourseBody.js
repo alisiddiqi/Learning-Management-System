@@ -50,7 +50,7 @@ function CourseBody(props) {
                 {props.docInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
-                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.document_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
                 }).map((data) => <Lecture info={data} />)}

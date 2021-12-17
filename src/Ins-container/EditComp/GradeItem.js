@@ -30,7 +30,21 @@ function GradeItem(props) {
                     <form className="editGrade" id={props.info.assignment_name}>
                         <input style={{margin: "10px"}} type="text" name="Grade" placeholder="Grade" onChange={(e) => sessionStorage.setItem(e.target.name, e.target.value)} />
                         <input style={{margin: "10px"}} type="text" name="Feedback" placeholder="Feedback" onChange={(e) => sessionStorage.setItem(e.target.name, e.target.value)} />
-                        <Button style={{margin: "10px"}} type="submit">Enter Grade</Button>
+                        <Button style={{margin: "10px"}} type="submit" onClick={async()=>{
+                            const response=await fetch('/teacher/courses/grades',{
+                                method: "POST",
+                                headers: {
+                                    "Content-type": "application/json; charset=UTF-8" 
+                                },
+                                body: JSON.stringify({
+                                    grade: sessionStorage.getItem("Grade"),
+                                    feedback: sessionStorage.getItem("Feedback"),
+                                    assignment_name: props.info.assignment_name,
+                                    stuID: props.info.studentID
+                              }
+                              )
+                            })
+                        }}>Enter Grade</Button>
                         <Button style={{margin: "10px"}} onClick={() => document.getElementById(props.info.assignment_name).style.display = "none"} >Cancel</Button>
                     </form>
                 </Col>

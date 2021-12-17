@@ -206,8 +206,8 @@ def teacherCourseContent(insID, courseID):
         cur.close()
         return jsonify("sucess delete")
 
-@app.route('/teacher/<string:insID>/courses/<int:courseID>/grades', methods=["POST"])
-def teacherAddGrade(insID, courseID):
+@app.route('/teacher/courses/grades', methods=["POST"])
+def teacherAddGrade():
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         json = request.json
@@ -530,7 +530,7 @@ def getGrades(courseID, studentID):
     if(request.method == "GET"):
         cur = mysql.connection.cursor()
         cur.execute(
-            "select assignment_name, grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)", (studentID, courseID))
+            "select assignment_name, grade,submit.feedback from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)", (studentID, courseID))
         profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
