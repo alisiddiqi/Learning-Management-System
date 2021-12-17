@@ -1,11 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import StuData from "../../Stu-container/stu_db.json";
 import PageBody from './PageBody';
 import '../../Stu-container/stu_main.css';
-import FileDownload from '../../Stu-container/Handling/FileDownload';
-import FileUpload from '../../Stu-container/Handling/FileUpload';
+
 
 function InsCourse (){
     const [data, setData]= useState([]);
@@ -26,7 +24,7 @@ function InsCourse (){
                         </Col>
                     </Row>
                     <Row>
-                        <Button >Add Lecture</Button> 
+                        <Button href={'/InsHome/'+sessionStorage.getItem("teacherID")+'/'+sessionStorage.getItem("courseID")+'/Content'}>Add Lecture</Button> 
                     </Row>
                 </Container>
             </div>
