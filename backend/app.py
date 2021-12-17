@@ -3,22 +3,10 @@ import flask
 from flask_mysqldb import MySQL
 from werkzeug.utils import secure_filename
 from flask_cors import CORS, cross_origin
-import logging
 import os
 from random import randrange
 
-
-
-logging.basicConfig(level=logging.INFO)
-
-logger = logging.getLogger('HELLO WORLD')
-
-
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = ''
-
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -36,54 +24,6 @@ mysql = MySQL(app)
 
 
 """ content needs to use  a file"""
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-# @app.route('/', methods=['GET', 'POST'])
-# def upload_file():
-#     if request.method == 'POST':
-#         # check if the post request has the file part
-#         if 'file' not in request.files:
-#             flash('No file part')
-#             return redirect(request.url)
-#         file = request.files['file']
-#         # If the user does not select a file, the browser submits an
-#         # empty file without a filename.
-#         if file.filename == '':
-#             flash('No selected file')
-#             return redirect(request.url)
-#         if file and allowed_file(file.filename):
-#             filename = secure_filename(file.filename)
-#             print("path is" + os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#             return redirect(url_for('upload_file', name=filename))
-#     return '''
-#     <!doctype html>
-#     <title>Upload new File</title>
-#     <h1>Upload new File</h1>
-#     <form method=post enctype=multipart/form-data>
-#       <input type=file name=file>
-#       <input type=submit value=Upload>
-#     </form>
-#     '''
-    
-
-@app.route('/upload', methods=['POST'])
-def fileUpload():
-    target = os.path.join(app.config['UPLOAD_FOLDER'], 'test')
-    if not os.path.isdir(target):
-        os.mkdir(target)
-    logger.info("welcome to upload`")
-    file = request.files['file']
-    filename = secure_filename(file.filename)
-    destination = "/".join([target, filename])
-    file.save(destination)
-    session['uploadFilePath'] = destination
-    response = "Whatever you wish too return"
-    return response
-
 
 @app.route('/courses/<int:courseID>/content', methods=["GET"])
 def courseContent(courseID):
@@ -161,16 +101,17 @@ def studentAssignments(stuUser, courseID):
     cur.close()
     return response
 
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
-def studentCourseAssignments(stuUser, courseID):
+@app.route('/students/<int:stuID>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
+def studentCourseAssignments(stuID, courseID):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
-        cur.execute("select Assignment.assignment_id, Assignment.assignment_name, submit.grade, course.courseid from student, user, submit, Assignment, course where student.studentID = submit.studentID and submit.assignment_id = Assignment.assignment_id and student.username = user.username and course.courseid = Assignment.courseid and user.username = (%s) and course.courseid = (%s)", (stuUser, courseID))
+        cur.execute("select Assignment.assignment_id, Assignment.assignment_name, submit.grade, course.courseid from student, user, submit, Assignment, course where student.studentID = submit.studentID and submit.assignment_id = Assignment.assignment_id and student.studentID = (%s) and course.courseid = Assignment.courseid and course.courseid = (%s)", (stuID, courseID))
         courses = cur.fetchall()
         response = jsonify(courses)
         response.status_code = 200
         cur.close()
         return response
+    
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         json = request.json
@@ -181,11 +122,7 @@ def studentCourseAssignments(stuUser, courseID):
         id = randrange(50, 10000)
         cur.execute("INSERT INTO Assignment(assignment_id,assignment_name, due_date, content, courseid) VALUES (%s, %s,%s,%s,%s)",
                     (id, assignmentName, due_date, content, courseid))
-        cur.execute("select studentID from student where username=(%s)", (stuUser,))
-        studentID = cur.fetchall()
-        print("STUDENT ID:")
-        print(studentID)
-        cur.execute("INSERT INTO submit(assignment_id, studentID, grade)  VALUES (%s,%s,%s)", (id,studentID[0]['studentID'], 0))
+        cur.execute("INSERT INTO submit(assignment_id, studentID, grade)  VALUES (%s,%s,%s)", (id,stuID, 0))
         mysql.connection.commit()
         cur.close()
         return "Sucessfully changed"
