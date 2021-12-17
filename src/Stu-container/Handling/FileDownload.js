@@ -10,7 +10,7 @@ function FileDownload(props) {
     }
     return (
         <div>
-            <Button class="btn" onClick={downloadFile}> DOWNLOAD</Button>
+            <Button variant="outline-primary" class="btn" onClick={downloadFile}> DOWNLOAD</Button>
         </div>
     );
 }
