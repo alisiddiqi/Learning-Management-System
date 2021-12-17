@@ -286,10 +286,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `lmsdb`.`Assignment` (
   `assignment_id` INT NOT NULL AUTO_INCREMENT,
   `assignment_name` VARCHAR(45) NOT NULL,
-  `due_date` DATE NOT NULL,
-  `content` VARCHAR(45) NOT NULL,
+  `due_date` VARCHAR(100) NOT NULL,
+  `content` VARCHAR(10000) NOT NULL,
   `courseid` INT NOT NULL,
-  `file` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`assignment_id`),
   INDEX `fk_Assignment_course1_idx` (`courseid` ASC) VISIBLE,
   CONSTRAINT `fk_Assignment_course1`
