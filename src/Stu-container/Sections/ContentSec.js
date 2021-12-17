@@ -6,7 +6,7 @@ import CourseBody from "../Course_Comp/CourseBody";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GenData from "../gen_db.json";
 
-function ContentSec() {
+function ContentSec(props) {
     const [Ldata,setData]=useState([]); 
     const [Adata,setStuData]=useState([]);
     const fetchInstructors = ()=>{
