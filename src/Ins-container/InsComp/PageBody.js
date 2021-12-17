@@ -81,7 +81,7 @@ function PageBody(props) {
                         <h3>{data.document_name}</h3>
                     </Col>
                     <Col>
-                        <Button variant="outline-primary"><FileDown name={data.document_name}/></Button>
+                        <FileDown name={data.document_name}/>
                     </Col>
                 </Row>
             </Container>)}
