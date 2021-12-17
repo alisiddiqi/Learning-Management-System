@@ -22,9 +22,9 @@ app.config['UPLOAD_FOLDER'] = ''
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_PORT'] = 3307
 
-app.config['MYSQL_PASSWORD'] = ""
+app.config['MYSQL_PASSWORD'] = "root"
 app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 CORS(app, expose_headers='Authorization')
@@ -151,7 +151,6 @@ def studentGrades(stuUser, courseID):
 #     cur.close()
 #     return response
 
-
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
 def studentAssignments(stuUser, courseID):
     cur = mysql.connection.cursor()
@@ -183,12 +182,16 @@ def studentCourseAssignments(stuUser, courseID):
         id = randrange(50, 10000)
         cur.execute("INSERT INTO Assignment(assignment_id,assignment_name, due_date, content, courseid) VALUES (%s, %s,%s,%s,%s)",
                     (id, assignmentName, due_date, content, courseid))
+        cur.execute("select studentID from student where username=(%s)", (stuUser,))
+        studentID = cur.fetchall()
+        print("STUDENT ID:")
+        print(studentID)
+        cur.execute("INSERT INTO submit(assignment_id, studentID, grade)  VALUES (%s,%s,%s)", (id,studentID[0]['studentID'], 0))
         mysql.connection.commit()
         cur.close()
         return "Sucessfully changed"
 
 """ ---- INSTRUCTOR API ----- """
-
 
 @app.route('/instructors/<string:insID>/courseList', methods=["GET"])
 def teacherCourseList(insID):
@@ -309,7 +312,6 @@ def func(stuUser):
 ###################################################################################################################################
 #       Start of Admin instructor API from Admin view
 
-
 @app.route('/instructors', methods=['GET'])
 def instructors():
     if request.method == 'GET':
@@ -342,7 +344,6 @@ def insProfile(insUser):
         cur.close()
         return jsonify("sucess insert")
 
-
 @app.route('/instructors/<string:insUser>/ins', methods=["GET", "POST"])
 def profile2(insUser):
     if request.method == 'GET':
@@ -353,7 +354,6 @@ def profile2(insUser):
         response.status_code = 200
         cur.close()
         return response
-
 
 @app.route('/instructors/<string:insUser>/courses', methods=["GET", "POST", "DELETE"])
 def func2(insUser):
@@ -389,10 +389,6 @@ def func2(insUser):
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess deleted with courseid=(%s)", (courseid,))
-
-
-
-        
 
 
 @app.route('/courses/sendEvaluations/<int:courseID>', methods=["GET", "POST"])
@@ -515,6 +511,7 @@ def getGrades(courseID, studentID):
         response.status_code = 200
         cur.close()
         return response
+    
     
 
 @app.route('/courses/sendEvaluations/', methods=["GET"])
