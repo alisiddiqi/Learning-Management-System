@@ -22,9 +22,9 @@ app.config['UPLOAD_FOLDER'] = ''
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3307
+app.config['MYSQL_PORT'] = 3306
 
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = ""
 app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 CORS(app, expose_headers='Authorization')
@@ -191,7 +191,7 @@ def studentCourseAssignments(stuUser, courseID):
 """ ---- INSTRUCTOR API ----- """
 
 
-@app.route('/instructors/<string:insID>/courses', methods=["GET"])
+@app.route('/instructors/<string:insID>/courseList', methods=["GET"])
 def teacherCourseList(insID):
     if request.method == "GET":
         cur = mysql.connection.cursor()
@@ -213,15 +213,6 @@ def teacherCourseList(insID):
 
 """ ------ ADMIN STUDENT API ----"""
 
-# @app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
-# def studentAssignments(stuUser, courseID):
-#     cur = mysql.connection.cursor()
-#     cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
-#     courses = cur.fetchall()
-#     response = jsonify(courses)
-#     response.status_code = 200
-#     cur.close()
-#     return response
 
 """ Use classlist api from student """
 
@@ -370,7 +361,7 @@ def profile2(insUser):
 def func2(insUser):
     if request.method == "GET":
         cur = mysql.connection.cursor()
-        cur.execute("select teacher.teacherid,course.courseid,course.name from courseteacher, course, teacher, user where courseteacher.courseid=course.courseid and teacher.teacherid=courseteacher.teacherid and teacher.username=user.username and teacher.teacherid=(%s)", (insUser,))
+        cur.execute("select teacher.teacherid,course.courseid,course.name from courseteacher, course, teacher, user where courseteacher.courseid=course.courseid and teacher.teacherid=courseteacher.teacherid and teacher.username=user.username and user.username=(%s)", (insUser,))
         profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
@@ -432,16 +423,17 @@ def recieveEvaluations(courseID):
         cur.execute(
             "select teacherid,studentid,comment,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10 from evaluation where courseid=(%s)", (courseID,))
         profile = cur.fetchall()
-        profile[0]['Q1'] *= 0.5
-        profile[0]['Q2'] *= 0.5
-        profile[0]['Q3'] *= 0.5
-        profile[0]['Q4'] *= 0.5
-        profile[0]['Q5'] *= 0.5
-        profile[0]['Q6'] *= 0.5
-        profile[0]['Q7'] *= 0.5
-        profile[0]['Q8'] *= 0.5
-        profile[0]['Q9'] *= 0.5
-        profile[0]['Q10'] *= 0.5
+        for i in range (len(profile)):
+            profile[i]['Q1'] *= 0.5
+            profile[i]['Q2'] *= 0.5
+            profile[i]['Q3'] *= 0.5
+            profile[i]['Q4'] *= 0.5
+            profile[i]['Q5'] *= 0.5
+            profile[i]['Q6'] *= 0.5
+            profile[i]['Q7'] *= 0.5
+            profile[i]['Q8'] *= 0.5
+            profile[i]['Q9'] *= 0.5
+            profile[i]['Q10'] *= 0.5
         response = jsonify(profile)
         response.status_code = 200
         cur.close()
@@ -451,9 +443,37 @@ def recieveEvaluations(courseID):
 def bestTeacher(courseID):
     if(request.method=="GET"):
         cur = mysql.connection.cursor()
-        cur.execute("select teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10) as Total from evaluation group by studentid")
+        cur.execute("select teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10)*0.5 as Total from evaluation group by teacherid")
         profile=cur.fetchall()
-        
+        var = 0
+        id = 0
+        for i in range(len(profile)):
+            if profile[i]['Total'] > var:
+                var = profile[i]['Total']
+                id = profile[i]['teacherid']
+        cur.execute("select firstname,lastname from user,teacher where teacher.teacherid=(%s) and user.username=teacher.username",(id,))
+        profile = cur.fetchall()
+        toReturn = profile[0]['firstname'] + ' '+ profile[0]['lastname']
+        response = jsonify(toReturn)
+        return response
+
+@app.route('/worstTeacher/<int:courseID>',methods=["GET"])
+def worstTeacher (courseID):
+    if request.method == "GET":
+        cur = mysql.connection.cursor()
+        cur.execute("select teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10)*0.5 as Total from evaluation group by teacherid")
+        profile=cur.fetchall()
+        var = 1000
+        id = 0
+        for i in range(len(profile)):
+            if profile[i]['Total'] < var:
+                var = profile[i]['Total']
+                id = profile[i]['teacherid']
+        cur.execute("select firstname,lastname from user,teacher where teacher.teacherid=(%s) and user.username=teacher.username",(id,))
+        profile = cur.fetchall()
+        toReturn = profile[0]['firstname'] + ' '+ profile[0]['lastname']
+        response = jsonify(toReturn)
+        return response
         
 
 @app.route('/evaluations/<int:courseID>/<int:studentID>', methods=["POST"])
@@ -477,7 +497,7 @@ def settingEvals(courseID, studentID):
             "select teacher.teacherid from teacher,user where teacher.username=user.username and user.firstname=(%s)", (teacherName,))
         profile = cur.fetchall()
         teacherID = profile[0]['teacherid']
-        cur.execute("insert into evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,courseid,studentID,comment) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+        cur.execute("insert into evaluation values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                     (teacherID, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, courseID, studentID, commments))
         mysql.connection.commit()
         cur.close()

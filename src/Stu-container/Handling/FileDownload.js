@@ -13,7 +13,6 @@ function FileDownload(props) {
     return (
         <div>
             <Button class="btn" onClick={downloadFile}> DOWNLOAD</Button>
-            { console.log("IN FILE DONWLOAD" + localStorage.getItem('text'))}
         </div>
     );
 }
