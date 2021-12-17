@@ -5,8 +5,9 @@ import {Button} from 'react-bootstrap';
 
 function FileDownload(props) {
     const downloadFile = (e) => {
-        var blob = new Blob(props.data.contents, {type: "text/plain;charset=utf-8"});
-        FileSaver.saveAs(blob, props.data.name+".txt");
+        {console.log(props)}
+        var blob = new Blob([localStorage.getItem(props.name)], {type: "text/plain;charset=utf-8"});
+        FileSaver.saveAs(blob, props.name+".txt");
     }
     
     return (

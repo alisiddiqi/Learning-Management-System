@@ -37,7 +37,7 @@ function PageBody(props) {
     }
     if (props.title === "Content") {
         return (
-            console.log(props),
+           
             <div className="courseTitle">
                 <h1><b>{props.title}</b></h1>
                 <input 
@@ -65,7 +65,7 @@ function PageBody(props) {
                     <p>{data.instructor}</p>
                 </Col>
                 <Col>
-                    <Button variant="outline-primary"><FileDown name={sessionStorage.getItem(data.filename)}/>Download</Button>
+                    <Button variant="outline-primary"><FileDown />Download</Button>
                 </Col>
             </Row>
         </Container>})}
@@ -78,11 +78,10 @@ function PageBody(props) {
                 }).map((data) =>  <Container className="lecture" fluid>
                 <Row>
                     <Col>
-                        <h3>{data.name}</h3>
-                        <p>{data.instructor}</p>
+                        <h3>{data.document_name}</h3>
                     </Col>
                     <Col>
-                        <Button variant="outline-primary"><FileDown name={localStorage.getItem("A1.pdf")}/>Download</Button>
+                        <Button variant="outline-primary"><FileDown name={data.document_name}/></Button>
                     </Col>
                 </Row>
             </Container>)}
