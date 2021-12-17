@@ -108,7 +108,7 @@ function CourseBody(props) {
                                 id={`radio-${idx}`}
                                 value={data.tID}
                                 checked={teacher === data.tID}
-                                onClick={ sessionStorage.setItem('teacherName',data.firstname)}
+                                onClick={ (e) => sessionStorage.setItem('teacherName',data.firstname)}
                                 >
                                 {data.firstname} {data.lastname}
                             </ToggleButton></Col>)}

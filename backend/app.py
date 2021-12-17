@@ -10,9 +10,9 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3307
+app.config['MYSQL_PORT'] = 3306
 
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = ""
 app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 CORS(app, expose_headers='Authorization')
@@ -230,8 +230,8 @@ def teacherProfile(insID):
         response.status_code = 200
         return response
     
-@app.route('/teacher/<int:stuID>/courses/<int:courseID>/dropbox/', methods=["GET"])
-def teacherCourseAssignments(stuID, courseID):
+@app.route('/teacher/courses/<int:courseID>/dropbox/', methods=["GET"])
+def teacherCourseAssignments(courseID):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
         cur.execute("select student.studentID, Assignment.assignment_id, Assignment.assignment_name, submit.grade, submit.feedback, course.courseid from student, user, submit, Assignment, course where student.studentID = submit.studentID and submit.assignment_id = Assignment.assignment_id  and course.courseid = Assignment.courseid and course.courseid = (%s) group by Assignment.assignment_name", (courseID,))

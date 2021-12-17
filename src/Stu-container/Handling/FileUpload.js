@@ -1,6 +1,5 @@
 import React, { useRef,useState,useEffect } from 'react';
 import {Button} from 'react-bootstrap';
-import FileSaver from "file-saver";
 
 function FileUpload(props) {
     const fileRef = useRef();
