@@ -16,7 +16,7 @@ function StuProfile() {
         .then(json=>setProfileData(json));
     }
     const fetchCourses = ()=>{
-        fetch('/students/'+sessionStorage.getItem("stuID")+'/courselist/')
+        fetch('/students/'+sessionStorage.getItem("stuID")+'/courseList/')
         .then(res=>res.json())
         .then(json=>setCoursesData(json));
     }
