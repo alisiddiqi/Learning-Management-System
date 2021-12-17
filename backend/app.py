@@ -162,7 +162,6 @@ def studentAssignments(stuUser, courseID):
     cur.close()
     return response
 
-
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
 def studentCourseAssignments(stuUser, courseID):
     if request.method == 'GET':
@@ -321,7 +320,6 @@ def instructors():
         respone.status_code = 200
         cur.close()
         return respone
-
 
 @app.route('/instructors/<string:insUser>', methods=["GET", "POST"])
 def insProfile(insUser):
