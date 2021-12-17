@@ -14,7 +14,7 @@ function Dropbox(props) {
                     
                 </Col>
                 <Col>
-                    <p>{props.info.grade}</p>
+                    <p>{props.info.grade} %</p>
                 </Col>
                 <Col>
                     <p>{props.info.feedback}</p>

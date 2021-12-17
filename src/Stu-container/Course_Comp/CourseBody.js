@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import '../stu_main.css';
 import Lecture from './Lecture';
 import Dropbox from './Dropbox';
@@ -10,6 +10,16 @@ import { ButtonGroup, ToggleButton, Container, Row, Col } from 'react-bootstrap'
 function CourseBody(props) {
     const [teacher, setTeacher] = useState();
     const [searchTerm, setSearchTerm] = useState('');
+    const [data,setData] = useState([]);
+
+    const fetchStudents = ()=>{
+        fetch('/grades/'+sessionStorage.getItem('courseID')+'/'+sessionStorage.getItem('stuID') +'/finalgrade')
+        .then(res=>res.json())
+        .then(json=>setData(json));
+      }
+      useEffect(()=>{
+        fetchStudents();
+      },[]);
 
     if (props.title === "Lectures") {
         return (
@@ -86,6 +96,16 @@ function CourseBody(props) {
                     </Row>
                 </Container>
                 {props.dropboxInfo.map((data) => <Dropbox info={data} uploaded={searchTerm} />)}
+                <Container style={{background: '#d7e5f0', boxShadow: '1px 1px 3px', marginTop: "10px"}} fluid>
+                    <Row>
+                        <Col>
+                            Final Grade
+                        </Col>
+                        <Col>
+                            {data}%
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         );
     }

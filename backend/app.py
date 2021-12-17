@@ -24,6 +24,19 @@ mysql = MySQL(app)
 
 """ content needs to use  a file"""
 
+@app.route('/grades/<string:courseID>/<string:studentID>/finalgrade', methods=["GET"])
+def getFinalGrade(courseID, studentID):
+    if(request.method == "GET"):
+        cur = mysql.connection.cursor()
+        cur.execute(
+            "select AVG(grade) as grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)", (studentID, courseID))
+        profile = cur.fetchall()
+        toReturn = profile[0]['grade']
+        response = jsonify(toReturn)
+        response.status_code = 200
+        cur.close()
+        return response
+
 
 @app.route('/AdminLogin/<string:email>/<string:password>',methods=["GET"])
 def adminLogin(email,password):
@@ -108,23 +121,12 @@ def studentGrades(stuUser, courseID):
 
 def studentProfile(stuID):
     if request.method == 'GET':
-        print(stuID)
         cur = mysql.connection.cursor()
         cur.execute("select user.firstname, user.lastname, user.username, user.email from user, student where student.username=user.username and student.studentID=(%s)", (stuID,))
         profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
         return response
-
-# @app.route('/students/<string:stuUser>/courses/<int:courseID>/classList', methods=["GET"])
-# def classList(stuUser, courseID):
-#     cur = mysql.connection.cursor()
-#     cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
-#     courses = cur.fetchall()
-#     response = jsonify(courses)
-#     response.status_code = 200
-#     cur.close()
-#     return response
 
 
 @app.route('/students/<string:stuUser>/courses/<int:courseID>/assignments', methods=["GET", "POST"])
@@ -136,36 +138,6 @@ def studentAssignments(stuUser, courseID):
     response.status_code = 200
     cur.close()
     return response
-
-# @app.route('/teacher/<int:insID>/courses/<int:courseID>/content/', methods=["GET", "POST","DELETE"])
-# def teacherCourseContent(insID, courseID):
-#     if request.method == 'GET':
-#         cur = mysql.connection.cursor()
-#         cur.execute("select * from document where teacherid = (%s) AND courseid = (%s)", (insID, courseID))
-#         courses = cur.fetchall()
-#         response = jsonify(courses)
-#         response.status_code = 200
-#         cur.close()
-#         return response
-#     if request.method == 'POST':
-#         cur = mysql.connection.cursor()
-#         json = request.json
-#         file = json['file']
-#         doc_name = json['document_name']
-#         id = randrange(50, 10000)
-#         cur.execute("INSERT INTO document(id, file, courseid, teacherid, document_name) VALUES (%s, %s, %s, %s,%s)", (id, file, courseID, insID, doc_name))
-#         mysql.connection.commit()
-#         cur.close()
-#         return "successfully added "
-#     if request.method == 'DELETE':
-#         cur = mysql.connection.cursor()
-#         json = request.json
-#         docName = json['document_name']
-#         cur.execute(
-#             "delete from document where document.document_name=(%s)", (docName,))
-#         mysql.connection.commit()
-#         cur.close()
-#         return jsonify("sucess delete")
 
 
 @app.route('/students/<int:stuID>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
@@ -510,7 +482,6 @@ def recieveEvaluations(courseID):
 @app.route('/bestTeacher/<int:courseID>', methods=["GET"])
 def bestTeacher(courseID):
     if(request.method == "GET"):
-        print(courseID)
         cur = mysql.connection.cursor()
         cur.execute("select evaluation.teacherid,studentid , sum(Q1+Q2+Q3+Q4+Q5+Q6+Q7+Q8+Q9+Q10)*0.5 as Total from evaluation,courseteacher where courseteacher.courseid=(%s) and evaluation.teacherid=courseteacher.teacherid group by evaluation.teacherid", (courseID,))
         profile = cur.fetchall()
