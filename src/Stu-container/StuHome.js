@@ -6,11 +6,11 @@ import Banner from "./Home_Comp/Banner";
 import GenNav from "./Home_Comp/GenNav";
 import Courses from "./Home_Comp/Courses";
 import GenData from "./gen_db.json";
-import Main from "./FileUpload";
+
 function StuHome() {
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
-      fetch('/students/KaiStudent/courselist')
+      fetch('/students/'+sessionStorage.getItem('stuID')+'/courselist')
       .then(res=>res.json())
       .then(json=>setData(json));
     }
