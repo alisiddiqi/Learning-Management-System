@@ -8,18 +8,6 @@
         "platform": "Student",
         "platformPath": "/StuHome/",
         "destination": [
-            {
-                "title": "TOOLS",
-                "path": "/Tools"
-            },
-            {
-                "title": "EMAIL",
-                "path": "/Emails"
-            },
-            {
-                "title": "SCHOOL",
-                "path": "/"
-            }
         ]
     },
     "stuNav": {

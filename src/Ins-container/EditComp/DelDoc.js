@@ -10,7 +10,16 @@ function DelDoc() {
             <Row>
                 <form>
                     <input style={{margin: "10px"}} type="text" name="name" placeholder="Document Name" onChange={(e) => setName(e.target.value)} />
-                    <Button>Delete</Button>
+                    <Button onClick={async()=>{
+                        const newStuToAdd={docname};
+                        const response=await fetch('/teacher/'+sessionStorage.getItem('teacherID')+'/courses/'+sessionStorage.getItem('courseID')+'/content/',{
+                            method: "DELETE",
+                            headers:{
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newStuToAdd)
+                        })
+                    }}>Delete</Button>
                 </form>
             </Row>
         </Container>

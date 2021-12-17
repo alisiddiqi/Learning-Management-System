@@ -13,6 +13,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const {userHasAuthenticated}=useAppContext();
   const [isLoading,setIsLoading]=useState(false);
+  const [data,setData] = useState([]);
+  var studentID =0;
 
 
   function validateForm() {
@@ -23,19 +25,30 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    try{
-      userHasAuthenticated(true);
-      history.push('/adminhome');
-  }catch (e){
-      alert(e.message);
-    }
+    setIsLoading(true);
+      const loginAuth=()=>{
+        fetch('/AdminLogin/'+email+'/'+password)
+        .then(res=>res.json())
+        .then(json=>setData(json));
+      }
+    loginAuth();
+    setIsLoading(false);
+  }
+
+  if(data.length!==0){
+    studentID = data[0].studentID;
+    userHasAuthenticated(true);
+    history.push('/AdminHome/'+studentID);
+    sessionStorage.setItem("AdminId", studentID);
+  }else{
+    userHasAuthenticated(false);
   }
 
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="username" size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
             type="email"
