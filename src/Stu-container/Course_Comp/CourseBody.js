@@ -67,6 +67,7 @@ function CourseBody(props) {
         );
     }
     if (props.title === "Dropboxes") {
+        sessionStorage.setItem("fileName", "N/A");
         return (
             <div>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
