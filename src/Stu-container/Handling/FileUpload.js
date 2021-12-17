@@ -4,7 +4,6 @@ import FileSaver from "file-saver";
 
  function FileUpload(props) {
     const fileRef = useRef();
-    // Try and upload to folder, then maybe use flask
     const HandleChange = (e) => {
       e.preventDefault();
       const file = e.target.files[0];
@@ -15,9 +14,6 @@ import FileSaver from "file-saver";
         console.log("-- READING2 --" + read.result.toString());
         localStorage.setItem('text', read.result.toString());
         console.log("get file" + localStorage.getItem('text'));
-
-        // var blob = new Blob([localStorage.getItem('text')], {type: "text/plain;charset=utf-8"});
-        // FileSaver.saveAs(blob, "testfile1.txt");
       }
   
     };
