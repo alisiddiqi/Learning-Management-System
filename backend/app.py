@@ -515,7 +515,6 @@ def getGrades(courseID, studentID):
         response.status_code = 200
         cur.close()
         return response
-    
 
 @app.route('/courses/sendEvaluations/', methods=["GET"])
 def func4():
