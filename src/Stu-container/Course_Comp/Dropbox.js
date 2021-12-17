@@ -10,7 +10,7 @@ function Dropbox(props) {
                     <b><p>{props.info.assignment_name}</p></b>
                 </Col>
                 <Col>
-                    <FileDown name={props.info.filename} />
+                    <FileDown name={props.info.assignment_name} />
                     <p>Due: {props.info.due}</p>
                 </Col>
                 <Col>
