@@ -1,13 +1,18 @@
 import React from 'react';
 import MyPDF from '../../Files/test.pdf';
+import FileSaver from 'file-saver';
+import {Button} from 'react-bootstrap';
 
 function FileDownload(props) {
     const url = sessionStorage.getItem("url");
     const file = sessionStorage.getItem(`${props.uploaded}`);
-
+    const downloadFile = (e) => {
+        var blob = new Blob([localStorage.getItem('text')], {type: "text/plain;charset=utf-8"});
+        FileSaver.saveAs(blob, "text.txt");
+    }
     return (
         <div>
-            <a href={MyPDF} download="My_File.pdf"> Download this </a>
+            <Button class="btn" onClick={downloadFile}> DOWNLOAD</Button>
         </div>
     );
 }

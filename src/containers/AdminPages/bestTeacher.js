@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 function BestTeacher(props){
     const [data,setData]=useState([]);
     const fetchinstructors = ()=>{
-        fetch('/courses/recieveEvaluations/'+props.match.params.courseID)
+        fetch('/bestTeacher/'+props.match.params.courseID)
         .then(res=>res.json())
         .then(json=>setData(json));
     }
@@ -12,7 +12,7 @@ function BestTeacher(props){
         fetchinstructors();
     },[]);
     return(
-        <h1>Hello</h1>
+        <h1>The best Teacher is {data}</h1>
     );
 }
 

@@ -8,7 +8,7 @@ import Courses from "../Stu-container/Home_Comp/Courses";
 function InsHome() {
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
-      fetch('/students/KaiStudent/courselist')
+      fetch('/instructors/'+sessionStorage.getItem('teacherID')+'/courseList')
       .then(res=>res.json())
       .then(json=>setData(json));
     }
@@ -19,7 +19,6 @@ function InsHome() {
     return (
         <div className="home-page">
             <Banner />
-            
             <Courses courseInfo={data} user="Teach" />
         </div>
     );
