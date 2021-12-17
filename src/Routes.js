@@ -71,7 +71,7 @@ export default function Routes() {
         <Route exact path="/InsHome/:teacherID/:courseID/Content"> <InsContentPage /> </Route>
         <Route exact path="/InsHome/:teacherID/:courseID/ClassList"> <InsClassList /> </Route>
         <Route exact path="/InsHome/:teacherID/:courseID/Assignments"> <InsAssignment /> </Route>
-        <Route exact path="/InsHome/:teacherID/Profile"> <InsProfile /> </Route>
+        <Route exact path="/InsHome/:teacherID/:courseID/Profile"> <InsProfile /> </Route>
         <Route exact path="/adminhome/student/:username"><ProfilePage/></Route>
         <Route exact path="/adminhome/teacher/:username"><InsProfilePage/></Route>
         <Route exact path="/adminhome/evaluations/send"><EvalutionSend/></Route>

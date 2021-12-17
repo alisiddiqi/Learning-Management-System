@@ -10,7 +10,7 @@ import Main from "./FileUpload";
 function StuHome() {
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
-      fetch('/students/KaiStudent/courselist')
+      fetch('/students/'+sessionStorage.getItem("stuID")+'/courselist')
       .then(res=>res.json())
       .then(json=>setData(json));
     }

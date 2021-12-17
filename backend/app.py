@@ -34,10 +34,10 @@ def courseContent(courseID):
     cur.close()
     return response
 
-@app.route('/students/<string:stuUser>/courselist', methods=["GET"])
-def courseList(stuUser):
+@app.route('/students/<int:stuID>/courselist/', methods=["GET"])
+def courseList(stuID):
     cur = mysql.connection.cursor()
-    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.username=(%s)", (stuUser,))
+    cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.studentID=(%s)", (stuID,))
     courses = cur.fetchall()
     response = jsonify(courses)
     response.status_code = 200
@@ -77,9 +77,10 @@ def studentGrades(stuUser, courseID):
         cur.close()
         return response
     
-@app.route('/students/<string:stuID>/profile', methods=["GET"])
+@app.route('/students/<string:stuID>/profile/', methods=["GET"])
 def studentProfile(stuID):
     if request.method == 'GET':
+        print(stuID)
         cur = mysql.connection.cursor()
         cur.execute("select user.firstname, user.lastname, user.username, user.email from user, student where student.username=user.username and student.studentID=(%s)", (stuID,))
         profile = cur.fetchall()
@@ -164,7 +165,7 @@ def studentCourseAssignments(stuID, courseID):
 
 """ ---- INSTRUCTOR API ----- """
 
-@app.route('/instructors/<string:insID>/courseList', methods=["GET"])
+@app.route('/instructors/<string:insID>/courseList/', methods=["GET"])
 def teacherCourseList(insID):
     if request.method == "GET":
         cur = mysql.connection.cursor()
@@ -220,11 +221,11 @@ def teacherAddGrade():
         cur.close()
         return jsonify("sucess edited")
 
-@app.route('/teacher/<string:insID>/profile', methods=["GET"])
+@app.route('/teacher/<string:insID>/profile/', methods=["GET"])
 def teacherProfile(insID):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
-        cur.execute("select user.firstname, user.lastname, user.username, user.email from user, teacher where teacher.username=user.username and teacher.teacherid=(%s)", (insID,))
+        cur.execute("select user.firstname, user.lastname, user.username, user.email, teacher.isTA from user, teacher where teacher.username=user.username and teacher.teacherid=(%s)", (insID,))
         profile = cur.fetchall()
         response = jsonify(profile)
         response.status_code = 200
