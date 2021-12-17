@@ -10,7 +10,7 @@ import '../../Stu-container/stu_main.css';
 function ContentPage(){
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
-      fetch('/instructors/'+sessionStorage.getItem('teacherID')+'/courses')
+      fetch('/teacher/'+sessionStorage.getItem('teacherID')+'/courses/'+sessionStorage.getItem('courseID')+'/content/')
       .then(res=>res.json())
       .then(json=>setData(json));
     }
@@ -22,7 +22,7 @@ function ContentPage(){
                 <Banner />
                 <GenNav navData={GenData.insNav} user="Teacher" />
                 <div className="contentBody">
-                    <PageBody lectureInfo={StuData.LecturesData} docInfo={StuData.DocumentData} title="Content"/>
+                    <PageBody lectureInfo={StuData.LecturesData} docInfo={data} title="Content"/>
                 </div>
             </div>
         );

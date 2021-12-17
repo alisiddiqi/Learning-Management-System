@@ -4,7 +4,7 @@
 
 use lmsdb; ## initiate the database
 
-//Testing out INSERT user
+##Testing out INSERT user
 
 INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("JayStudent","Jay","Gurjar","Chinook street","student","Jay123","JayGurjar@gmail.com");
 INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES ("AliStudent","Ali","Siddiqi","Skyview 123","student","Ali234","AliSiddiqi@gmail.com");
@@ -26,14 +26,14 @@ INSERT INTO user(username,firstname,lastname,address,role,password,email) VALUES
 SELECT * FROM user;
 
 ## Must create the user before the student
-//Insert students
+##Insert students
 INSERT INTO student(username,studentID,major,year) VALUES("JayStudent",1000,"CPSC",3);
 INSERT INTO student(username,studentID,major,year) VALUES("AliStudent",1001,"CPSC",3);
 INSERT INTO student(username,studentID,major,year) VALUES("KaiStudent",1002,"CPSC",3);
 
 
 
-//Insert teachers
+##Insert teachers
 
 INSERT INTO teacher(username,teacherid,isTA) VALUES("MoussaviTeacher",9999,"Teacher");
 INSERT INTO teacher(username,teacherid,isTA) VALUES("MourshirPourTeacher",10000,"Teacher");
@@ -48,10 +48,10 @@ INSERT INTO teacher(username,teacherid,isTA) VALUES("ChrisMossmanTA",10004,"TA")
 
 
 ## Test out different conditions to extract columns
-//Get name of the student
+##Get name of the student
 SELECT firstname, lastname FROM user,student WHERE student.username = user.username AND studentID = 1000;
 
-//Testing out the relationships
+##Testing out the relationships
 
 INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(471,"Database systems","MWF", 0,0,0);
 INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(480,"Principles of Software Development","MWF", 0,0,0);
@@ -59,7 +59,7 @@ INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(
 INSERT INTO course(courseid, name,time, isEval, finalEval, evalComplete) VALUES(511,"Embedded Systems","MWF",0,0,0);
 
 
-//Set who teaches which course
+##Set who teaches which course
 
 INSERT INTO Courseteacher(courseid,teacherid) VALUES(471,10002);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,9999);
@@ -73,10 +73,10 @@ INSERT INTO CourseTeacher(courseid,teacherid) VALUES(511,10005);
 INSERT INTO Courseteacher(courseid,teacherid) VALUES(471,10006);
 INSERT INTO CourseTeacher(courseid,teacherid) VALUES(480,10006);
 
-//Select all teachers with names
+##Select all teachers with names
 SELECT teacherid, firstname, lastname, isTA FROM user,teacher WHERE teacher.username = user.username;
 
-//Show names of who is teaching what
+##Show names of who is teaching what
 SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA 
 	FROM courseteacher, course, user, teacher
 	WHERE courseteacher.courseid = course.courseid AND 
@@ -84,7 +84,7 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 		teacher.username = user.username;
 
 
-// Show the all the courses a teacher teaches
+## Show the all the courses a teacher teaches
 SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA 
 	FROM courseteacher, course, user, teacher
 	WHERE courseteacher.courseid = course.courseid AND 
@@ -92,7 +92,7 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 		teacher.username = user.username AND
 		teacher.teacherid = 10006;
 
-// Show all teachers in a course based on course ID 
+## Show all teachers in a course based on course ID 
 SELECT course.courseid, course.name, user.firstname,  user.lastname, teacher.isTA, user.email
 	FROM courseteacher, course, user, teacher
 	WHERE courseteacher.courseid = course.courseid AND 
@@ -100,7 +100,7 @@ SELECT course.courseid, course.name, user.firstname,  user.lastname, teacher.isT
 		teacher.username = user.username AND 
 		course.courseid = 471;
 
-//select all TA who is teaching the course
+##select all TA who is teaching the course
 SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA 
 	FROM courseteacher, course, user, teacher
 	WHERE courseteacher.courseid = course.courseid AND 
@@ -108,7 +108,7 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 		teacher.username = user.username AND 
 		isTA = "TA";
 
-//select All professors who is teaching a specific course
+##select All professors who is teaching a specific course
 SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA 
 	FROM courseteacher, course, user, teacher
 	WHERE courseteacher.courseid = course.courseid AND 
@@ -116,7 +116,7 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, teacher.isTA
 		teacher.username = user.username AND 
 		course.courseid = 480;
 
-//set which courses the student is taking
+##set which courses the student is taking
 
 INSERT INTO takes(courseid,studentID) VALUES(457,1000);
 INSERT INTO takes(courseid,studentID) VALUES(457,1002);
@@ -133,14 +133,14 @@ INSERT INTO takes(courseid,studentID) VALUES(511,1000);
 INSERT INTO takes(courseid,studentID) VALUES(511,1001);
 INSERT INTO takes(courseid,studentID) VALUES(511,1002);
 
-//Check who is taking which course
+##Check who is taking which course
 SELECT course.courseid, course.name, user.firstname, user.lastname, user.username, student.studentid
 	FROM takes, course, student, user
 	WHERE takes.courseid = course.courseid AND 
 		student.studentid = takes.studentid AND
 		student.username = user.username;
 
-//Select all students from a specific course
+##Select all students from a specific course
 SELECT course.courseid, course.name, user.firstname, user.lastname, user.username, student.studentid
 	FROM takes, course, student, user
 	WHERE takes.courseid = course.courseid AND 
@@ -148,7 +148,7 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, user.usernam
 		student.username = user.username AND
 		course.courseid = 471;
 
-//Select all courses from a specific student
+##Select all courses from a specific student
 SELECT course.courseid, course.name, user.firstname, user.lastname, user.username, student.studentid
 	FROM takes, course, student, user
 	WHERE takes.courseid = course.courseid AND 
@@ -156,68 +156,70 @@ SELECT course.courseid, course.name, user.firstname, user.lastname, user.usernam
 		student.username = user.username AND
 		user.firstname = "Jay";
 
-//Selecting stuff statements
+##Selecting stuff statements
 SELECT * FROM student;
 SELECT * FROM teacher;
 SELECT * FROM user;
-SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username;//Select all teacher names
-SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username AND isTA = "TA"; // Select all TA
+SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username;
+##Select all teacher names
+SELECT firstname,lastname from teacher, user WHERE teacher.username = user.username AND isTA = "TA"; 
+## Select all TA
 
-//Selecting all students and revealing their info	
+##Selecting all students and revealing their info	
 SELECT DISTINCT course.courseid,course.name, student.studentID, firstname, lastname, user.username 
 	from user,student,course, takes 
 	WHERE student.studentID = takes.studentID 
 		AND student.username = user.username
 		AND user.firstname = "Jay";
 		
-//Inserting Evaluation
+##Inserting Evaluation
 INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10001, "Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes", 471, 1000);
 INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10002, "Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes");
 INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10003, "Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
 INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10004, "Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
 INSERT INTO evaluation(teacherid,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10, courseid, studentID) VALUES (10005, "No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes");
 
-// Insert into document
+## Insert into document
 INSERT INTO document(id, file, courseid, teacherid) VALUES (1, "lecture.pdf", 471, 10001);
 
-// Select all the documents for a course
+## Select all the documents for a course
 SELECT DISTINCT document.id, file, TO_BASE64(file),
     FROM_BASE64(TO_BASE64(file))
 	FROM course, document, user
 		WHERE course.courseID = document.courseid AND
 			  course.courseid = 471;
 
-// Delete a document in the course for teacher
+## Delete a document in the course for teacher
 DELETE FROM document where document.id = 2;
 
-//Select all teachers evaluation: outputs, firstname, lastname, teacherid and Questions
+##Select all teachers evaluation: outputs, firstname, lastname, teacherid and Questions
 SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
 	FROM teacher, user, teacher_evaluation
 		WHERE teacher.username = user.username AND 
 			  teacher.teacherid = teacher_evaluation.teacherid;
 
-//Select the teacher evaluation using teacherid, output firstname and lastname included
+##Select the teacher evaluation using teacherid, output firstname and lastname included
 SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
 	FROM teacher, user, teacher_evaluation
 		WHERE teacher.username = user.username AND 
 			  teacher.teacherid = teacher_evaluation.teacherid AND 
 			  teacher.teacherid = 10001;
 			  
-//Select the evaluations for TAs only, outputs firstname, lastname and questions
+##Select the evaluations for TAs only, outputs firstname, lastname and questions
 SELECT firstname, lastname, teacher.teacherid, Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10
 	FROM teacher, user, teacher_evaluation
 		WHERE teacher.username = user.username AND 
 			  teacher.teacherid = teacher_evaluation.teacherid AND 
 			  teacher.isTA = "TA";
 
-//Select students class List of a course
+##Select students class List of a course
 SELECT DISTINCT user.firstname, user.lastname, email
-	FROM course, user, student, takes,
+	FROM course, user, student, takes
 		WHERE (student.studentID = takes.studentID AND
 		user.role = 'student'
 		AND takes.courseID = 471);
 
-//Select teachers class List of a course
+##Select teachers class List of a course
 SELECT user.firstname, user.lastname, email
 	FROM user, course, courseteacher, teacher
 		WHERE ( 
@@ -226,38 +228,38 @@ SELECT user.firstname, user.lastname, email
 	    AND courseteacher.courseid = 471
 	);
 
-//Delete statements, will cascade into other tables.
+##Delete statements, will cascade into other tables.
 DELETE FROM student WHERE student.username = "JayStudent"; 
 DELETE FROM user WHERE username = "Ali";
 
-//Delete a teacher. The teacher will be deleted from teacher_evaluation, teacher, courseteacher. course will not be affected
+##Delete a teacher. The teacher will be deleted from teacher_evaluation, teacher, courseteacher. course will not be affected
 DELETE FROM user WHERE user.username = "Pafederl";
 
 
-//////////////////////////******************Evaluation portion ********************//////////////////////////
+##//////////////////////////******************Evaluation portion ********************//////////////////////////
 
-Q1 The TA starts the lab session on time:
+##Q1 The TA starts the lab session on time:
 
-Q2 The TA uses the time of the lab effectively:
+##Q2 The TA uses the time of the lab effectively:
 
-Q3 The TA answers the questions satisfactorily:
+##Q3 The TA answers the questions satisfactorily:
 
-Q4 The TA marks the assignments fairly:
+##Q4 The TA marks the assignments fairly:
 
-Q5 The TA marks the assignments on time:
+##Q5 The TA marks the assignments on time:
 
-Q6 The TA posts the solutions on time:
+##Q6 The TA posts the solutions on time:
 
-Q7 The TA demonstrated enough knowledge of the material covered:
+##Q7 The TA demonstrated enough knowledge of the material covered:
 
-Q8 The TA responses to emails and messages on time:
+##Q8 The TA responses to emails and messages on time:
 
-Q9 The TA treats the students respectfully:
+##Q9 The TA treats the students respectfully:
 
-Q10 I will be happy to have the same TA again:
+##Q10 I will be happy to have the same TA again:
 
 
-////////////////////////////****************Assignment Portion**********//////////////////////////
+##////////////////////////////****************Assignment Portion**********//////////////////////////
 
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (1,"Homework 1", "2021-12-14", "Solve Question 1", 471);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (2,"Homework 2", "2021-12-14", "Solve Question 2", 471);
@@ -273,16 +275,16 @@ INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, course
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (9,"Coding Challenge 1", "2021-11-30", "Complete coding challenge 1", 457);
 INSERT INTO Assignment(assignment_id, assignment_name, due_date, content, courseid) VALUES (10,"Coding Challenge 2", "2021-11-30", "Complete coding challenge 2", 457);
 
-// Select all the assignmnets in a course
+## Select all the assignmnets in a course
 SELECT Assignment.assignment_name, course.courseid
 	FROM  Assignment, course
 	WHERE course.courseid = Assignment.courseid AND
 		  course.courseid = 471;
 
-// Delete a assignment for a course
+## Delete a assignment for a course
 DELETE FROM Assignment WHERE Assignment.assignment_id = 2; 
 
-//Inserting into submit, takes in studentID and assignment_id as primary keys
+##Inserting into submit, takes in studentID and assignment_id as primary keys
 
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 1, 1000, 90);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 2, 1000, 90);
@@ -317,7 +319,7 @@ INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 8, 1002, 30);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 9, 1002, 0);
 INSERT INTO submit(assignment_id,studentID, grade) VALUES ( 10, 1002, 100);
 
-//Show all the assignments that a specific student is taking
+##Show all the assignments that a specific student is taking
 SELECT user.firstname, user.lastname, user.username, student.studentid, submit.assignment_id, Assignment.assignment_name, submit.grade, course.courseid
 	FROM student, user, submit, Assignment, course
 	WHERE student.studentID = submit.studentID AND 
@@ -326,7 +328,7 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, submit.a
 		course.courseid = Assignment.courseid AND
 		user.firstname = "Ali";
 
-//Show all the assignments that a specific student is taking in a course
+##Show all the assignments that a specific student is taking in a course
 SELECT user.firstname, user.lastname, user.username, student.studentid, submit.assignment_id, Assignment.assignment_name, submit.grade, course.courseid
 	FROM student, user, submit, Assignment, course
 	WHERE student.studentID = submit.studentID AND 
@@ -336,7 +338,7 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, submit.a
 		course.courseid = 471 AND
 		user.username = "AliStudent";
 		
-//Calculate the average grade for a specific student
+##Calculate the average grade for a specific student
 SELECT user.firstname, user.lastname, user.username, student.studentid, course.courseid, course.name, AVG(submit.grade)
 	FROM student, user, submit, Assignment, course
 	WHERE student.studentID = submit.studentID AND 
@@ -345,12 +347,12 @@ SELECT user.firstname, user.lastname, user.username, student.studentid, course.c
 		user.firstname = "Ali" AND Assignment.courseid = 457;
 
 
-// Show all the submissions of students for a specific assignment
+## Show all the submissions of students for a specific assignment
 SELECT student.studentid, course.courseid, course.name, submit.grade, Assignment.assignment_id
 	FROM student, submit, Assignment, course
 	WHERE student.studentID = submit.studentID AND 
 		submit.assignment_id = Assignment.assignment_id AND 
-		AND Assignment.courseid = course.courseid 
+		Assignment.courseid = course.courseid 
 		and course.courseid = 471;
 
 

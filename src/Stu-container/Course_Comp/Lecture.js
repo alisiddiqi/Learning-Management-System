@@ -9,10 +9,9 @@ function Lecture(props) {
             <Row>
                 <Col>
                     <h3>{props.info.name}</h3>
-                    <p>{props.info.instructor}</p>
                 </Col>
                 <Col>
-                    <Button variant="outline-primary"><FileDown name={sessionStorage.getItem(props.info.filename)}/>Download</Button>
+                    <Button variant="outline-primary"><FileDown data={props.info}/>Download</Button>
                 </Col>
             </Row>
         </Container>

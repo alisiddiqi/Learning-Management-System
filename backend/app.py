@@ -10,9 +10,9 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3307
+app.config['MYSQL_PORT'] = 3306
 
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = ""
 app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 CORS(app, expose_headers='Authorization')
@@ -109,6 +109,36 @@ def studentAssignments(stuUser, courseID):
     response.status_code = 200
     cur.close()
     return response
+
+@app.route('/teacher/<int:insID>/courses/<int:courseID>/content/', methods=["GET", "POST","DELETE"])
+def teacherCourseContent(insID, courseID):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("select * from document where teacherid = (%s) AND courseid = (%s)", (insID, courseID))
+        courses = cur.fetchall()
+        response = jsonify(courses)
+        response.status_code = 200
+        cur.close()
+        return response
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        json = request.json
+        file = json['file']
+        doc_name = json['document_name']
+        id = randrange(50, 10000)
+        cur.execute("INSERT INTO document(id, file, courseid, teacherid, document_name) VALUES (%s, %s, %s, %s,%s)", (id, file, courseID, insID, doc_name))
+        mysql.connection.commit()
+        cur.close()
+        return "successfully added "
+    if request.method == 'DELETE':
+        cur = mysql.connection.cursor()
+        json = request.json
+        docName = json['document_name']
+        cur.execute(
+            "delete from document where document.document_name=(%s)", (docName,))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess delete")
 
 @app.route('/students/<int:stuID>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
 def studentCourseAssignments(stuID, courseID):
