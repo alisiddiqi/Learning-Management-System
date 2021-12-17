@@ -93,13 +93,7 @@ function CourseBody(props) {
                         </Col>
                     </Row>
                 </Container>
-                {props.dropboxInfo.filter((data) => {
-                    if (searchTerm === "") {
-                        return data;
-                    } else if (data.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return data;
-                    }
-                }).map((data) => <Dropbox info={data} uploaded={searchTerm} />)}
+                {props.dropboxInfo.map((data) => <Dropbox info={data} uploaded={searchTerm} />)}
             </div>
         );
     }
