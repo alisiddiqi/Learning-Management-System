@@ -235,7 +235,7 @@ def teacherCourseContent(insID, courseID):
     if request.method == 'DELETE':
         cur = mysql.connection.cursor()
         json = request.json
-        docName = json['document_name']
+        docName = json['docname']
         cur.execute(
             "delete from document where document.document_name=(%s)", (docName,))
         mysql.connection.commit()
