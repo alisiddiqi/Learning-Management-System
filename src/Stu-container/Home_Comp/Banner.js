@@ -8,11 +8,10 @@ function Banner(props) {
             <Container className="banner" fluid>
                 <Row>
                     <Col>
-                        <Button className="profile-btn" href={props.bannerData.profilePath+sessionStorage.getItem("stuID")}>{props.bannerData.profile}</Button>
+                        <Button className="profile-btn" href={props.bannerData.profilePath+sessionStorage.getItem("stuID")}>Profile</Button>
                     </Col>
                     <Col md={6}><h1>University of Calgary</h1></Col>
                     <Col>
-                        <Button className="notification-btn" variant="outline" href="/Tools"><img className="not-btn" src={notification}/></Button>
                     </Col>
                 </Row>
             </Container>
