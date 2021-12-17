@@ -37,7 +37,7 @@ function FileUpload(props) {
             },
             body: JSON.stringify({
               document_name: sessionStorage.getItem("fileName"),
-              file: "NA",
+              file: "N/A",
               courseid: sessionStorage.getItem("courseID"),
               teacherid: sessionStorage.getItem('teacherID')
           }
