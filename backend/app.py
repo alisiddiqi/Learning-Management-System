@@ -101,6 +101,26 @@ def studentAssignments(stuUser, courseID):
     cur.close()
     return response
 
+@app.route('/teacher/<int:insID>/courses/<int:courseID>/content/', methods=["GET", "POST"])
+def teacherCourseContent(insID, courseID):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("select * from document where teacherid = (%s) AND courseid = (%s)", (insID, courseID))
+        courses = cur.fetchall()
+        response = jsonify(courses)
+        response.status_code = 200
+        cur.close()
+        return response
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        json = request.json
+        file = json['file']
+        doc_name = json['document_name']
+        id = randrange(50, 10000)
+        cur.execute("INSERT INTO document(id, file, courseid, teacherid, document_name) VALUES (%s, %s, %s, %s,%s)", (id, file, courseID, insID, doc_name))
+        mysql.connection.commit()
+        cur.close()
+
 @app.route('/students/<int:stuID>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
 def studentCourseAssignments(stuID, courseID):
     if request.method == 'GET':
