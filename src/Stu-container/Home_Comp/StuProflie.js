@@ -8,7 +8,6 @@ import '../stu_main.css';
 function StuProfile() {
     const [profileData,setProfileData]=useState([]); 
     const [coursesData,setCoursesData]=useState([]);
-    var [temp,setTemp] = useState([]);
     const fetchProfile = ()=>{
         console.log("inside");
         fetch('/students/'+sessionStorage.getItem("stuID")+'/profile/')
