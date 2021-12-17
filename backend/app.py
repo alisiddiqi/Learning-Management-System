@@ -151,7 +151,7 @@ def studentCourseAssignments(stuID, courseID):
         courseid = json['courseid']
         id = randrange(50, 10000)
         cur.execute("INSERT INTO Assignment(assignment_id,assignment_name, due_date, content, courseid) VALUES (%s, %s,%s,%s,%s)",
-                    (id, assignmentName, due_date, content, courseid))
+                    (id, assignmentName, due_date, content, courseID))
         cur.execute("INSERT INTO submit(assignment_id, studentID, grade)  VALUES (%s,%s,%s)", (id,stuID, 0))
         mysql.connection.commit()
         cur.close()
@@ -272,7 +272,7 @@ def func(stuUser):
             "delete from takes where studentID=(%s) and courseid=(%s) ", (studentID, courseid))
         mysql.connection.commit()
         cur.close()
-        return jsonify("success delete")
+        return jsonify("sucess delete")
 
 # End of Admin student APIs
 ###################################################################################################################################
