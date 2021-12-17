@@ -36,9 +36,9 @@ export default function Login() {
   }
 
   if(data.length!==0){
-    studentID = data[0].studentID;
+    studentID = data[0].adminid;
     userHasAuthenticated(true);
-    history.push('/AdminHome/'+studentID);
+    history.push('/adminhome/'+studentID);
     sessionStorage.setItem("AdminId", studentID);
   }else{
     userHasAuthenticated(false);
@@ -51,7 +51,7 @@ export default function Login() {
           <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
+            type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
