@@ -307,10 +307,8 @@ def func2(insUser):
         json = request.json
         courseid = json['courseID']
         teacherID = json['teacherID']
-        print(json)
         cur.execute(
             "INSERT INTO courseteacher(courseid,teacherID) values (%s,%s)", (courseid, teacherID))
-        print("sucess")
         mysql.connection.commit()
         cur.close()
         return jsonify("sucess insert")
@@ -437,13 +435,11 @@ def settingEvals(courseID, studentID):
 @app.route('/grades/<string:courseID>/<string:studentID>/', methods=["GET", "POST"])
 def getGrades(courseID, studentID):
     if(request.method == "GET"):
-        print(courseID+'  '+studentID)
         cur = mysql.connection.cursor()
         cur.execute(
             "select assignment_name, grade from submit,assignment where submit.assignment_id = assignment.assignment_id and submit.studentid=(%s) and courseid=(%s)", (studentID, courseID))
         profile = cur.fetchall()
         response = jsonify(profile)
-        print(profile)
         response.status_code = 200
         cur.close()
         return response

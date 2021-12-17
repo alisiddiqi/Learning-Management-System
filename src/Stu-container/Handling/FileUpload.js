@@ -3,6 +3,7 @@ import {Button} from 'react-bootstrap';
 import FileSaver from "file-saver";
 
 function FileUpload() {
+  var ctr=0;
     const fileRef = useRef();
     const HandleChange = (e) => {
       e.preventDefault();
@@ -13,22 +14,27 @@ function FileUpload() {
         localStorage.setItem(sessionStorage.getItem("fileName"), read.result.toString());
       }
     };
-    const handleFileSubmit = ()=>{
-      fetch('/students/KaiStudent/courses/'+sessionStorage.getItem("courseID")+'/dropbox/',{
-          method: "POST",
-          body: JSON.stringify({
-              assignment_name: sessionStorage.getItem("fileName"),
-              due_date: "2022/1/1",
-              content: "N/A",
-              courseid: sessionStorage.getItem("courseID")
-          }
-          ),
-          headers: {
-              "Content-type": "application/json; charset=UTF-8" 
-          }
-      })
-    }
-    
+
+    // let handleFileSubmit = ()=> {
+    //   console.log(ctr)
+    //   if(ctr ==1) {
+    //   {console.log(localStorage.getItem("TextTest"))}
+    //   const response =await fetch('/students/'+sessionStorage.getItem("stuID")+'/courses/'+sessionStorage.getItem("courseID")+'/dropbox/',{
+    //       method: "POST",
+    //       headers: {
+    //           "Content-type": "application/json; charset=UTF-8" 
+    //       },
+    //       body: JSON.stringify({
+    //         assignment_name: sessionStorage.getItem("fileName"),
+    //         due_date: "2022/1/1",
+    //         content: localStorage.getItem(sessionStorage.getItem("fileName")),
+    //         courseid: sessionStorage.getItem("courseID")
+    //     }
+    //     )
+    //   })
+    // }
+    // }
+
     return (
       <div>
         <Button onClick={() => fileRef.current.click()}>
@@ -42,7 +48,23 @@ function FileUpload() {
           hidden
         />
         <p id="flag" style={{margin: "5px", display: "none"}}>Uploaded</p>
-        <Button onClick={handleFileSubmit()}>
+        <Button 
+         onClick={async()=>{
+           const response=await fetch('/students/'+sessionStorage.getItem("stuID")+'/courses/'+sessionStorage.getItem("courseID")+'/dropbox/',{
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8" 
+            },
+            body: JSON.stringify({
+              assignment_name: sessionStorage.getItem("fileName"),
+              due_date: "2022/1/1",
+              content: localStorage.getItem(sessionStorage.getItem("fileName")),
+              courseid: sessionStorage.getItem("courseID")
+          }
+          )
+        })
+          }
+        }>
           Submit
         </Button>
       </div>
