@@ -56,10 +56,9 @@ def courseContent(courseID):
     response = jsonify(courses)
     response.status_code = 200
     cur.close()
-    return response
+    return response 
 
-@app.route('/students/<int:stuID>/courselist/', methods=["GET"])
-
+@app.route('/students/<int:stuID>/courseList/', methods=["GET"])
 def courseList(stuID):
     cur = mysql.connection.cursor()
     cur.execute("select course.courseid, course.name, course.time from takes,course,student,user where takes.courseid=course.courseid and student.studentid=takes.studentid and student.username=user.username and student.studentID=(%s)", (stuID,))
