@@ -12,7 +12,7 @@ function BestTeacher(props){
         fetchinstructors();
     },[]);
     return(
-        <h1>Hello</h1>
+        <h1>The best Teacher is {data}</h1>
     );
 }
 
