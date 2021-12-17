@@ -5,6 +5,8 @@ from werkzeug.utils import secure_filename
 from flask_cors import CORS, cross_origin
 import logging
 import os
+from random import randrange
+
 
 
 logging.basicConfig(level=logging.INFO)
@@ -161,8 +163,8 @@ def studentAssignments(stuUser, courseID):
     return response
 
 
-@app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/<int:assignmnetID>', methods=["GET", "POST"])
-def studentCourseAssignments(stuUser, courseID, assignmnetID):
+@app.route('/students/<string:stuUser>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
+def studentCourseAssignments(stuUser, courseID):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
         cur.execute("select Assignment.assignment_id, Assignment.assignment_name, submit.grade, course.courseid from student, user, submit, Assignment, course where student.studentID = submit.studentID and submit.assignment_id = Assignment.assignment_id and student.username = user.username and course.courseid = Assignment.courseid and user.username = (%s) and course.courseid = (%s)", (stuUser, courseID))
@@ -174,13 +176,17 @@ def studentCourseAssignments(stuUser, courseID, assignmnetID):
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         json = request.json
-        assignmentName = json['assignmentName']
+        assignmentName = json['assignment_name']
         file = json['file']
-        cur.execute()
+        due_date = json['due_date']
+        content = json['content']
+        courseid = json['courseid']
+        id = randrange(50, 10000)
+        cur.execute("INSERT INTO Assignment(assignment_id,assignment_name, due_date, content, courseid) VALUES (%s, %s,%s,%s,%s)",
+                    (id, assignmentName, due_date, content, courseid))
         mysql.connection.commit()
         cur.close()
-        return jsonify("sucess insert")
-
+        return "Sucessfully changed"
 
 """ ---- INSTRUCTOR API ----- """
 
@@ -478,7 +484,7 @@ def settingEvals(courseID, studentID):
         return "Sucessfully changed"
 
 
-@app.route('/grades/<string:courseID>/<string:studentID>/', methods=["GET"])
+@app.route('/grades/<string:courseID>/<string:studentID>/', methods=["GET", "POST"])
 def getGrades(courseID, studentID):
     if(request.method == "GET"):
         print(courseID+'  '+studentID)
@@ -491,7 +497,7 @@ def getGrades(courseID, studentID):
         response.status_code = 200
         cur.close()
         return response
-
+    
 
 @app.route('/courses/sendEvaluations/', methods=["GET"])
 def func4():

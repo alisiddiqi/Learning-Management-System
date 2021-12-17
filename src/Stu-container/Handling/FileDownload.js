@@ -8,7 +8,7 @@ function FileDownload(props) {
     const file = sessionStorage.getItem(`${props.uploaded}`);
     const downloadFile = (e) => {
         var blob = new Blob([localStorage.getItem('text')], {type: "text/plain;charset=utf-8"});
-        FileSaver.saveAs(blob, "testfile1.txt");
+        FileSaver.saveAs(blob, "text.txt");
     }
     return (
         <div>
