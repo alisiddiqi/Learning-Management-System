@@ -46,7 +46,7 @@ export default function Routes() {
         <Route exact path="/instructorlogin">
             <InstructorLogin />
         </Route>
-        <Route exact path ="/adminhome">
+        <Route exact path ="/adminhome/:adminID">
           <AdminHome/>
         </Route>
         <Route exact path = "/adminhome/student/view">

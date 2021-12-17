@@ -29,7 +29,7 @@ mysql = MySQL(app)
 def adminLogin(email,password):
     if(request.method == "GET"):
         cur = mysql.connection.cursor()
-        cur.execute("select student.studentID from user, student where user.username=student.username and user.username=(%s) and user.password=(%s)", (email, password))
+        cur.execute("select admin.adminid from admin, user where user.username=admin.username and user.username=(%s) and user.password=(%s)", (email, password))
         profile = cur.fetchall()
         response = jsonify(profile)
         cur.close()
