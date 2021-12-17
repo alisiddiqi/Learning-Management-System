@@ -132,6 +132,7 @@ function PageBody(props) {
         );
     }
     if (props.title === "ClassList") {
+        console.log(props.classInfo)
         return (
             <div>
                 <h1 className="courseTitle"><b>{props.title}</b></h1>
@@ -147,9 +148,9 @@ function PageBody(props) {
                 {props.classInfo.filter((data) => {
                     if (searchTerm === "") {
                         return data;
-                    } else if (data.first_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.firstname.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
-                    } else if (data.last_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (data.lastname.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return data;
                     }
                 }).map((data) => <EmailList info={data} />)}
