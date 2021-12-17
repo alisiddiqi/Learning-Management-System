@@ -7,7 +7,6 @@ import GenNav from '../../Stu-container/Home_Comp/GenNav';
 import PageBody from './PageBody';
 import '../../Stu-container/stu_main.css';
 
-
 function ContentPage(){
     const [data, setData]=useState([]);
     const fetchStudents = ()=>{
