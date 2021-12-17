@@ -2,7 +2,7 @@ import React, { useRef,useState,useEffect } from 'react';
 import {Button} from 'react-bootstrap';
 import FileSaver from "file-saver";
 
-function FileUpload() {
+function FileUpload(props) {
     const fileRef = useRef();
     const HandleChange = (e) => {
       e.preventDefault();
@@ -15,7 +15,41 @@ function FileUpload() {
     };
 
     return (
+      props.type === "Teacher" ? (
       <div>
+        <Button onClick={() => fileRef.current.click()}>
+          Upload
+        </Button>
+        <input
+          ref={fileRef}
+          onChange={HandleChange}
+          multiple={false}
+          type="file"
+          hidden
+        />
+        <p id="flag" style={{margin: "5px", display: "none"}}>Uploaded</p>
+        <Button 
+         onClick={async()=>{
+           const response=await fetch('/teacher/'+sessionStorage.getItem('teacherID')+'/courses/'+sessionStorage.getItem('courseID')+'/content/',{
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8" 
+            },
+            body: JSON.stringify({
+              document_name: sessionStorage.getItem("fileName"),
+              file: localStorage.getItem(sessionStorage.getItem("fileName")),
+              courseid: sessionStorage.getItem("courseID"),
+              teacherid: sessionStorage.getItem('teacherID')
+          }
+          )
+        })
+          }
+        }>
+          Submit
+        </Button>
+      </div>
+      ) : (
+        <div>
         <Button onClick={() => fileRef.current.click()}>
           Upload
         </Button>
@@ -47,6 +81,7 @@ function FileUpload() {
           Submit
         </Button>
       </div>
+      )
     );
 }
 

@@ -101,7 +101,7 @@ def studentAssignments(stuUser, courseID):
     cur.close()
     return response
 
-@app.route('/teacher/<int:insID>/courses/<int:courseID>/content/', methods=["GET", "POST"])
+@app.route('/teacher/<int:insID>/courses/<int:courseID>/content/', methods=["GET", "POST","DELETE"])
 def teacherCourseContent(insID, courseID):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
@@ -120,6 +120,16 @@ def teacherCourseContent(insID, courseID):
         cur.execute("INSERT INTO document(id, file, courseid, teacherid, document_name) VALUES (%s, %s, %s, %s,%s)", (id, file, courseID, insID, doc_name))
         mysql.connection.commit()
         cur.close()
+        return "successfully added "
+    if request.method == 'DELETE':
+        cur = mysql.connection.cursor()
+        json = request.json
+        docName = json['document_name']
+        cur.execute(
+            "delete from document where document.document_name=(%s)", (docName,))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify("sucess delete")
 
 @app.route('/students/<int:stuID>/courses/<int:courseID>/dropbox/', methods=["GET", "POST"])
 def studentCourseAssignments(stuID, courseID):
