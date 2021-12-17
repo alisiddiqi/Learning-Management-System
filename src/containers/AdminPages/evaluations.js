@@ -31,6 +31,7 @@ function App (){
               {
                  data.map((item)=>(
                      console.log(item.length),
+                     console.log(item),
                     <tr key={item['courseid']}>
                      <td>{item['courseid']}</td>
                      <td>{item['name']}</td>

@@ -147,7 +147,6 @@ def studentCourseAssignments(stuID, courseID):
         response.status_code = 200
         cur.close()
         return response
-    
     if request.method == 'POST':
         cur = mysql.connection.cursor()
         json = request.json
@@ -231,12 +230,18 @@ def teacherProfile(insID):
         response.status_code = 200
         return response
     
+@app.route('/teacher/<int:stuID>/courses/<int:courseID>/dropbox/', methods=["GET"])
+def teacherCourseAssignments(stuID, courseID):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("select student.studentID, Assignment.assignment_id, Assignment.assignment_name, submit.grade, submit.feedback, course.courseid from student, user, submit, Assignment, course where student.studentID = submit.studentID and submit.assignment_id = Assignment.assignment_id  and course.courseid = Assignment.courseid and course.courseid = (%s) group by Assignment.assignment_name", (courseID,))
+        courses = cur.fetchall()
+        response = jsonify(courses)
+        response.status_code = 200
+        cur.close()
+        return response
+    
 """ Use classlist api from student """
-
-
-
-
-
 
 
 """ ----- ADMIN STUDENT API ----"""
@@ -254,7 +259,6 @@ def students():
         respone.status_code = 200
         cur.close()
         return respone
-
 
 @app.route('/students/<string:stuUser>', methods=["GET", "PUT", "POST"])
 def stuProfile(stuUser):
