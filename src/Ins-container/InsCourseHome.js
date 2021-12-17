@@ -9,15 +9,6 @@ import StuData from "../Stu-container/stu_db.json";
 import GenData from "../Stu-container/gen_db.json";
 
 function InsCourseHome(props) {
-    const [data, setData]=useState([]);
-    const fetchStudents = ()=>{
-      fetch('')
-      .then(res=>res.json())
-      .then(json=>setData(json));
-    }
-    useEffect(()=>{
-      fetchStudents();
-    },[]);
     return (
         <div className="home-page">
             <Banner />

@@ -8,8 +8,7 @@ function Lecture(props) {
         <Container className="lecture" fluid>
             <Row>
                 <Col>
-                    <h3>{props.info.name}</h3>
-                    <p>{props.info.instructor}</p>
+                    <h3>{props.info.document_name}</h3>
                 </Col>
                 <Col>
                     <Button variant="outline-primary"><FileDown name={sessionStorage.getItem(props.info.filename)}/>Download</Button>
