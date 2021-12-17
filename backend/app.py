@@ -10,9 +10,9 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PORT'] = 3307
+app.config['MYSQL_PORT'] = 3306
 
-app.config['MYSQL_PASSWORD'] = "root"
+app.config['MYSQL_PASSWORD'] = ""
 app.config['MYSQL_DB'] = "lmsdb"
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 CORS(app, expose_headers='Authorization')
@@ -116,7 +116,6 @@ def studentCourseAssignments(stuID, courseID):
         cur = mysql.connection.cursor()
         json = request.json
         assignmentName = json['assignment_name']
-        file = json['file']
         due_date = json['due_date']
         content = json['content']
         courseid = json['courseid']
@@ -243,7 +242,7 @@ def func(stuUser):
             "delete from takes where studentID=(%s) and courseid=(%s) ", (studentID, courseid))
         mysql.connection.commit()
         cur.close()
-        return jsonify("sucess delete")
+        return jsonify("success delete")
 
 # End of Admin student APIs
 ###################################################################################################################################
